@@ -40,7 +40,8 @@ ScreenManager::ScreenManager()
     this->mLines1 = new BatchEntityManager(20, new Entity(Resources::R_SCREENS_LINES, 2, 1), this, 10);
     this->mLines2 = new BatchEntityManager(20, new Entity(Resources::R_SCREENS_LINES, 2, 1), this, 10);
     
-    this->mPopcorn = new Entity(Resources::R_SCREENS_POPCORN);
+    this->mPopcorn = new Entity(Resources::R_SCREENS_POPCORN, 3, 2);
+    this->mPopcorn->animate(0.1f);
     this->mPopcorn->setOpacity(0);
     this->addChild(this->mPopcorn, 10);
     
