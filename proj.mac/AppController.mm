@@ -45,7 +45,7 @@ static AppDelegate s_sharedApplication;
 		[window setContentView:glView];
 		[window setTitle:@"Popcorn Mania"];
 		[window makeKeyAndOrderFront:self];
-		[window setAcceptsMouseMovedEvents:NO];
+		[window setAcceptsMouseMovedEvents:YES];
 
 		cocos2d::CCApplication::sharedApplication()->run();
 	}

@@ -19,6 +19,8 @@
 		41CD6C9415BF7793005E6F29 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CD6C8C15BF7793005E6F29 /* OpenAL.framework */; };
 		41CD6C9515BF7793005E6F29 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CD6C8D15BF7793005E6F29 /* OpenGL.framework */; };
 		41CD6C9615BF7793005E6F29 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CD6C8E15BF7793005E6F29 /* QuartzCore.framework */; };
+		782196F717516D2C0068F6D6 /* level-dust@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782196F617516D2C0068F6D6 /* level-dust@2x.png */; };
+		782196FA17516D5F0068F6D6 /* Dust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 782196F817516D5F0068F6D6 /* Dust.cpp */; };
 		786052FD174FA93E00ACE2D3 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786052F9174FA93E00ACE2D3 /* AppDelegate.cpp */; };
 		786052FE174FA93E00ACE2D3 /* Options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786052FB174FA93E00ACE2D3 /* Options.cpp */; };
 		78605302174FABC100ACE2D3 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78605301174FABC000ACE2D3 /* libcocos2dx.a */; };
@@ -66,6 +68,9 @@
 		786059961750B5E200ACE2D3 /* screens-popcorn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786059951750B5E200ACE2D3 /* screens-popcorn@2x.png */; };
 		786059991750B63D00ACE2D3 /* ImpulseEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786059971750B63C00ACE2D3 /* ImpulseEntity.cpp */; };
 		7860599C1750B74700ACE2D3 /* Bucket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7860599A1750B74600ACE2D3 /* Bucket.cpp */; };
+		7860599E1750B92A00ACE2D3 /* bucket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7860599D1750B92A00ACE2D3 /* bucket@2x.png */; };
+		786059D31751114500ACE2D3 /* game-corn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786059D21751114500ACE2D3 /* game-corn@2x.png */; };
+		786059D61751157500ACE2D3 /* Popcorn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786059D41751157300ACE2D3 /* Popcorn.cpp */; };
 		78DA14A71733EA360005B6D2 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA14441733EA350005B6D2 /* CDAudioManager.m */; };
 		78DA14A81733EA360005B6D2 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA14471733EA350005B6D2 /* CDOpenALSupport.m */; };
 		78DA14A91733EA360005B6D2 /* CDXMacOSXSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78DA14491733EA350005B6D2 /* CDXMacOSXSupport.mm */; };
@@ -109,6 +114,9 @@
 		41CD6C8C15BF7793005E6F29 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		41CD6C8D15BF7793005E6F29 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		41CD6C8E15BF7793005E6F29 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		782196F617516D2C0068F6D6 /* level-dust@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level-dust@2x.png"; sourceTree = "<group>"; };
+		782196F817516D5F0068F6D6 /* Dust.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dust.cpp; sourceTree = "<group>"; };
+		782196F917516D5F0068F6D6 /* Dust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dust.h; sourceTree = "<group>"; };
 		786052F9174FA93E00ACE2D3 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		786052FA174FA93E00ACE2D3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		786052FB174FA93E00ACE2D3 /* Options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Options.cpp; sourceTree = "<group>"; };
@@ -176,6 +184,10 @@
 		786059981750B63C00ACE2D3 /* ImpulseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImpulseEntity.h; sourceTree = "<group>"; };
 		7860599A1750B74600ACE2D3 /* Bucket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bucket.cpp; sourceTree = "<group>"; };
 		7860599B1750B74700ACE2D3 /* Bucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bucket.h; sourceTree = "<group>"; };
+		7860599D1750B92A00ACE2D3 /* bucket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bucket@2x.png"; sourceTree = "<group>"; };
+		786059D21751114500ACE2D3 /* game-corn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-corn@2x.png"; sourceTree = "<group>"; };
+		786059D41751157300ACE2D3 /* Popcorn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Popcorn.cpp; sourceTree = "<group>"; };
+		786059D51751157400ACE2D3 /* Popcorn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popcorn.h; sourceTree = "<group>"; };
 		78DA142F1733EA350005B6D2 /* Export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Export.h; sourceTree = "<group>"; };
 		78DA14301733EA350005B6D2 /* SimpleAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioEngine.h; sourceTree = "<group>"; };
 		78DA14431733EA350005B6D2 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
@@ -336,6 +348,10 @@
 		78605316174FB2A000ACE2D3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				782196F817516D5F0068F6D6 /* Dust.cpp */,
+				782196F917516D5F0068F6D6 /* Dust.h */,
+				786059D41751157300ACE2D3 /* Popcorn.cpp */,
+				786059D51751157400ACE2D3 /* Popcorn.h */,
 				7860599A1750B74600ACE2D3 /* Bucket.cpp */,
 				7860599B1750B74700ACE2D3 /* Bucket.h */,
 				786059971750B63C00ACE2D3 /* ImpulseEntity.cpp */,
@@ -460,6 +476,9 @@
 		7860598F1750B3EA00ACE2D3 /* level */ = {
 			isa = PBXGroup;
 			children = (
+				782196F617516D2C0068F6D6 /* level-dust@2x.png */,
+				786059D21751114500ACE2D3 /* game-corn@2x.png */,
+				7860599D1750B92A00ACE2D3 /* bucket@2x.png */,
 				786059901750B3EA00ACE2D3 /* level-bg@2x.png */,
 			);
 			path = level;
@@ -607,6 +626,9 @@
 				786059931750B3EA00ACE2D3 /* level-bg@2x.png in Resources */,
 				786059941750B3EA00ACE2D3 /* preload-lines@2x.png in Resources */,
 				786059961750B5E200ACE2D3 /* screens-popcorn@2x.png in Resources */,
+				7860599E1750B92A00ACE2D3 /* bucket@2x.png in Resources */,
+				786059D31751114500ACE2D3 /* game-corn@2x.png in Resources */,
+				782196F717516D2C0068F6D6 /* level-dust@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +667,8 @@
 				786054411750535B00ACE2D3 /* Level.cpp in Sources */,
 				786059991750B63D00ACE2D3 /* ImpulseEntity.cpp in Sources */,
 				7860599C1750B74700ACE2D3 /* Bucket.cpp in Sources */,
+				786059D61751157500ACE2D3 /* Popcorn.cpp in Sources */,
+				782196FA17516D5F0068F6D6 /* Dust.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

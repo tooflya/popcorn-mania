@@ -71,18 +71,31 @@ class ImpulseEntity : public Entity
 		// ===========================================================
 		// Fields
 		// ===========================================================
+    
+        float mImpulsePower;
+        float mSideImpulse;
+        float mRotateImpulse;
+        
+        float mWeight;
 
 		// ===========================================================
 		// Constructors
-		// ===========================================================
+        // ===========================================================
+    
+        ImpulseEntity(const char* pTextureFileName);
+        ImpulseEntity(const char* pTextureFileName, int pHorizontalFramesCount, int pVerticalFramesCount);
 
 		// ===========================================================
 		// Methods
 		// ===========================================================
+    
+        bool isCollideWithPoint(float pX, float pY);
 		
 		// ===========================================================
 		// Virtual Methods
 		// ===========================================================
+    
+        void update(float pDelta);
 };
 
 #endif

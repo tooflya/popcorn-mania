@@ -79,11 +79,14 @@ class Resources
         static const char* R_MENU_SHADOW;
     
         static const char* R_GAME_CORN;
+        static const char* R_GAME_STREAK;
     
         static const char* R_SCREENS_LINES;
         static const char* R_SCREENS_POPCORN;
     
         static const char* R_LEVEL_BACKGROUND;
+        static const char* R_LEVEL_BUCKET;
+        static const char* R_LEVEL_DUST;
     
         // ===========================================================
         // Fields
