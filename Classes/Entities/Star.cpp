@@ -84,9 +84,11 @@ void Star::update(float pDelta)
             {
                 this->setScale(this->getScale() - this->mAnimationScaleSpeed);
                 
-                if(this->getScale() <= 0.2f)
+                if(this->getScale() <= 0.0f)
                 {
                     this->mIsAnimationScaleReverse = !this->mIsAnimationScaleReverse;
+                    
+                    this->create();
                 }
             }
         break;
@@ -108,6 +110,8 @@ void Star::update(float pDelta)
                 if(this->getOpacity() < this->mAnimationMinAlpha)
                 {
                     this->mIsAnimationAlphaReverse = !this->mIsAnimationAlphaReverse;
+                    
+                    this->create();
                 }
             }
         break;

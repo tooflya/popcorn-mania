@@ -22,14 +22,14 @@
 Spotlight::Spotlight(CCNode* pParent)
     :Entity(Resources::R_MENU_SPOTLIGHT, pParent)
     {
-        this->mAnimationRotateSpeed = 0.01f; // Utils::random(10.0f, 100.0f);
+        this->mAnimationRotateSpeed = Utils::randomf(0.01f, 0.03f);
         
         this->mIsAnimationRotateReverse = true;
         
         this->mAnimationRotateMaxAngle = 10.0f;
         this->mAnimationRotateMinAngle = -10.0f;
         
-        this->setAnchorPoint(ccp(0.75f, 0.5f));
+        this->setAnchorPoint(ccp(0.0f, 0.0f));
     }
 
 // ===========================================================

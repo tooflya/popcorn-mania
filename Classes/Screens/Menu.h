@@ -30,7 +30,8 @@ class Menu : public Popscreen
 		// Fields
         // ===========================================================
     
-        Entity* mBackground;
+        Entity* mBackground1;
+        Entity* mBackground2;
     
         Spotlight* mSpotlight1;
         Spotlight* mSpotlight2;
@@ -39,11 +40,12 @@ class Menu : public Popscreen
         BatchEntityManager* mPeople;
     
         Entity* mNamePanel;
-        
-        Entity* mNamePart1;
-        Entity* mNamePart2;
+        Entity* mShadowDecoration;
+        Entity* mName;
     
         Entity* mPlay;
+        Entity* mScore;
+        Entity* mShop;
 
 		// ===========================================================
 		// Constructors

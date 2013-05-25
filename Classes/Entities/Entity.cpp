@@ -72,6 +72,12 @@ void Entity::constructor(const char* pszFileName, int pHorizontalFramesCount, in
 
 	this->mAnimationTime = 0;
 	this->mAnimationTimeElapsed = 0;
+    
+	this->mAnimationScaleDownTime = 0.2f;
+	this->mAnimationScaleUpTime = 0.2f;
+    
+	this->mAnimationScaleDownFactor = 0.8f;
+	this->mAnimationScaleUpFactor = 1.0f;
 
 	this->mAnimationStartTimeout = 0;
 
@@ -485,7 +491,11 @@ bool Entity::ccTouchBegan(CCTouch* touch, CCEvent* event)
 
 	if(Touchable::ccTouchBegan(touch, event))
 	{
+        this->setCurrentFrameIndex(1);
+        
 		this->mWasTouched = true;
+        
+		this->runAction(CCScaleTo::create(this->mAnimationScaleDownTime, this->mAnimationScaleDownFactor));
 
 		return true;
 	}
@@ -499,6 +509,14 @@ void Entity::ccTouchMoved(CCTouch* touch, CCEvent* event)
 	{
 		if(this->mWasTouched)
 		{
+			if(this->getScale() < this->mAnimationScaleUpFactor)
+			{
+				this->runAction(CCScaleTo::create(this->mAnimationScaleUpTime, this->mAnimationScaleUpFactor));
+                
+				this->mWasTouched = false;
+                
+                this->setCurrentFrameIndex(0);
+			}
 		}
 	}
 }
@@ -508,9 +526,13 @@ void Entity::ccTouchEnded(CCTouch* touch, CCEvent* event)
 	if(this->mWasTouched)
 	{
 		this->onTouch(touch, event);
+        
+		this->runAction(CCScaleTo::create(this->mAnimationScaleUpTime, this->mAnimationScaleUpFactor));
 	}
 
 	this->mWasTouched = false;
+    
+    this->setCurrentFrameIndex(0);
 }
 
 bool Entity::containsTouchLocation(CCTouch* touch)

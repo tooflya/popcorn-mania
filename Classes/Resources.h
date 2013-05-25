@@ -66,14 +66,17 @@ class Resources
         // Constants
         // ===========================================================
     
-        static const char* R_MENU_BACKGROUND;
+        static const char* R_MENU_BACKGROUND1;
+        static const char* R_MENU_BACKGROUND2;
         static const char* R_MENU_STAR;
         static const char* R_MENU_PEOPLE;
         static const char* R_MENU_SPOTLIGHT;
         static const char* R_MENU_NAME_PANEL;
-        static const char* R_MENU_NAME_PART1;
-        static const char* R_MENU_NAME_PART2;
+        static const char* R_MENU_NAME;
         static const char* R_MENU_PLAY;
+        static const char* R_MENU_SCORE;
+        static const char* R_MENU_SHOP;
+        static const char* R_MENU_SHADOW;
     
         static const char* R_GAME_CORN;
     

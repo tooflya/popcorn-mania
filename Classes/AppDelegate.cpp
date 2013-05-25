@@ -49,7 +49,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	Options::CAMERA_CENTER_X  = screenSize.width / 2;
 	Options::CAMERA_CENTER_Y = screenSize.height / 2;
     
-	director->setDisplayStats(true);
+	director->setDisplayStats(false);
 	director->setAnimationInterval(1.0f / 60.0f);
 	director->setProjection(kCCDirectorProjection2D);
 

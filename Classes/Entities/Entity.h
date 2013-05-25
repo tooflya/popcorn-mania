@@ -41,6 +41,12 @@ class Entity : public CCSprite, public Touchable
         float mPauseBeforeNewAnimationCircleTime;
         float mPauseBeforeNewAnimationCircleTimeElapsed;
     
+        float mAnimationScaleDownTime;
+        float mAnimationScaleUpTime;
+    
+        float mAnimationScaleDownFactor;
+        float mAnimationScaleUpFactor;
+    
         float mAnimationTime;
         float mAnimationTimeElapsed;
     

@@ -20,7 +20,7 @@
 // ===========================================================
 
 People::People()
-    :Entity(Resources::R_MENU_PEOPLE, 9, 1)
+    :Entity(Resources::R_MENU_PEOPLE, 4, 2)
     {
         this->mAnimationMoveSpeed = Utils::randomf(10.0f, 20.0f);
         this->mAnimationAmplitude = Utils::random(2.0f, 15.0f);
