@@ -5,6 +5,12 @@
 
 #include "Popscreen.h"
 
+#include "Bucket.h"
+#include "Popcorn.h"
+#include "Dust.h"
+
+#include "BatchEntityManager.h"
+
 using namespace cocos2d;
 
 class Level : public Popscreen
@@ -48,6 +54,13 @@ class Level : public Popscreen
 		// ===========================================================
 		// Fields
 		// ===========================================================
+    
+        float mBucketTime;
+        float mBucketTimeElapsed;
+    
+        BatchEntityManager* mBuckets;
+        BatchEntityManager* mPopcorns;
+        BatchEntityManager* mDusts;
 
 		// ===========================================================
 		// Constructors
@@ -72,7 +85,13 @@ class Level : public Popscreen
 
 		// ===========================================================
 		// Fields
-		// ===========================================================
+        // ===========================================================
+    
+        float mTouchPreviousCoordinateX;
+        float mTouchPreviousCoordinateY;
+    
+        float mTouchCoordinateX;
+        float mTouchCoordinateY;
 
 		// ===========================================================
 		// Constructors
@@ -82,11 +101,19 @@ class Level : public Popscreen
 
 		// ===========================================================
 		// Methods
-		// ===========================================================
+        // ===========================================================
+    
+        virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
+        virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
+        virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
+    
+        virtual void onTouch(CCTouch* touch, CCEvent* event);
 		
 		// ===========================================================
 		// Virtual Methods
 		// ===========================================================
+    
+        void update(float pDelta);
 };
 
 #endif

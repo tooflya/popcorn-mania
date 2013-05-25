@@ -1,20 +1,13 @@
-#ifndef CONST_SCREENMANAGER_H
-#define CONST_SCREENMANAGER_H
+#ifndef CONST_DUST_H
+#define CONST_DUST_H
 
 #include "cocos2d.h"
 
-#include "Screen.h"
-
-#include "Menu.h"
-#include "Level.h"
-
-#include "BatchEntityManager.h"
-
-class Popscreen;
+#include "Entity.h"
 
 using namespace cocos2d;
 
-class ScreenManager : public Screen
+class Dust : public Entity
 {
 	protected:
 		// ===========================================================
@@ -52,24 +45,25 @@ class ScreenManager : public Screen
 
 		// ===========================================================
 		// Fields
-        // ===========================================================
+		// ===========================================================
     
-        float mLayersChangesSpeed;
+        float mSpeedX;
+        float mSpeedY;
     
-        float mLockAnimationTimeElapsed;
+        float mMustSpeedX;
+        float mMustSpeedY;
     
-        float mLockWaitTime;
-        float mLockWaitTimeElapsed;
+        float mSpeedTime;
+        float mSpeedTimeElapsed;
     
-        bool mIsLockHiding;
-        bool mIsLockShowing;
+        float mAlphaTime;
+        float mAlphaTimeElapsed;
     
-        bool mNeedHideLock;
+        float mScaleTime;
+        float mScaleTimeElapsed;
     
-        BatchEntityManager* mLines1;
-        BatchEntityManager* mLines2;
-    
-        Entity* mPopcorn;
+        bool mIsMustChangeSpeedX;
+        bool mIsMustChangeSpeedY;
 
 		// ===========================================================
 		// Constructors
@@ -77,18 +71,7 @@ class ScreenManager : public Screen
 
 		// ===========================================================
 		// Methods
-        // ===========================================================
-    
-        void generate();
-    
-        void showLock();
-        void hideLock();
-    
-        void onLockOnFinish();
-        void onLockOffFinish();
-    
-        void onLockOnStart();
-        void onLockOffStart();
+		// ===========================================================
 		
 		// ===========================================================
 		// Virtual Methods
@@ -107,37 +90,25 @@ class ScreenManager : public Screen
 		// Fields
 		// ===========================================================
 
-		Popscreen* mScreens[5];
-
-        int mCurrentScreenIndex;
-        int mNextScreenIndex;
-
 		// ===========================================================
 		// Constructors
 		// ===========================================================
-
-		ScreenManager();
+    
+        Dust();
 
 		// ===========================================================
 		// Methods
 		// ===========================================================
     
-        virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
-        virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
-        virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
+        Entity* create();
     
-        void onTouch(CCTouch* touch, CCEvent* event);
-    
-        void set(int pIndex);
+        void update(float pDeltaTime);
 		
 		// ===========================================================
 		// Virtual Methods
-        // ===========================================================
+		// ===========================================================
     
-        void update(float pDelta);
-    
-        virtual void onEnter();
-        virtual void onExit();
+        Dust* deepCopy();
 };
 
 #endif

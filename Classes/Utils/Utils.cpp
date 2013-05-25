@@ -29,12 +29,12 @@ float Utils::Pi = atan(1.0) * 4;
 
 float Utils::randomf(float min, float max)
 {
-	return min + (float) arc4random() / ((float) RAND_MAX / (max - min)); // TODO: Check is arc4random works fine.
+	return min + (float) rand() / ((float) RAND_MAX / (max - min));
 }
 
 int Utils::random(int min, int max)
 {
-	return min + (arc4random() % max);
+	return min + rand() / (RAND_MAX / (max + 1 - min));
 }
 
 float Utils::coord(float pCoordinate)

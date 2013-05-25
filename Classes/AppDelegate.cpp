@@ -35,7 +35,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCSize 	screenSize 		= EGLView->getFrameSize();
     
 	director->setOpenGLView(EGLView);
-	director->setContentScaleFactor(designResolutionSize.width / screenSize.width);
+	director->setContentScaleFactor(MIN(designResolutionSize.width / screenSize.width, designResolutionSize.height / screenSize.height));
 
 	vector <string> searchPath;
     

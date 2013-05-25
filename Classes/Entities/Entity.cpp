@@ -226,6 +226,9 @@ float Entity::getSpeed(float pDeltaTime)
 Entity* Entity::create()
 {
 	this->setVisible(true);
+    
+    this->setScale(1.0f);
+    this->setRotation(0.0f);
 
 	return this;
 }

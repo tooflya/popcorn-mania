@@ -87,6 +87,12 @@ class Popscreen : public CCLayer
 		// ===========================================================
 		// Methods
 		// ===========================================================
+    
+        virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
+        virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
+        virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
+    
+        virtual void onTouch(CCTouch* touch, CCEvent* event);
 		
 		// ===========================================================
 		// Virtual Methods

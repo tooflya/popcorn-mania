@@ -1,20 +1,13 @@
-#ifndef CONST_SCREENMANAGER_H
-#define CONST_SCREENMANAGER_H
+#ifndef CONST_IMPULSEENTITY_H
+#define CONST_IMPULSEENTITY_H
 
 #include "cocos2d.h"
 
-#include "Screen.h"
-
-#include "Menu.h"
-#include "Level.h"
-
-#include "BatchEntityManager.h"
-
-class Popscreen;
+#include "Entity.h"
 
 using namespace cocos2d;
 
-class ScreenManager : public Screen
+class ImpulseEntity : public Entity
 {
 	protected:
 		// ===========================================================
@@ -52,24 +45,7 @@ class ScreenManager : public Screen
 
 		// ===========================================================
 		// Fields
-        // ===========================================================
-    
-        float mLayersChangesSpeed;
-    
-        float mLockAnimationTimeElapsed;
-    
-        float mLockWaitTime;
-        float mLockWaitTimeElapsed;
-    
-        bool mIsLockHiding;
-        bool mIsLockShowing;
-    
-        bool mNeedHideLock;
-    
-        BatchEntityManager* mLines1;
-        BatchEntityManager* mLines2;
-    
-        Entity* mPopcorn;
+		// ===========================================================
 
 		// ===========================================================
 		// Constructors
@@ -77,18 +53,7 @@ class ScreenManager : public Screen
 
 		// ===========================================================
 		// Methods
-        // ===========================================================
-    
-        void generate();
-    
-        void showLock();
-        void hideLock();
-    
-        void onLockOnFinish();
-        void onLockOffFinish();
-    
-        void onLockOnStart();
-        void onLockOffStart();
+		// ===========================================================
 		
 		// ===========================================================
 		// Virtual Methods
@@ -106,38 +71,31 @@ class ScreenManager : public Screen
 		// ===========================================================
 		// Fields
 		// ===========================================================
-
-		Popscreen* mScreens[5];
-
-        int mCurrentScreenIndex;
-        int mNextScreenIndex;
+    
+        float mImpulsePower;
+        float mSideImpulse;
+        float mRotateImpulse;
+        
+        float mWeight;
 
 		// ===========================================================
 		// Constructors
-		// ===========================================================
-
-		ScreenManager();
+        // ===========================================================
+    
+        ImpulseEntity(const char* pTextureFileName);
+        ImpulseEntity(const char* pTextureFileName, int pHorizontalFramesCount, int pVerticalFramesCount);
 
 		// ===========================================================
 		// Methods
 		// ===========================================================
     
-        virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
-        virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
-        virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
-    
-        void onTouch(CCTouch* touch, CCEvent* event);
-    
-        void set(int pIndex);
+        bool isCollideWithPoint(float pX, float pY);
 		
 		// ===========================================================
 		// Virtual Methods
-        // ===========================================================
+		// ===========================================================
     
         void update(float pDelta);
-    
-        virtual void onEnter();
-        virtual void onExit();
 };
 
 #endif

@@ -50,6 +50,26 @@ Popscreen::Popscreen(ScreenManager* pScreenManager)
 // Methods
 // ===========================================================
 
+bool Popscreen::ccTouchBegan(CCTouch* touch, CCEvent* event)
+{
+	return true;
+}
+
+void Popscreen::ccTouchMoved(CCTouch* touch, CCEvent* event)
+{
+	
+}
+
+void Popscreen::ccTouchEnded(CCTouch* touch, CCEvent* event)
+{
+	
+}
+
+void Popscreen::onTouch(CCTouch* touch, CCEvent* event)
+{
+    
+}
+
 // ===========================================================
 // Virtual methods
 // ===========================================================

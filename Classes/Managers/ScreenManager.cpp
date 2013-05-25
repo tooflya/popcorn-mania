@@ -57,6 +57,8 @@ ScreenManager::ScreenManager()
         line->setCurrentFrameIndex(1);
         line->setCenterPosition(i * Utils::coord(64) * 2 + Utils::coord(64), Options::CAMERA_CENTER_Y);
     }
+    
+    this->setRegisterAsTouchable(true);
 }
 
 // ===========================================================
@@ -82,6 +84,26 @@ ScreenManager::ScreenManager()
 // ===========================================================
 // Methods
 // ===========================================================
+
+bool ScreenManager::ccTouchBegan(CCTouch* touch, CCEvent* event)
+{
+    return this->mScreens[this->mCurrentScreenIndex]->ccTouchBegan(touch, event);
+}
+
+void ScreenManager::ccTouchMoved(CCTouch* touch, CCEvent* event)
+{
+    this->mScreens[this->mCurrentScreenIndex]->ccTouchMoved(touch, event);
+}
+
+void ScreenManager::ccTouchEnded(CCTouch* touch, CCEvent* event)
+{
+    this->mScreens[this->mCurrentScreenIndex]->ccTouchEnded(touch, event);
+}
+
+void ScreenManager::onTouch(CCTouch* touch, CCEvent* event)
+{
+    this->mScreens[this->mCurrentScreenIndex]->onTouch(touch, event);
+}
 
 void ScreenManager::generate()
 {
