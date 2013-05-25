@@ -11,3 +11,10 @@
 *.lai
 *.la
 *.a
+
+# Custom
+*.DS_Store
+
+# OS X
+proj.mac/Build
+Build
