@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7811503017329E3D00B4D17B"
-               BuildableName = "Popcorn Mania.app"
-               BlueprintName = "Popcorn Mania"
-               ReferencedContainer = "container:../../../../Popcorn Mania.xcodeproj">
+               BuildableName = "PopcornMania.app"
+               BlueprintName = "PopcornMania"
+               ReferencedContainer = "container:../../../../PopcornMania.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7811503017329E3D00B4D17B"
-            BuildableName = "Popcorn Mania.app"
-            BlueprintName = "Popcorn Mania"
-            ReferencedContainer = "container:../../../../Popcorn Mania.xcodeproj">
+            BuildableName = "PopcornMania.app"
+            BlueprintName = "PopcornMania"
+            ReferencedContainer = "container:../../../../PopcornMania.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -61,9 +61,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7811503017329E3D00B4D17B"
-            BuildableName = "Popcorn Mania.app"
-            BlueprintName = "Popcorn Mania"
-            ReferencedContainer = "container:../../../../Popcorn Mania.xcodeproj">
+            BuildableName = "PopcornMania.app"
+            BlueprintName = "PopcornMania"
+            ReferencedContainer = "container:../../../../PopcornMania.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

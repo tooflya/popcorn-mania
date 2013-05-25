@@ -20,9 +20,9 @@ typedef struct tagResource {
 } Resource;
 
 static Resource resources480x320 	= { CCSizeMake(480, 320),    "Graphics/480x320"   };
-static Resource resources1280x768 	= { CCSizeMake(1280, 768),   "Graphics/1280x768"  };
+static Resource resources1280x720 	= { CCSizeMake(1280, 720),   "Graphics/1280x720"  };
 static Resource resources1920x1080 	= { CCSizeMake(1920, 1080),  "Graphics/1920x1080" };
-static CCSize   designResolutionSize  = CCSizeMake(1280, 768);
+static CCSize   designResolutionSize  = CCSizeMake(1280, 720);
 
 class AppDelegate : private CCApplication
 {

@@ -33,7 +33,7 @@ static AppDelegate s_sharedApplication;
 
 	-(void) applicationDidFinishLaunching:(NSNotification *)aNotification
 	{
-		NSRect rect = NSMakeRect(0, 0, 1280, 768);
+		NSRect rect = NSMakeRect(0, 0, 1280, 720);
 		window = [[NSWindow alloc] initWithContentRect:rect
 			styleMask:( NSClosableWindowMask | NSTitledWindowMask )
 			backing:NSBackingStoreBuffered

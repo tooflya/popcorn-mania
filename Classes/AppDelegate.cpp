@@ -35,11 +35,11 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCSize 	screenSize 		= EGLView->getFrameSize();
     
 	director->setOpenGLView(EGLView);
-	director->setContentScaleFactor(designResolutionSize.height / screenSize.height);
+	director->setContentScaleFactor(designResolutionSize.width / screenSize.width);
 
 	vector <string> searchPath;
     
-	searchPath.push_back(resources1280x768.directory);
+	searchPath.push_back(resources1280x720.directory);
 
 	CCFileUtils::sharedFileUtils()->setSearchPaths(searchPath);
 
