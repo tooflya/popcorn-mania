@@ -36,9 +36,9 @@ const char* Resources::R_MENU_SHADOW = "dark-line@2x.png";
 const char* Resources::R_GAME_CORN = "dark-line@2x.png";
 
 const char* Resources::R_SCREENS_LINES = "preload-lines@2x.png";
-const char* Resources::R_SCREENS_POPCORN = "dark-line@2x.png";
+const char* Resources::R_SCREENS_POPCORN = "screens-popcorn@2x.png";
 
-const char* Resources::R_LEVEL_BACKGROUND = "dark-line@2x.png";
+const char* Resources::R_LEVEL_BACKGROUND = "level-bg@2x.png";
 
 #else
 

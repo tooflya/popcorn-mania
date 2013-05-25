@@ -22,6 +22,7 @@ public:
         this->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y - Utils::coord(50));
         
         this->setRegisterAsTouchable(true);
+        this->animate(0.1f);
     }
     
     void onTouch(CCTouch* touch, CCEvent* event)
@@ -40,9 +41,10 @@ public:
     {
         this->mParent = pParent;
         
-        this->create()->setCenterPosition(Options::CAMERA_CENTER_X - Utils::coord(220), Options::CAMERA_CENTER_Y - Utils::coord(50));
+        this->create()->setCenterPosition(Options::CAMERA_CENTER_X - Utils::coord(270), Options::CAMERA_CENTER_Y - Utils::coord(50));
         
         this->setRegisterAsTouchable(true);
+        this->animate(0.2f);
     }
     
     void onTouch(CCTouch* touch, CCEvent* event)
@@ -61,9 +63,10 @@ public:
     {
         this->mParent = pParent;
         
-        this->create()->setCenterPosition(Options::CAMERA_CENTER_X + Utils::coord(200), Options::CAMERA_CENTER_Y - Utils::coord(50));
+        this->create()->setCenterPosition(Options::CAMERA_CENTER_X + Utils::coord(240), Options::CAMERA_CENTER_Y - Utils::coord(50));
         
         this->setRegisterAsTouchable(true);
+        this->animate(0.2f);
     }
     
     void onTouch(CCTouch* touch, CCEvent* event)
