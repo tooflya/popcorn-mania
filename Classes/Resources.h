@@ -86,6 +86,11 @@ class Resources
         static const char* R_LEVEL_BACKGROUND;
         static const char* R_LEVEL_BUCKET;
         static const char* R_LEVEL_DUST;
+        static const char* R_LEVEL_PAUSE;
+        static const char* R_LEVEL_BUCKETICON;
+    
+        static const char* S_SCREENS_TIP1;
+        static const char* S_SCREENS_TIP2;
     
         // ===========================================================
         // Fields

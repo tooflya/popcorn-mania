@@ -7,6 +7,16 @@
 // Inner Classes
 // ===========================================================
 
+class PauseButton : public Entity
+{
+    public:
+        PauseButton(CCNode* pParent) :
+            Entity(Resources::R_LEVEL_PAUSE, pParent)
+        {
+            this->setRegisterAsTouchable(true);
+        }
+};
+
 // ===========================================================
 // Constants
 // ===========================================================
@@ -44,6 +54,15 @@ Level::Level(ScreenManager* pScreenManager) :
         
         this->mBuckets = new BatchEntityManager(100, new Bucket(), this);
         this->mPopcorns = new BatchEntityManager(100, new Popcorn(), this);
+        
+        (new PauseButton(this))->create()->setCenterPosition(Utils::coord(48), Utils::coord(48));
+        (new Entity(Resources::R_LEVEL_BUCKETICON, this))->create()->setCenterPosition(Utils::coord(24), Options::CAMERA_HEIGHT - Utils::coord(24));
+        
+        this->mBucketCountText = CCLabelTTF::create("x 0", "Arial",  Utils::coord(24));
+        
+        this->mBucketCountText->setPosition(ccp(Utils::coord(55), Options::CAMERA_HEIGHT - Utils::coord(28)));
+        
+        this->addChild(this->mBucketCountText);
     }
 
 // ===========================================================

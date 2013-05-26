@@ -41,10 +41,15 @@ const char* Resources::R_SCREENS_POPCORN = "preload-bar-sprite@2x.png";
 const char* Resources::R_LEVEL_BACKGROUND = "level-bg@2x.png";
 const char* Resources::R_LEVEL_BUCKET = "bucket@2x.png";
 const char* Resources::R_LEVEL_DUST = "process-dust@2x.png";
+const char* Resources::R_LEVEL_PAUSE = "process-pause@2x.png";
+const char* Resources::R_LEVEL_BUCKETICON = "process-bucket-icon@2x.png";
 
 #else
 
 #endif
+
+const char* Resources::S_SCREENS_TIP1 = "Be careful and you will be able to earn";
+const char* Resources::S_SCREENS_TIP2 = "bonuses for future plays!";
 
 // ===========================================================
 // Methods

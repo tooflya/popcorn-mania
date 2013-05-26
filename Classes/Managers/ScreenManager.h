@@ -70,6 +70,9 @@ class ScreenManager : public Screen
         BatchEntityManager* mLines2;
     
         Entity* mPopcorn;
+    
+        CCLabelTTF* mTip1;
+        CCLabelTTF* mTip2;
 
 		// ===========================================================
 		// Constructors

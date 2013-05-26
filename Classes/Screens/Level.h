@@ -61,6 +61,8 @@ class Level : public Popscreen
         BatchEntityManager* mBuckets;
         BatchEntityManager* mPopcorns;
         BatchEntityManager* mDusts;
+    
+        CCLabelTTF* mBucketCountText;
 
 		// ===========================================================
 		// Constructors

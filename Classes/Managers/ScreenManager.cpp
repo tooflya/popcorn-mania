@@ -29,7 +29,7 @@ ScreenManager::ScreenManager()
     
     this->mLockAnimationTimeElapsed = 0;
     
-    this->mLockWaitTime = 1.5f;
+    this->mLockWaitTime = 5.0f;
     this->mLockWaitTimeElapsed = 0;
     
     this->mIsLockHiding = false;
@@ -39,6 +39,21 @@ ScreenManager::ScreenManager()
     
     this->mLines1 = new BatchEntityManager(20, new Entity(Resources::R_SCREENS_LINES, 2, 1), this, 10);
     this->mLines2 = new BatchEntityManager(20, new Entity(Resources::R_SCREENS_LINES, 2, 1), this, 10);
+    
+    this->mTip1 = CCLabelTTF::create(Resources::S_SCREENS_TIP1, "Arial",  Utils::coord(24));
+    this->mTip2 = CCLabelTTF::create(Resources::S_SCREENS_TIP2, "Arial",  Utils::coord(24));
+    
+    this->mTip1->setPosition(ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y - Utils::coord(150)));
+    this->mTip2->setPosition(ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y - Utils::coord(180)));
+    
+    this->mTip1->setColor(ccc3(0, 0, 0));
+    this->mTip2->setColor(ccc3(0, 0, 0));
+    
+    this->mTip1->setOpacity(0);
+    this->mTip2->setOpacity(0);
+    
+    this->addChild(this->mTip1, 20);
+    this->addChild(this->mTip2, 20);
     
     this->mPopcorn = new Entity(Resources::R_SCREENS_POPCORN, 3, 2);
     this->mPopcorn->animate(0.1f);
@@ -146,11 +161,17 @@ void ScreenManager::hideLock()
 void ScreenManager::onLockOnStart()
 {
     this->mPopcorn->runAction(CCFadeIn::create(0.5f));
+    
+    this->mTip1->runAction(CCFadeIn::create(0.5f));
+    this->mTip2->runAction(CCFadeIn::create(0.5f));
 }
 
 void ScreenManager::onLockOffStart()
 {
     this->mPopcorn->runAction(CCFadeOut::create(0.5f));
+    
+    this->mTip1->runAction(CCFadeOut::create(0.5f));
+    this->mTip2->runAction(CCFadeOut::create(0.5f));
 }
 
 void ScreenManager::onLockOnFinish()
