@@ -77,6 +77,8 @@ class Popscreen : public CCLayer
         // ===========================================================
     
         ScreenManager* mScreenManager;
+    
+        bool mShowed;
 
 		// ===========================================================
 		// Constructors

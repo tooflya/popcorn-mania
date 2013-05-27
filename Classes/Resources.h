@@ -79,6 +79,7 @@ class Resources
         static const char* R_MENU_SHADOW;
     
         static const char* R_GAME_CORN;
+        static const char* R_GAME_CORN_SHADOW;
     
         static const char* R_SCREENS_LINES;
         static const char* R_SCREENS_POPCORN;
@@ -95,9 +96,16 @@ class Resources
         static const char* R_LEVEL_DECORATION1;
         static const char* R_LEVEL_DECORATION2;
         static const char* R_LEVEL_COIN;
+        static const char* R_LEVEL_COIN_SHADOW;
+        static const char* R_LEVEL_COINS_ICON;
+        static const char* R_LEVEL_START_BACKGROUND;
+        static const char* R_LEVEL_START_NUMBERS;
+        static const char* R_LEVEL_LIFES;
     
         static const char* R_PAUSE_NAME;
         static const char* R_PAUSE_NAME_PANEL;
+        static const char* R_PAUSE_MENU_BUTTON;
+        static const char* R_PAUSE_RESTART_BUTTON;
     
         static const char* R_GAMEOVER_NAME;
         static const char* R_GAMEOVER_NAME_PANEL;

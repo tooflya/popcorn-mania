@@ -219,7 +219,7 @@ class Entity : public CCSprite, public Touchable
     
         virtual void changeTexture(Texture* pTexture);
     
-        void setShadowed();
+        void setShadowed(const char* pTextureFileName);
     
         bool isAnimationRunning();
     

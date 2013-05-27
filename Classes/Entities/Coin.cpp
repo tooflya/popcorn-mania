@@ -22,7 +22,8 @@
 Coin::Coin() :
     ImpulseEntity(Resources::R_LEVEL_COIN, 3, 2)
     {
-        this->setShadowed();
+        this->setShadowed(Resources::R_LEVEL_COIN_SHADOW);
+        this->setRegisterAsTouchable(true);
         
         this->animate(0.1f);
     }
@@ -49,6 +50,11 @@ Entity* Coin::create()
     entity->setCurrentFrameIndex(Utils::random(0, 2));
     
     return entity;
+}
+
+void Coin::onTouch(CCTouch* touch, CCEvent* event)
+{
+    this->destroy();
 }
 
 void Coin::update(float pDeltaTime)

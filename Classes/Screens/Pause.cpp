@@ -3,9 +3,61 @@
 
 #include "Pause.h"
 
+#include "Level.h"
+
 // ===========================================================
 // Inner Classes
 // ===========================================================
+
+class RestartButton : public Entity
+{
+public:
+    Pause* mParent;
+    
+    RestartButton(Pause* pParent) :
+    Entity(Resources::R_PAUSE_RESTART_BUTTON, 1, 2, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y - Utils::coord(50));
+        
+        this->setRegisterAsTouchable(true);
+        this->animate(0.1f);
+    }
+    
+    void onTouch(CCTouch* touch, CCEvent* event)
+    {
+        if(!this->mParent->mShowed) return;
+        
+        Level* level = (Level*) this->mParent->getParent();
+        
+        level->startLevel();
+        
+        this->mParent->hide();
+    }
+};
+
+class MenuButton : public Entity
+{
+public:
+    Pause* mParent;
+    
+    MenuButton(Pause* pParent) :
+    Entity(Resources::R_PAUSE_MENU_BUTTON, 1, 2, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y - Utils::coord(250));
+        
+        this->setRegisterAsTouchable(true);
+        this->animate(0.1f);
+    }
+    
+    void onTouch(CCTouch* touch, CCEvent* event)
+    {
+        
+    }
+};
 
 // ===========================================================
 // Constants
@@ -49,6 +101,9 @@ Pause::Pause(ScreenManager* pScreenManager) :
         this->mLines1->setPosition(ccp(0, Options::CAMERA_HEIGHT));
         this->mLines2->setPosition(ccp(0, -Options::CAMERA_HEIGHT));
         
+        this->mRestartButton = new RestartButton(this);
+        this->mMenuButton = new MenuButton(this);
+        
         this->hide();
     }
 
@@ -58,6 +113,8 @@ Pause::Pause(ScreenManager* pScreenManager) :
 
 void Pause::hide()
 {
+    this->mShowed = false;
+    
     this->mLines1->runAction(CCMoveTo::create(0.3f, ccp(0, Options::CAMERA_HEIGHT)));
     this->mLines2->runAction(CCMoveTo::create(0.3f, ccp(0, -Options::CAMERA_HEIGHT)));
     
@@ -69,6 +126,8 @@ void Pause::hide()
 
 void Pause::show()
 {
+    this->mShowed = true;
+    
     this->mLines1->runAction(CCMoveTo::create(0.3f, ccp(0, 0)));
     this->mLines2->runAction(CCMoveTo::create(0.3f, ccp(0, 0)));
     

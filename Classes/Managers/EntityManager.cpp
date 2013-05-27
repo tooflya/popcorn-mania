@@ -50,6 +50,22 @@ EntityManager::EntityManager(int pCreateCount, Entity* pEntity, CCNode* pScreen,
 	this->init(pCreateCount, -1, pEntity, pScreen, pZOrder);
 }
 
+void EntityManager::pauseSchedulerAndActions()
+{
+	for(int i = 0; i < this->getCapacity(); i++)
+	{
+		((Entity*) this->objectAtIndex(i))->pauseSchedulerAndActions();
+	}
+}
+
+void EntityManager::resumeSchedulerAndActions()
+{
+	for(int i = 0; i < this->getCapacity(); i++)
+	{
+		((Entity*) this->objectAtIndex(i))->resumeSchedulerAndActions();
+	}
+}
+
 Entity* EntityManager::create()
 {
 	if (++this->mLastElementNumber < this->mCapacity)

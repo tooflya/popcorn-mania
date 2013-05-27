@@ -22,7 +22,7 @@
 Popcorn::Popcorn() :
     ImpulseEntity(Resources::R_GAME_CORN, 1, 3)
     {
-        this->setShadowed();
+        this->setShadowed(Resources::R_GAME_CORN_SHADOW);
     }
 
 // ===========================================================

@@ -126,6 +126,8 @@ void ScreenManager::generate()
 	this->mScreens[0] = new Menu(this);
 	this->mScreens[1] = new Level(this);
     
+    this->mScreens[1]->pauseSchedulerAndActions();
+    
     this->addChild(this->mScreens[0]);
     
     this->mCurrentScreenIndex = 0;
@@ -172,6 +174,8 @@ void ScreenManager::onLockOffStart()
     
     this->mTip1->runAction(CCFadeOut::create(0.5f));
     this->mTip2->runAction(CCFadeOut::create(0.5f));
+    
+    this->mScreens[this->mCurrentScreenIndex]->resumeSchedulerAndActions();
 }
 
 void ScreenManager::onLockOnFinish()
@@ -180,6 +184,8 @@ void ScreenManager::onLockOnFinish()
     this->addChild(this->mScreens[this->mNextScreenIndex]);
     
     this->mCurrentScreenIndex = this->mNextScreenIndex;
+    
+    this->mScreens[this->mCurrentScreenIndex]->pauseSchedulerAndActions();
     
     this->mNeedHideLock = true;
     
