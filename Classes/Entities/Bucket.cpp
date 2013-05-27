@@ -22,12 +22,13 @@
 Bucket::Bucket() :
     ImpulseEntity(Resources::R_LEVEL_BUCKET, 3, 4)
     {
+        this->mWeapon = new Weapon(this);
+        
         this->setSpeed(700.0f);
         
         this->mTimeUntilDown = 0.17f;
         
-        this->mShadow = new Entity(Resources::R_LEVEL_BUCKET_SHADOW, 3, 4);
-        this->mShadow->setOpacity(230.0f);
+        this->setShadowed();
     }
 
 // ===========================================================
@@ -36,18 +37,24 @@ Bucket::Bucket() :
 
 Entity* Bucket::create()
 {
-    if(!this->mShadow->getParent())
-    {
-        this->getParent()->addChild(this->mShadow, 1);
-    }
-    
-    this->mShadow->create();
-    
     Entity* entity = Entity::create();
     
     entity->setCurrentFrameIndex(Utils::random(0, 2));
     
     return entity;
+}
+
+void Bucket::fall(float pVectorX, float pVectorY, bool pMustReverse)
+{
+    this->mIsGone = true;
+    
+    this->mGoneVectorX = pVectorX;
+    this->mGoneVectorY = pVectorY;
+    
+    this->mIsMustReverse = false;//pMustReverse;
+    
+    this->mWeapon->create()->animate(0.05f, 1);
+    this->mWeapon->setCenterPosition(this->getWidth() / 2 + Utils::coord(110), this->getHeight() / 2 - Utils::coord(190));
 }
 
 void Bucket::update(float pDeltaTime)
@@ -72,7 +79,8 @@ void Bucket::update(float pDeltaTime)
             {
                 this->setScaleX(-1);
             }
-            else{
+            else
+            {
                 this->setScaleX(1);
             }
         }
@@ -89,6 +97,8 @@ void Bucket::update(float pDeltaTime)
             this->setRotation(this->getRotation() - this->mSideImpulse * pDeltaTime);
         
             this->mWeight = this->mWeight > 10.0f ? 10.0f : this->mWeight + 0.2f;
+            
+            Entity::update(pDeltaTime);
         }
         else
         {
@@ -99,11 +109,6 @@ void Bucket::update(float pDeltaTime)
     {
         ImpulseEntity::update(pDeltaTime);
     }
-    
-    this->mShadow->setCenterPosition(this->getCenterX() - Utils::coord(30.0f), this->getCenterY() - Utils::coord(30.0f));
-    this->mShadow->setScale(this->getScaleX() - 0.1f);
-    this->mShadow->setRotation(this->getRotation());
-    this->mShadow->setCurrentFrameIndex(this->getCurrentFrameIndex());
     
     if(this->mImpulsePower <= 0)
     {

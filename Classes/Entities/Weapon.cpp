@@ -1,7 +1,7 @@
-#ifndef CONST_POPCORN
-#define CONST_POPCORN
+#ifndef CONST_WEAPON
+#define CONST_WEAPON
 
-#include "Popcorn.h"
+#include "Weapon.h"
 
 // ===========================================================
 // Inner Classes
@@ -19,45 +19,34 @@
 // Constructors
 // ===========================================================
 
-Popcorn::Popcorn() :
-    ImpulseEntity(Resources::R_GAME_CORN, 1, 3)
+Weapon::Weapon() :
+    Entity(Resources::R_WEAPON_1, 5, 1)
     {
-        this->setShadowed();
+    
+    }
+
+Weapon::Weapon(CCNode* pParent) :
+    Entity(Resources::R_WEAPON_1, 5, 1, pParent)
+    {
+        
     }
 
 // ===========================================================
 // Methods
 // ===========================================================
 
-Entity* Popcorn::create()
+void Weapon::onAnimationEnd()
 {
-    Entity* entity = Entity::create();
-    
-    entity->setCurrentFrameIndex(Utils::random(0, 3));
-    
-    return entity;
-}
-
-void Popcorn::update(float pDeltaTime)
-{
-    ImpulseEntity::update(pDeltaTime);
-    
-    if(this->mImpulsePower <= 0)
-    {
-        if(this->getCenterY() < -this->getHeight() / 2)
-        {
-            this->destroy();
-        }
-    }
+    this->destroy();
 }
 
 // ===========================================================
 // Virtual Methods
 // ===========================================================
 
-Popcorn* Popcorn::deepCopy()
+Weapon* Weapon::deepCopy()
 {
-    return new Popcorn();
+    return new Weapon(this->getParent());
 }
 
 #endif

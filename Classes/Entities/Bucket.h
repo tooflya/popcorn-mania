@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 
 #include "ImpulseEntity.h"
+#include "Weapon.h"
 
 using namespace cocos2d;
 
@@ -21,6 +22,8 @@ class Bucket : public ImpulseEntity
 		// ===========================================================
 		// Fields
 		// ===========================================================
+    
+        Weapon* mWeapon;
 
 		// ===========================================================
 		// Constructors
@@ -82,8 +85,6 @@ class Bucket : public ImpulseEntity
     
         float mTimeUntilDown;
         float mTimeUntilDownElapsed;
-    
-        Entity* mShadow;
 
 		// ===========================================================
 		// Constructors
@@ -96,7 +97,7 @@ class Bucket : public ImpulseEntity
 		// ===========================================================
     
         Entity* create();
-    
+        void fall(float pVectorX, float pVectorY, bool pMustReverse);
         void update(float pDelta);
 		
 		// ===========================================================

@@ -17,23 +17,6 @@ class PauseButton : public Entity
         }
 };
 
-class Weapon : public Entity
-{
-public:
-    Weapon(CCNode* pParent) :
-    Entity(Resources::R_WEAPON_1, 5, 1, pParent)
-    {
-       
-    }
-    
-    void onAnimationEnd()
-    {
-        this->destroy();
-        
-        this->removeFromParent();
-    }
-};
-
 // ===========================================================
 // Constants
 // ===========================================================
@@ -55,7 +38,10 @@ Level::Level(ScreenManager* pScreenManager) :
         this->mTouchCoordinateX = -10000;
         this->mTouchCoordinateY = -10000;
         
+        this->mIsDecorationReverse = false;
+        
         this->mBackground = new Entity(Resources::R_LEVEL_BACKGROUND, this);
+        this->mBackgroundDecoration = new Entity(Resources::R_LEVEL_DECORATION1, this);
         
         this->mDusts = new BatchEntityManager(20, new Dust(), this);
         
@@ -65,6 +51,7 @@ Level::Level(ScreenManager* pScreenManager) :
         }
         
         this->mBackground->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y);
+        this->mBackgroundDecoration->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y);
         
         this->mBucketTime = 1.2f;
         this->mBucketTimeElapsed = 0;
@@ -149,6 +136,23 @@ void Level::update(float pDelta)
 {
     Popscreen::update(pDelta);
     
+    this->mBackgroundDecoration->setRotation(this->mBackgroundDecoration->getRotation() + (this->mIsDecorationReverse ? -0.05f : 0.05f));
+    
+    if(this->mIsDecorationReverse)
+    {
+        if(this->mBackgroundDecoration->getRotation() <= -30.0f)
+        {
+            this->mIsDecorationReverse = !this->mIsDecorationReverse;
+        }
+    }
+    else
+    {
+        if(this->mBackgroundDecoration->getRotation() >= 30.0f)
+        {
+            this->mIsDecorationReverse = !this->mIsDecorationReverse;
+        }
+    }
+    
     this->mBucketTimeElapsed += pDelta;
     
     if(this->mBucketTimeElapsed >= this->mBucketTime && this->mIsLevelRunning)
@@ -205,10 +209,7 @@ void Level::update(float pDelta)
         
         if(bucket->isCollideWithPoint(this->mTouchCoordinateX, this->mTouchCoordinateY) && !bucket->mIsGone)
         {
-            bucket->mIsGone = true;
-            
-            bucket->mGoneVectorX = this->mTouchCoordinateX;
-            bucket->mGoneVectorY = this->mTouchCoordinateY;
+            bucket->fall(this->mTouchCoordinateX, this->mTouchCoordinateY, this->mTouchCoordinateX < bucket->getCenterX());
             
             for(int i = 0; i < 50; i++)
             {
@@ -221,24 +222,10 @@ void Level::update(float pDelta)
                 popcorn->mSideImpulse   = Utils::randomf(-150.0f, 150.0f);
                 popcorn->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
             }
-            
-            Weapon* a = new Weapon(bucket);
-            a->create()->setCenterPosition(bucket->getWidth()/2 + Utils::coord(110), bucket->getHeight()/2 - Utils::coord(190));
-            a->animate(0.05f, 1);
-            a->setZOrder(1000);
-            
-            if(this->mTouchCoordinateX < bucket->getCenterX())
-            {
-                bucket->mIsMustReverse = true;
-            }
-            else
-            {
-                bucket->mIsMustReverse = false;
-            }
         }
     }
     
-    if(this->mDusts->getCount() < 20)
+    if(this->mDusts->getCount() < 200)
     {
         this->mDusts->create();
     }

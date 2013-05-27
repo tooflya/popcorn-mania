@@ -1,22 +1,13 @@
-#ifndef CONST_LEVEL_H
-#define CONST_LEVEL_H
+#ifndef CONST_WEAPON_H
+#define CONST_WEAPON_H
 
 #include "cocos2d.h"
 
-#include "Popscreen.h"
-
-#include "Bucket.h"
-#include "Popcorn.h"
-#include "Dust.h"
-#include "Lose.h"
-#include "Weapon.h"
-
-#include "EntityManager.h"
-#include "BatchEntityManager.h"
+#include "Entity.h"
 
 using namespace cocos2d;
 
-class Level : public Popscreen
+class Weapon : public Entity
 {
 	protected:
 		// ===========================================================
@@ -29,12 +20,7 @@ class Level : public Popscreen
 
 		// ===========================================================
 		// Fields
-        // ===========================================================
-    
-        Entity* mBackground;
-        Entity* mBackgroundDecoration;
-    
-        bool mIsDecorationReverse;
+		// ===========================================================
 
 		// ===========================================================
 		// Constructors
@@ -60,19 +46,6 @@ class Level : public Popscreen
 		// ===========================================================
 		// Fields
 		// ===========================================================
-    
-        float mBucketTime;
-        float mBucketTimeElapsed;
-    
-        Entity* mGameOver;
-    
-        EntityManager* mBuckets;
-    
-        EntityManager* mPopcorns;
-        BatchEntityManager* mDusts;
-        BatchEntityManager* mLoseMarks;
-    
-        CCLabelTTF* mBucketCountText;
 
 		// ===========================================================
 		// Constructors
@@ -97,42 +70,26 @@ class Level : public Popscreen
 
 		// ===========================================================
 		// Fields
-        // ===========================================================
-    
-        float mTouchPreviousCoordinateX;
-        float mTouchPreviousCoordinateY;
-    
-        float mTouchCoordinateX;
-        float mTouchCoordinateY;
-    
-        int mLifes;
-    
-        bool mIsLevelRunning;
+		// ===========================================================
 
 		// ===========================================================
 		// Constructors
-        // ===========================================================
+		// ===========================================================
     
-        Level(ScreenManager* pScreenManager);
+        Weapon();
+        Weapon(CCNode* pParent);
 
 		// ===========================================================
 		// Methods
-        // ===========================================================
+		// ===========================================================
     
-        void startLevel();
-        void finishLevel();
+        void onAnimationEnd();
 		
 		// ===========================================================
 		// Virtual Methods
-        // ===========================================================
+		// ===========================================================
     
-        virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
-        virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
-        virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
-    
-        virtual void onTouch(CCTouch* touch, CCEvent* event);
-    
-        void update(float pDelta);
+        Weapon* deepCopy();
 };
 
 #endif

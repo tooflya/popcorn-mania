@@ -47,6 +47,8 @@ const char* Resources::R_LEVEL_BUCKETICON = "process-bucket-icon@2x.png";
 const char* Resources::R_LEVEL_LOSE = "process-lose@2x.png";
 const char* Resources::R_LEVEL_GAMEOVER = "process-gameover@2x.png";
 const char* Resources::R_LEVEL_CORN_SHADOW = "game-corn-shadow@2x.png";
+const char* Resources::R_LEVEL_DECORATION1 = "wh-bg@2x.png";
+const char* Resources::R_LEVEL_DECORATION2 = "wh-bg2@2x.png";
 
 const char* Resources::R_WEAPON_1 = "weapon-animation1@2x.png";
 

@@ -33,6 +33,8 @@ void Entity::constructor(const char* pszFileName, int pHorizontalFramesCount, in
 
 	this->mEntityManager = NULL;
 	this->mBatchEntityManager = NULL;
+    
+    this->mIsShadowed = false;
 
 	/**
 	 *
@@ -129,6 +131,15 @@ Entity::Entity(const char* pszFileName, CCNode* pParent)
 Entity::Entity(const char* pszFileName, int pHorizontalFramesCount, int pVerticalFramesCount, CCNode* pParent)
 {
 	this->constructor(pszFileName, pHorizontalFramesCount, pVerticalFramesCount, pParent);
+}
+
+void Entity::setShadowed()
+{
+    this->mShadow = new Entity(this->mTextureFileName, this->mHorizontalFramesCount, this->mVerticalFramesCount, this->getParent());
+    this->mShadow->setColor(ccc3(0.0f, 0.0f, 0.0f));
+    this->mShadow->setOpacity(210.0f);
+    
+    this->mIsShadowed = true;
 }
 
 float Entity::getWidth()
@@ -229,6 +240,16 @@ Entity* Entity::create()
     
     this->setScale(1.0f);
     this->setRotation(0.0f);
+    
+    if(this->mIsShadowed)
+    {
+        if(!this->mShadow->getParent())
+        {
+            this->getParent()->addChild(this->mShadow, 1);
+        }
+        
+        this->mShadow->create();
+    }
 
 	return this;
 }
@@ -236,6 +257,11 @@ Entity* Entity::create()
 bool Entity::destroy(bool pManage)
 {
 	this->setVisible(false);
+    
+    if(this->mIsShadowed)
+    {
+        this->mShadow->destroy();
+    }
 
 	if(pManage)
 	{
@@ -697,6 +723,15 @@ void Entity::update(float pDeltaTime)
 			}
 		}
 	}
+    
+    if(this->mIsShadowed)
+    {
+        this->mShadow->setCenterPosition(this->getCenterX() - Utils::coord(20.0f), this->getCenterY() - Utils::coord(20.0f));
+        this->mShadow->setScaleY(this->getScaleY() - 0.1f);
+        this->mShadow->setScaleX(this->getScaleX() - 0.1f);
+        this->mShadow->setRotation(this->getRotation());
+        this->mShadow->setCurrentFrameIndex(this->getCurrentFrameIndex());
+    }
 }
 
 void Entity::draw()

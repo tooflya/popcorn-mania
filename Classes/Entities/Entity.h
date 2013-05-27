@@ -73,7 +73,11 @@ class Entity : public CCSprite, public Touchable
     
         bool mAnimationRunning;
     
+        bool mIsShadowed;
+    
         int id;
+    
+        Entity* mShadow;
     
         EntityManager* mEntityManager;
         BatchEntityManager* mBatchEntityManager;
@@ -214,6 +218,8 @@ class Entity : public CCSprite, public Touchable
         void nextFrameIndex();
     
         virtual void changeTexture(Texture* pTexture);
+    
+        void setShadowed();
     
         bool isAnimationRunning();
     
