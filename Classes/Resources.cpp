@@ -49,6 +49,13 @@ const char* Resources::R_LEVEL_GAMEOVER = "process-gameover@2x.png";
 const char* Resources::R_LEVEL_CORN_SHADOW = "game-corn-shadow@2x.png";
 const char* Resources::R_LEVEL_DECORATION1 = "wh-bg@2x.png";
 const char* Resources::R_LEVEL_DECORATION2 = "wh-bg2@2x.png";
+const char* Resources::R_LEVEL_COIN = "process-coin-count-ico@2x.png";
+
+const char* Resources::R_PAUSE_NAME = "pause-text-sprite@2x.png";
+const char* Resources::R_PAUSE_NAME_PANEL = "pause-bg@2x.png";
+
+const char* Resources::R_GAMEOVER_NAME = "game-over-text-sprite@2x.png";
+const char* Resources::R_GAMEOVER_NAME_PANEL = "pause-bg@2x.png";
 
 const char* Resources::R_WEAPON_1 = "weapon-animation1@2x.png";
 

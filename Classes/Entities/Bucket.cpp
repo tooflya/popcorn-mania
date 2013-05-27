@@ -3,6 +3,8 @@
 
 #include "Bucket.h"
 
+#include "Level.h"
+
 // ===========================================================
 // Inner Classes
 // ===========================================================
@@ -37,8 +39,23 @@ Bucket::Bucket() :
 
 Entity* Bucket::create()
 {
-    Entity* entity = Entity::create();
+    Bucket* entity = (Bucket*) Entity::create();
     
+    entity->mIsDown = false;
+    entity->mTimeUntilDownElapsed = 0;
+    entity->setScaleX(1);
+    entity->mWeight = 20.0f;
+    entity->mImpulsePower = 1200.0f;
+    
+    entity->mIsGone = false;
+    
+    entity->setCenterPosition(Utils::randomf(0.0f, Options::CAMERA_WIDTH), 0);
+    
+    entity->mSideImpulse   = Utils::randomf(100.0f, 300.0f);
+    entity->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
+    
+    entity->mSideImpulse = entity->getCenterX() < Options::CAMERA_CENTER_X ? -entity->mSideImpulse : entity->mSideImpulse;
+
     entity->setCurrentFrameIndex(Utils::random(0, 2));
     
     return entity;
@@ -82,6 +99,21 @@ void Bucket::update(float pDeltaTime)
             else
             {
                 this->setScaleX(1);
+            }
+            
+            // Explosion
+            
+            for(int i = 0; i < 50; i++)
+            {
+                Level* a = (Level*) this->getParent();
+                Popcorn* popcorn = (Popcorn*) a->mPopcorns->create();
+                popcorn->setCenterPosition(this->getCenterX() - Utils::randomf(-60.0f, 60.0f), this->getCenterY() + Utils::coord(80) - Utils::randomf(-20.0f, 20.0f));
+                
+                popcorn->mWeight = Utils::randomf(10.0f, 20.0f);
+                popcorn->mImpulsePower = Utils::randomf(100.0f, 500.0f);
+                
+                popcorn->mSideImpulse   = Utils::randomf(-150.0f, 150.0f);
+                popcorn->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
             }
         }
         
