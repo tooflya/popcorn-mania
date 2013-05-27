@@ -34,6 +34,7 @@ const char* Resources::R_MENU_SHOP = "btn-shop@2x.png";
 const char* Resources::R_MENU_SHADOW = "dark-line@2x.png";
 
 const char* Resources::R_GAME_CORN = "game-corn@2x.png";
+const char* Resources::R_GAME_CORN_SHADOW = "game-corn@2x.png";
 
 const char* Resources::R_SCREENS_LINES = "preload-lines@2x.png";
 const char* Resources::R_SCREENS_POPCORN = "preload-bar-sprite@2x.png";
@@ -49,10 +50,17 @@ const char* Resources::R_LEVEL_GAMEOVER = "process-gameover@2x.png";
 const char* Resources::R_LEVEL_CORN_SHADOW = "game-corn-shadow@2x.png";
 const char* Resources::R_LEVEL_DECORATION1 = "wh-bg@2x.png";
 const char* Resources::R_LEVEL_DECORATION2 = "wh-bg2@2x.png";
-const char* Resources::R_LEVEL_COIN = "process-coin-count-ico@2x.png";
+const char* Resources::R_LEVEL_COIN = "process-coin@2x.png";
+const char* Resources::R_LEVEL_COIN_SHADOW = "process-coin-shdw@2x.png";
+const char* Resources::R_LEVEL_COINS_ICON = "process-coin-count-ico@2x.png";
+const char* Resources::R_LEVEL_START_BACKGROUND = "frames-count@2x.png";
+const char* Resources::R_LEVEL_START_NUMBERS = "frames-count-num-sprite@2x.png";
+const char* Resources::R_LEVEL_LIFES = "process-life-ticket-counter-sprite@2x.png";
 
 const char* Resources::R_PAUSE_NAME = "pause-text-sprite@2x.png";
 const char* Resources::R_PAUSE_NAME_PANEL = "pause-bg@2x.png";
+const char* Resources::R_PAUSE_MENU_BUTTON = "pause-menu-btn@2x.png";
+const char* Resources::R_PAUSE_RESTART_BUTTON = "pause-rs-btn@2x.png";
 
 const char* Resources::R_GAMEOVER_NAME = "game-over-text-sprite@2x.png";
 const char* Resources::R_GAMEOVER_NAME_PANEL = "pause-bg@2x.png";

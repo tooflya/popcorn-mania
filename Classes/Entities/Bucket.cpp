@@ -30,7 +30,7 @@ Bucket::Bucket() :
         
         this->mTimeUntilDown = 0.17f;
         
-        this->setShadowed();
+        this->setShadowed(Resources::R_LEVEL_BUCKET_SHADOW);
     }
 
 // ===========================================================
@@ -44,14 +44,14 @@ Entity* Bucket::create()
     entity->mIsDown = false;
     entity->mTimeUntilDownElapsed = 0;
     entity->setScaleX(1);
-    entity->mWeight = 20.0f;
-    entity->mImpulsePower = 1200.0f;
+    entity->mWeight = Utils::coord(20.0f);
+    entity->mImpulsePower = Utils::coord(1200.0f);
     
     entity->mIsGone = false;
     
     entity->setCenterPosition(Utils::randomf(0.0f, Options::CAMERA_WIDTH), 0);
     
-    entity->mSideImpulse   = Utils::randomf(100.0f, 300.0f);
+    entity->mSideImpulse   = Utils::coord(Utils::randomf(100.0f, 300.0f));
     entity->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
     
     entity->mSideImpulse = entity->getCenterX() < Options::CAMERA_CENTER_X ? -entity->mSideImpulse : entity->mSideImpulse;
@@ -86,7 +86,7 @@ void Bucket::update(float pDeltaTime)
         {
             this->mTimeUntilDownElapsed = 0;
             
-            this->mWeight = 0.1f;
+            this->mWeight = Utils::coord(0.1f);
             
             this->setCurrentFrameIndex(this->getCurrentFrameIndex() + (Utils::random(0, 1) == 1 ? 9 : 9));
             
@@ -128,7 +128,7 @@ void Bucket::update(float pDeltaTime)
         
             this->setRotation(this->getRotation() - this->mSideImpulse * pDeltaTime);
         
-            this->mWeight = this->mWeight > 10.0f ? 10.0f : this->mWeight + 0.2f;
+            this->mWeight = this->mWeight > Utils::coord(10.0f) ? Utils::coord(10.0f) : this->mWeight + Utils::coord(0.2f);
             
             Entity::update(pDeltaTime);
         }

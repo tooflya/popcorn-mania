@@ -23,6 +23,9 @@ class EntityManager : public CCArray
 		EntityManager(int pCreateCount, Entity* pEntity, CCNode* pScreen);
 		EntityManager(int pCreateCount, int pMaxCount, Entity* pEntity, CCNode* pScreen);
 		EntityManager(int pCreateCount, Entity* pEntity, CCNode* pScreen, int pZOrder);
+    
+        void pauseSchedulerAndActions();
+        void resumeSchedulerAndActions();
 
 		Entity* create();
 		void destroy(int pIndex);

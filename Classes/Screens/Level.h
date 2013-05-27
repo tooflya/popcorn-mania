@@ -67,13 +67,15 @@ class Level : public Popscreen
         float mBucketTime;
         float mBucketTimeElapsed;
     
-        EntityManager* mBuckets;
-        EntityManager* mCoins;
-    
         BatchEntityManager* mDusts;
         BatchEntityManager* mLoseMarks;
     
         CCLabelTTF* mBucketCountText;
+        CCLabelTTF* mCoinsCountText;
+    
+        BatchEntityManager* mLifesIcons;
+    
+        Entity* mBucketsCountIcon;
 
 		// ===========================================================
 		// Constructors
@@ -109,6 +111,7 @@ class Level : public Popscreen
         float mTouchCoordinateY;
     
         int mLifes;
+        int mBucketsCount;
     
         bool mIsLevelRunning;
     
@@ -116,6 +119,16 @@ class Level : public Popscreen
         GameOver* mGameOverScreen;
     
         bool mPaused;
+    
+        EntityManager* mBuckets;
+        EntityManager* mCoins;
+        
+        Entity* mStartLevelBackground;
+        Entity* mStartLevelNumbers;
+    
+        float mCounterBeforeStartTimeElapsed;
+    
+        int mCounterBeforeStart;
     
 		// ===========================================================
 		// Constructors

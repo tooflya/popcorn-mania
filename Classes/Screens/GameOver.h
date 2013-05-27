@@ -29,6 +29,9 @@ class GameOver : public Popscreen
     
         Entity* mPanel;
         Entity* mName;
+    
+        Entity* mRestartButton;
+        Entity* mMenuButton;
 
 		// ===========================================================
 		// Constructors

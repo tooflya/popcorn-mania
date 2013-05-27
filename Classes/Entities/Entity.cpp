@@ -133,9 +133,9 @@ Entity::Entity(const char* pszFileName, int pHorizontalFramesCount, int pVertica
 	this->constructor(pszFileName, pHorizontalFramesCount, pVerticalFramesCount, pParent);
 }
 
-void Entity::setShadowed()
+void Entity::setShadowed(const char* pTextureFileName)
 {
-    this->mShadow = new Entity(this->mTextureFileName, this->mHorizontalFramesCount, this->mVerticalFramesCount, this->getParent());
+    this->mShadow = new Entity(pTextureFileName, this->mHorizontalFramesCount, this->mVerticalFramesCount, this->getParent());
     this->mShadow->setColor(ccc3(0.0f, 0.0f, 0.0f));
     this->mShadow->setOpacity(210.0f);
     
@@ -520,7 +520,7 @@ bool Entity::ccTouchBegan(CCTouch* touch, CCEvent* event)
 
 	if(Touchable::ccTouchBegan(touch, event))
 	{
-        this->setCurrentFrameIndex(1);
+        //this->setCurrentFrameIndex(1);
         
 		this->mWasTouched = true;
         
@@ -544,7 +544,7 @@ void Entity::ccTouchMoved(CCTouch* touch, CCEvent* event)
                 
 				this->mWasTouched = false;
                 
-                this->setCurrentFrameIndex(0);
+                //this->setCurrentFrameIndex(0);
 			}
 		}
 	}
@@ -561,7 +561,7 @@ void Entity::ccTouchEnded(CCTouch* touch, CCEvent* event)
 
 	this->mWasTouched = false;
     
-    this->setCurrentFrameIndex(0);
+    //this->setCurrentFrameIndex(0);
 }
 
 bool Entity::containsTouchLocation(CCTouch* touch)

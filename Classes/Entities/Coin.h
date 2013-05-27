@@ -85,6 +85,8 @@ class Coin : public ImpulseEntity
         Entity* create();
     
         void update(float pDelta);
+    
+        void onTouch(CCTouch* touch, CCEvent* event);
 		
 		// ===========================================================
 		// Virtual Methods
