@@ -74,8 +74,16 @@ class Bucket : public ImpulseEntity
     
         bool mIsGone;
     
+        bool mIsDown;
+        bool mIsMustReverse;
+    
         float mGoneVectorX;
         float mGoneVectorY;
+    
+        float mTimeUntilDown;
+        float mTimeUntilDownElapsed;
+    
+        Entity* mShadow;
 
 		// ===========================================================
 		// Constructors
@@ -86,6 +94,8 @@ class Bucket : public ImpulseEntity
 		// ===========================================================
 		// Methods
 		// ===========================================================
+    
+        Entity* create();
     
         void update(float pDelta);
 		

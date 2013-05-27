@@ -88,6 +88,12 @@ class Resources
         static const char* R_LEVEL_DUST;
         static const char* R_LEVEL_PAUSE;
         static const char* R_LEVEL_BUCKETICON;
+        static const char* R_LEVEL_LOSE;
+        static const char* R_LEVEL_GAMEOVER;
+        static const char* R_LEVEL_BUCKET_SHADOW;
+        static const char* R_LEVEL_CORN_SHADOW;
+    
+        static const char* R_WEAPON_1;
     
         static const char* S_SCREENS_TIP1;
         static const char* S_SCREENS_TIP2;
