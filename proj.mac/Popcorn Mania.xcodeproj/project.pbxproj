@@ -58,8 +58,9 @@
 		7821984D1753F2B80068F6D6 /* frames-count@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7821984B1753F2B70068F6D6 /* frames-count@2x.png */; };
 		782198501753FFD10068F6D6 /* pause-menu-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7821984E1753FFD00068F6D6 /* pause-menu-btn@2x.png */; };
 		782198511753FFD10068F6D6 /* pause-rs-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7821984F1753FFD00068F6D6 /* pause-rs-btn@2x.png */; };
-		782198F61754193B0068F6D6 /* bucket-shdw@2x-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 782198F4175419360068F6D6 /* bucket-shdw@2x-01.png */; };
 		782198F71754193B0068F6D6 /* process-coin-shdw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782198F5175419370068F6D6 /* process-coin-shdw@2x.png */; };
+		782198FA175426C90068F6D6 /* bucket-shdw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782198F8175426C70068F6D6 /* bucket-shdw@2x.png */; };
+		782198FB175426C90068F6D6 /* game-corn-shdw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782198F9175426C80068F6D6 /* game-corn-shdw@2x.png */; };
 		786052FD174FA93E00ACE2D3 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786052F9174FA93E00ACE2D3 /* AppDelegate.cpp */; };
 		786052FE174FA93E00ACE2D3 /* Options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786052FB174FA93E00ACE2D3 /* Options.cpp */; };
 		78605302174FABC100ACE2D3 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78605301174FABC000ACE2D3 /* libcocos2dx.a */; };
@@ -182,8 +183,9 @@
 		7821984B1753F2B70068F6D6 /* frames-count@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frames-count@2x.png"; sourceTree = "<group>"; };
 		7821984E1753FFD00068F6D6 /* pause-menu-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause-menu-btn@2x.png"; sourceTree = "<group>"; };
 		7821984F1753FFD00068F6D6 /* pause-rs-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause-rs-btn@2x.png"; sourceTree = "<group>"; };
-		782198F4175419360068F6D6 /* bucket-shdw@2x-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bucket-shdw@2x-01.png"; sourceTree = "<group>"; };
 		782198F5175419370068F6D6 /* process-coin-shdw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "process-coin-shdw@2x.png"; sourceTree = "<group>"; };
+		782198F8175426C70068F6D6 /* bucket-shdw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bucket-shdw@2x.png"; sourceTree = "<group>"; };
+		782198F9175426C80068F6D6 /* game-corn-shdw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-corn-shdw@2x.png"; sourceTree = "<group>"; };
 		786052F9174FA93E00ACE2D3 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		786052FA174FA93E00ACE2D3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		786052FB174FA93E00ACE2D3 /* Options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Options.cpp; sourceTree = "<group>"; };
@@ -386,7 +388,8 @@
 		7821971217517E440068F6D6 /* process-gui */ = {
 			isa = PBXGroup;
 			children = (
-				782198F4175419360068F6D6 /* bucket-shdw@2x-01.png */,
+				782198F8175426C70068F6D6 /* bucket-shdw@2x.png */,
+				782198F9175426C80068F6D6 /* game-corn-shdw@2x.png */,
 				782198F5175419370068F6D6 /* process-coin-shdw@2x.png */,
 				7821984A1753F2B60068F6D6 /* frames-count-num-sprite@2x.png */,
 				7821984B1753F2B70068F6D6 /* frames-count@2x.png */,
@@ -740,8 +743,9 @@
 				7821984D1753F2B80068F6D6 /* frames-count@2x.png in Resources */,
 				782198501753FFD10068F6D6 /* pause-menu-btn@2x.png in Resources */,
 				782198511753FFD10068F6D6 /* pause-rs-btn@2x.png in Resources */,
-				782198F61754193B0068F6D6 /* bucket-shdw@2x-01.png in Resources */,
 				782198F71754193B0068F6D6 /* process-coin-shdw@2x.png in Resources */,
+				782198FA175426C90068F6D6 /* bucket-shdw@2x.png in Resources */,
+				782198FB175426C90068F6D6 /* game-corn-shdw@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

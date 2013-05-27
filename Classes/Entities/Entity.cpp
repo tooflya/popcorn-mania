@@ -136,8 +136,6 @@ Entity::Entity(const char* pszFileName, int pHorizontalFramesCount, int pVertica
 void Entity::setShadowed(const char* pTextureFileName)
 {
     this->mShadow = new Entity(pTextureFileName, this->mHorizontalFramesCount, this->mVerticalFramesCount, this->getParent());
-    this->mShadow->setColor(ccc3(0.0f, 0.0f, 0.0f));
-    this->mShadow->setOpacity(210.0f);
     
     this->mIsShadowed = true;
 }
