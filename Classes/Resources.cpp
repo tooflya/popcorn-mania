@@ -40,9 +40,15 @@ const char* Resources::R_SCREENS_POPCORN = "preload-bar-sprite@2x.png";
 
 const char* Resources::R_LEVEL_BACKGROUND = "level-bg@2x.png";
 const char* Resources::R_LEVEL_BUCKET = "bucket@2x.png";
+const char* Resources::R_LEVEL_BUCKET_SHADOW = "bucket-shadows@2x.png";
 const char* Resources::R_LEVEL_DUST = "process-dust@2x.png";
 const char* Resources::R_LEVEL_PAUSE = "process-pause@2x.png";
 const char* Resources::R_LEVEL_BUCKETICON = "process-bucket-icon@2x.png";
+const char* Resources::R_LEVEL_LOSE = "process-lose@2x.png";
+const char* Resources::R_LEVEL_GAMEOVER = "process-gameover@2x.png";
+const char* Resources::R_LEVEL_CORN_SHADOW = "game-corn-shadow@2x.png";
+
+const char* Resources::R_WEAPON_1 = "weapon-animation1@2x.png";
 
 #else
 

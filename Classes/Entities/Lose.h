@@ -1,21 +1,13 @@
-#ifndef CONST_LEVEL_H
-#define CONST_LEVEL_H
+#ifndef CONST_LOSE_H
+#define CONST_LOSE_H
 
 #include "cocos2d.h"
 
-#include "Popscreen.h"
-
-#include "Bucket.h"
-#include "Popcorn.h"
-#include "Dust.h"
-#include "Lose.h"
-
-#include "EntityManager.h"
-#include "BatchEntityManager.h"
+#include "Entity.h"
 
 using namespace cocos2d;
 
-class Level : public Popscreen
+class Lose : public Entity
 {
 	protected:
 		// ===========================================================
@@ -28,9 +20,7 @@ class Level : public Popscreen
 
 		// ===========================================================
 		// Fields
-        // ===========================================================
-    
-        Entity* mBackground;
+		// ===========================================================
 
 		// ===========================================================
 		// Constructors
@@ -57,18 +47,8 @@ class Level : public Popscreen
 		// Fields
 		// ===========================================================
     
-        float mBucketTime;
-        float mBucketTimeElapsed;
-    
-        Entity* mGameOver;
-    
-        EntityManager* mBuckets;
-    
-        EntityManager* mPopcorns;
-        BatchEntityManager* mDusts;
-        BatchEntityManager* mLoseMarks;
-    
-        CCLabelTTF* mBucketCountText;
+        float mTime;
+        float mTimeElapsed;
 
 		// ===========================================================
 		// Constructors
@@ -93,42 +73,27 @@ class Level : public Popscreen
 
 		// ===========================================================
 		// Fields
-        // ===========================================================
-    
-        float mTouchPreviousCoordinateX;
-        float mTouchPreviousCoordinateY;
-    
-        float mTouchCoordinateX;
-        float mTouchCoordinateY;
-    
-        int mLifes;
-    
-        bool mIsLevelRunning;
+		// ===========================================================
 
 		// ===========================================================
 		// Constructors
-        // ===========================================================
+		// ===========================================================
     
-        Level(ScreenManager* pScreenManager);
+        Lose();
 
 		// ===========================================================
 		// Methods
-        // ===========================================================
+		// ===========================================================
     
-        void startLevel();
-        void finishLevel();
+        Entity* create();
+    
+        void update(float pDeltaTime);
 		
 		// ===========================================================
 		// Virtual Methods
-        // ===========================================================
+		// ===========================================================
     
-        virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
-        virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
-        virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
-    
-        virtual void onTouch(CCTouch* touch, CCEvent* event);
-    
-        void update(float pDelta);
+        Lose* deepCopy();
 };
 
 #endif
