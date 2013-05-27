@@ -10,11 +10,22 @@
 class PauseButton : public Entity
 {
     public:
+        CCNode* mParent;
+    
         PauseButton(CCNode* pParent) :
             Entity(Resources::R_LEVEL_PAUSE, pParent)
         {
+            this->mParent = pParent;
+            
             this->setRegisterAsTouchable(true);
         }
+    
+        void onTouch(CCTouch* touch, CCEvent* event)
+        {
+            ((Level*) this->mParent)->mPauseScreen->show();
+            ((Level*) this->mParent)->mPaused = true;
+        }
+        
 };
 
 // ===========================================================
@@ -32,6 +43,9 @@ class PauseButton : public Entity
 Level::Level(ScreenManager* pScreenManager) :
     Popscreen(pScreenManager)
     {
+        this->mPauseScreen = new Pause(pScreenManager);
+        this->mGameOverScreen = new GameOver(pScreenManager);
+        
         this->mTouchPreviousCoordinateX = -1;
         this->mTouchPreviousCoordinateY = -1;
         
@@ -56,22 +70,25 @@ Level::Level(ScreenManager* pScreenManager) :
         this->mBucketTime = 1.2f;
         this->mBucketTimeElapsed = 0;
         
-        this->mBuckets = new EntityManager(100, new Bucket(), this, 5);
-        this->mPopcorns = new EntityManager(100, new Popcorn(), this, 5);
+        this->mCoins = new EntityManager(100, new Coin(), this, 5);
+        this->mBuckets = new EntityManager(10, new Bucket(), this, 5);
+        this->mPopcorns = new EntityManager(500, new Popcorn(), this, 5);
         
         (new PauseButton(this))->create()->setCenterPosition(Utils::coord(48), Utils::coord(48));
         (new Entity(Resources::R_LEVEL_BUCKETICON, this))->create()->setCenterPosition(Utils::coord(24), Options::CAMERA_HEIGHT - Utils::coord(24));
         
         this->mLoseMarks = new BatchEntityManager(3, new Lose(), this);
         
-        this->mGameOver = new Entity(Resources::R_LEVEL_GAMEOVER, this);
-        this->mGameOver->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_HEIGHT + Utils::coord(200));
-        
         this->mBucketCountText = CCLabelTTF::create("x 0", "Arial",  Utils::coord(24));
         this->mBucketCountText->setPosition(ccp(Utils::coord(55), Options::CAMERA_HEIGHT - Utils::coord(28)));
         this->addChild(this->mBucketCountText);
         
+        this->mPaused = false;
+        
         this->startLevel();
+        
+        this->addChild(this->mPauseScreen, 500);
+        this->addChild(this->mGameOverScreen, 600);
     }
 
 // ===========================================================
@@ -111,14 +128,14 @@ void Level::startLevel()
 {
     this->mIsLevelRunning = true;
     
-    this->mLifes = 30;
+    this->mLifes = 3;
 }
 
 void Level::finishLevel()
 {
     this->mIsLevelRunning = false;
     
-    this->mGameOver->runAction(CCMoveTo::create(0.5f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y)));
+    this->mGameOverScreen->show();
     
     for(int i = 0; i < this->mBuckets->getCount(); i++)
     {
@@ -135,6 +152,8 @@ void Level::finishLevel()
 void Level::update(float pDelta)
 {
     Popscreen::update(pDelta);
+    
+    if(this->mPaused) return;
     
     this->mBackgroundDecoration->setRotation(this->mBackgroundDecoration->getRotation() + (this->mIsDecorationReverse ? -0.05f : 0.05f));
     
@@ -160,21 +179,7 @@ void Level::update(float pDelta)
         this->mBucketTimeElapsed -= this->mBucketTime;
         
         Bucket* bucket = (Bucket*) this->mBuckets->create();
-        
-        bucket->mIsDown = false;
-        bucket->mTimeUntilDownElapsed = 0;
-        bucket->setScaleX(1);
-        bucket->mWeight = 20.0f;
-        bucket->mImpulsePower = 1200.0f;
-        
-        bucket->mIsGone = false;
-        
-        bucket->setCenterPosition(Utils::randomf(0.0f, Options::CAMERA_WIDTH), 0);
-        
-        bucket->mSideImpulse   = Utils::randomf(100.0f, 300.0f);
-        bucket->mRotateImpulse = 0;//Utils::randomf(-60.0f, 60.0f);
-        
-        bucket->mSideImpulse = bucket->getCenterX() < Options::CAMERA_CENTER_X ? -bucket->mSideImpulse : bucket->mSideImpulse;
+        Coin* coin = (Coin*) this->mCoins->create();
         
         for(int i = 0; i < 20; i++)
         {
@@ -210,18 +215,6 @@ void Level::update(float pDelta)
         if(bucket->isCollideWithPoint(this->mTouchCoordinateX, this->mTouchCoordinateY) && !bucket->mIsGone)
         {
             bucket->fall(this->mTouchCoordinateX, this->mTouchCoordinateY, this->mTouchCoordinateX < bucket->getCenterX());
-            
-            for(int i = 0; i < 50; i++)
-            {
-                Popcorn* popcorn = (Popcorn*) this->mPopcorns->create();
-                popcorn->setCenterPosition(bucket->getCenterX() - Utils::randomf(-60.0f, 60.0f), bucket->getCenterY() + Utils::coord(80) - Utils::randomf(-20.0f, 20.0f));
-                
-                popcorn->mWeight = Utils::randomf(10.0f, 20.0f);
-                popcorn->mImpulsePower = Utils::randomf(100.0f, 300.0f);
-                
-                popcorn->mSideImpulse   = Utils::randomf(-150.0f, 150.0f);
-                popcorn->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
-            }
         }
     }
     

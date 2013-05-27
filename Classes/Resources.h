@@ -94,6 +94,13 @@ class Resources
         static const char* R_LEVEL_CORN_SHADOW;
         static const char* R_LEVEL_DECORATION1;
         static const char* R_LEVEL_DECORATION2;
+        static const char* R_LEVEL_COIN;
+    
+        static const char* R_PAUSE_NAME;
+        static const char* R_PAUSE_NAME_PANEL;
+    
+        static const char* R_GAMEOVER_NAME;
+        static const char* R_GAMEOVER_NAME_PANEL;
     
         static const char* R_WEAPON_1;
     

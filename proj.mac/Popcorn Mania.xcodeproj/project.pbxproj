@@ -41,13 +41,18 @@
 		7821975317518FB60068F6D6 /* process-bucket-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7821975217518FB60068F6D6 /* process-bucket-icon@2x.png */; };
 		782197831752093A0068F6D6 /* process-lose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782197821752093A0068F6D6 /* process-lose@2x.png */; };
 		7821978617520AD20068F6D6 /* Lose.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7821978417520AD20068F6D6 /* Lose.cpp */; };
-		78219788175216D00068F6D6 /* process-gameover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78219787175216D00068F6D6 /* process-gameover@2x.png */; };
 		7821978E175258E10068F6D6 /* weapon-animation1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7821978D175258E10068F6D6 /* weapon-animation1@2x.png */; };
 		7821979E17538FFF0068F6D6 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7821979C17538FFE0068F6D6 /* Weapon.cpp */; };
 		782197A3175393820068F6D6 /* process-coin-count-ico@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782197A0175393800068F6D6 /* process-coin-count-ico@2x.png */; };
 		782197A4175393820068F6D6 /* process-life-ticket-counter-sprite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782197A1175393810068F6D6 /* process-life-ticket-counter-sprite@2x.png */; };
 		782197A717539DA40068F6D6 /* wh-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782197A517539DA30068F6D6 /* wh-bg@2x.png */; };
 		782197A817539DA40068F6D6 /* wh-bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782197A617539DA30068F6D6 /* wh-bg2@2x.png */; };
+		782198391753AE050068F6D6 /* Coin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 782198371753AE050068F6D6 /* Coin.cpp */; };
+		7821983C1753B9370068F6D6 /* Pause.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7821983A1753B9370068F6D6 /* Pause.cpp */; };
+		782198401753BD510068F6D6 /* pause-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7821983E1753BD510068F6D6 /* pause-bg@2x.png */; };
+		782198411753BD510068F6D6 /* pause-text-sprite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7821983F1753BD510068F6D6 /* pause-text-sprite@2x.png */; };
+		782198441753C4E90068F6D6 /* GameOver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 782198421753C4E80068F6D6 /* GameOver.cpp */; };
+		782198471753C6650068F6D6 /* game-over-text-sprite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782198461753C6650068F6D6 /* game-over-text-sprite@2x.png */; };
 		786052FD174FA93E00ACE2D3 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786052F9174FA93E00ACE2D3 /* AppDelegate.cpp */; };
 		786052FE174FA93E00ACE2D3 /* Options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786052FB174FA93E00ACE2D3 /* Options.cpp */; };
 		78605302174FABC100ACE2D3 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78605301174FABC000ACE2D3 /* libcocos2dx.a */; };
@@ -149,7 +154,6 @@
 		782197821752093A0068F6D6 /* process-lose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "process-lose@2x.png"; sourceTree = "<group>"; };
 		7821978417520AD20068F6D6 /* Lose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lose.cpp; sourceTree = "<group>"; };
 		7821978517520AD20068F6D6 /* Lose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lose.h; sourceTree = "<group>"; };
-		78219787175216D00068F6D6 /* process-gameover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "process-gameover@2x.png"; sourceTree = "<group>"; };
 		7821978D175258E10068F6D6 /* weapon-animation1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weapon-animation1@2x.png"; sourceTree = "<group>"; };
 		7821979C17538FFE0068F6D6 /* Weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Weapon.cpp; sourceTree = "<group>"; };
 		7821979D17538FFE0068F6D6 /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
@@ -157,6 +161,15 @@
 		782197A1175393810068F6D6 /* process-life-ticket-counter-sprite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "process-life-ticket-counter-sprite@2x.png"; sourceTree = "<group>"; };
 		782197A517539DA30068F6D6 /* wh-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wh-bg@2x.png"; sourceTree = "<group>"; };
 		782197A617539DA30068F6D6 /* wh-bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wh-bg2@2x.png"; sourceTree = "<group>"; };
+		782198371753AE050068F6D6 /* Coin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coin.cpp; sourceTree = "<group>"; };
+		782198381753AE050068F6D6 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
+		7821983A1753B9370068F6D6 /* Pause.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pause.cpp; sourceTree = "<group>"; };
+		7821983B1753B9370068F6D6 /* Pause.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pause.h; sourceTree = "<group>"; };
+		7821983E1753BD510068F6D6 /* pause-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause-bg@2x.png"; sourceTree = "<group>"; };
+		7821983F1753BD510068F6D6 /* pause-text-sprite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause-text-sprite@2x.png"; sourceTree = "<group>"; };
+		782198421753C4E80068F6D6 /* GameOver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOver.cpp; sourceTree = "<group>"; };
+		782198431753C4E90068F6D6 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOver.h; sourceTree = "<group>"; };
+		782198461753C6650068F6D6 /* game-over-text-sprite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-over-text-sprite@2x.png"; sourceTree = "<group>"; };
 		786052F9174FA93E00ACE2D3 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		786052FA174FA93E00ACE2D3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		786052FB174FA93E00ACE2D3 /* Options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Options.cpp; sourceTree = "<group>"; };
@@ -320,6 +333,8 @@
 		7821970217517E440068F6D6 /* 1280x720 */ = {
 			isa = PBXGroup;
 			children = (
+				782198451753C6630068F6D6 /* game-over */,
+				7821983D1753BD500068F6D6 /* pause-gui */,
 				7821970317517E440068F6D6 /* main-menu */,
 				7821970F17517E440068F6D6 /* preload-scene */,
 				7821971217517E440068F6D6 /* process-gui */,
@@ -362,7 +377,6 @@
 				782197A0175393800068F6D6 /* process-coin-count-ico@2x.png */,
 				782197A1175393810068F6D6 /* process-life-ticket-counter-sprite@2x.png */,
 				7821978D175258E10068F6D6 /* weapon-animation1@2x.png */,
-				78219787175216D00068F6D6 /* process-gameover@2x.png */,
 				782197821752093A0068F6D6 /* process-lose@2x.png */,
 				7821975217518FB60068F6D6 /* process-bucket-icon@2x.png */,
 				7821975017518D960068F6D6 /* process-pause@2x.png */,
@@ -372,6 +386,23 @@
 				7821971617517E440068F6D6 /* process-dust@2x.png */,
 			);
 			path = "process-gui";
+			sourceTree = "<group>";
+		};
+		7821983D1753BD500068F6D6 /* pause-gui */ = {
+			isa = PBXGroup;
+			children = (
+				7821983E1753BD510068F6D6 /* pause-bg@2x.png */,
+				7821983F1753BD510068F6D6 /* pause-text-sprite@2x.png */,
+			);
+			path = "pause-gui";
+			sourceTree = "<group>";
+		};
+		782198451753C6630068F6D6 /* game-over */ = {
+			isa = PBXGroup;
+			children = (
+				782198461753C6650068F6D6 /* game-over-text-sprite@2x.png */,
+			);
+			path = "game-over";
 			sourceTree = "<group>";
 		};
 		786052F8174FA93E00ACE2D3 /* Classes */ = {
@@ -429,6 +460,8 @@
 		78605316174FB2A000ACE2D3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				782198371753AE050068F6D6 /* Coin.cpp */,
+				782198381753AE050068F6D6 /* Coin.h */,
 				7821979C17538FFE0068F6D6 /* Weapon.cpp */,
 				7821979D17538FFE0068F6D6 /* Weapon.h */,
 				7821978417520AD20068F6D6 /* Lose.cpp */,
@@ -456,6 +489,10 @@
 		7860531A174FB2F600ACE2D3 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				782198421753C4E80068F6D6 /* GameOver.cpp */,
+				782198431753C4E90068F6D6 /* GameOver.h */,
+				7821983A1753B9370068F6D6 /* Pause.cpp */,
+				7821983B1753B9370068F6D6 /* Pause.h */,
 				7860543F1750535B00ACE2D3 /* Level.cpp */,
 				786054401750535B00ACE2D3 /* Level.h */,
 				7860531B174FB2F600ACE2D3 /* Screen.cpp */,
@@ -669,12 +706,14 @@
 				7821975117518D960068F6D6 /* process-pause@2x.png in Resources */,
 				7821975317518FB60068F6D6 /* process-bucket-icon@2x.png in Resources */,
 				782197831752093A0068F6D6 /* process-lose@2x.png in Resources */,
-				78219788175216D00068F6D6 /* process-gameover@2x.png in Resources */,
 				7821978E175258E10068F6D6 /* weapon-animation1@2x.png in Resources */,
 				782197A3175393820068F6D6 /* process-coin-count-ico@2x.png in Resources */,
 				782197A4175393820068F6D6 /* process-life-ticket-counter-sprite@2x.png in Resources */,
 				782197A717539DA40068F6D6 /* wh-bg@2x.png in Resources */,
 				782197A817539DA40068F6D6 /* wh-bg2@2x.png in Resources */,
+				782198401753BD510068F6D6 /* pause-bg@2x.png in Resources */,
+				782198411753BD510068F6D6 /* pause-text-sprite@2x.png in Resources */,
+				782198471753C6650068F6D6 /* game-over-text-sprite@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +756,9 @@
 				782196FA17516D5F0068F6D6 /* Dust.cpp in Sources */,
 				7821978617520AD20068F6D6 /* Lose.cpp in Sources */,
 				7821979E17538FFF0068F6D6 /* Weapon.cpp in Sources */,
+				782198391753AE050068F6D6 /* Coin.cpp in Sources */,
+				7821983C1753B9370068F6D6 /* Pause.cpp in Sources */,
+				782198441753C4E90068F6D6 /* GameOver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

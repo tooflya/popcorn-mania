@@ -1,25 +1,15 @@
-#ifndef CONST_LEVEL_H
-#define CONST_LEVEL_H
+#ifndef CONST_GAMEOVER_H
+#define CONST_GAMEOVER_H
 
 #include "cocos2d.h"
 
 #include "Popscreen.h"
-#include "Pause.h"
-#include "GameOver.h"
 
-#include "Bucket.h"
-#include "Popcorn.h"
-#include "Dust.h"
-#include "Lose.h"
-#include "Weapon.h"
-#include "Coin.h"
-
-#include "EntityManager.h"
 #include "BatchEntityManager.h"
 
 using namespace cocos2d;
 
-class Level : public Popscreen
+class GameOver : public Popscreen
 {
 	protected:
 		// ===========================================================
@@ -34,10 +24,11 @@ class Level : public Popscreen
 		// Fields
         // ===========================================================
     
-        Entity* mBackground;
-        Entity* mBackgroundDecoration;
+        BatchEntityManager* mLines1;
+        BatchEntityManager* mLines2;
     
-        bool mIsDecorationReverse;
+        Entity* mPanel;
+        Entity* mName;
 
 		// ===========================================================
 		// Constructors
@@ -64,17 +55,6 @@ class Level : public Popscreen
 		// Fields
 		// ===========================================================
 
-        float mBucketTime;
-        float mBucketTimeElapsed;
-    
-        EntityManager* mBuckets;
-        EntityManager* mCoins;
-    
-        BatchEntityManager* mDusts;
-        BatchEntityManager* mLoseMarks;
-    
-        CCLabelTTF* mBucketCountText;
-
 		// ===========================================================
 		// Constructors
 		// ===========================================================
@@ -100,47 +80,22 @@ class Level : public Popscreen
 		// Fields
         // ===========================================================
     
-        EntityManager* mPopcorns;
-    
-        float mTouchPreviousCoordinateX;
-        float mTouchPreviousCoordinateY;
-    
-        float mTouchCoordinateX;
-        float mTouchCoordinateY;
-    
-        int mLifes;
-    
-        bool mIsLevelRunning;
-    
-        Pause* mPauseScreen;
-        GameOver* mGameOverScreen;
-    
-        bool mPaused;
-    
 		// ===========================================================
 		// Constructors
         // ===========================================================
     
-        Level(ScreenManager* pScreenManager);
+        GameOver(ScreenManager* pScreenManager);
 
 		// ===========================================================
 		// Methods
         // ===========================================================
     
-        void startLevel();
-        void finishLevel();
+        void show();
+        void hide();
 		
 		// ===========================================================
 		// Virtual Methods
         // ===========================================================
-    
-        virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
-        virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
-        virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
-    
-        virtual void onTouch(CCTouch* touch, CCEvent* event);
-    
-        void update(float pDelta);
 };
 
 #endif
