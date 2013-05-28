@@ -9,25 +9,85 @@
 // Inner Classes
 // ===========================================================
 
-class PlayButton : public Entity
+class SoundButton : public Entity
 {
 public:
     Menu* mParent;
     
-    PlayButton(Menu* pParent) :
-    Entity(Resources::R_MENU_PLAY, 1, 2, pParent)
+    SoundButton(Menu* pParent) :
+    Entity(Resources::R_MENU_BUTTON_SOUND, 1, 2, pParent)
     {
         this->mParent = pParent;
         
-        this->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y - Utils::coord(50));
+        this->create()->setCenterPosition(Utils::coord(141), Utils::coord(48));
         
         this->setRegisterAsTouchable(true);
-        this->animate(0.1f);
     }
     
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        this->mParent->mScreenManager->set(1);
+        this->nextFrameIndex();
+    }
+};
+
+class MusicButton : public Entity
+{
+public:
+    Menu* mParent;
+    
+    MusicButton(Menu* pParent) :
+    Entity(Resources::R_MENU_BUTTON_MUSIC, 1, 2, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->create()->setCenterPosition(Utils::coord(48), Utils::coord(48));
+        
+        this->setRegisterAsTouchable(true);
+    }
+    
+    void onTouch(CCTouch* touch, CCEvent* event)
+    {
+        this->nextFrameIndex();
+    }
+};
+
+class FacebookButton : public Entity
+{
+public:
+    Menu* mParent;
+    
+    FacebookButton(Menu* pParent) :
+    Entity(Resources::R_MENU_BUTTON_FACEBOOK, 1, 1, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(48), Utils::coord(48));
+        
+        this->setRegisterAsTouchable(true);
+    }
+    
+    void onTouch(CCTouch* touch, CCEvent* event)
+    {
+    }
+};
+
+class TwitterButton : public Entity
+{
+public:
+    Menu* mParent;
+    
+    TwitterButton(Menu* pParent) :
+    Entity(Resources::R_MENU_BUTTON_TWITTER, 1, 1, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(141), Utils::coord(48));
+        
+        this->setRegisterAsTouchable(true);
+    }
+    
+    void onTouch(CCTouch* touch, CCEvent* event)
+    {
     }
 };
 
@@ -44,7 +104,48 @@ public:
         this->create()->setCenterPosition(Options::CAMERA_CENTER_X - Utils::coord(270), Options::CAMERA_CENTER_Y - Utils::coord(50));
         
         this->setRegisterAsTouchable(true);
-        this->animate(0.2f);
+    }
+    
+    void onTouch(CCTouch* touch, CCEvent* event)
+    {
+        this->mParent->mScreenManager->set(1);
+    }
+};
+
+class MoreButton : public Entity
+{
+public:
+    Menu* mParent;
+    
+    MoreButton(Menu* pParent) :
+    Entity(Resources::R_MENU_BUTTON_MORE_GAMES, 1, 1, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(234), Utils::coord(48));
+        
+        this->setRegisterAsTouchable(true);
+    }
+    
+    void onTouch(CCTouch* touch, CCEvent* event)
+    {
+    }
+};
+
+class PlayButton : public Entity
+{
+public:
+    Menu* mParent;
+    
+    PlayButton(Menu* pParent) :
+    Entity(Resources::R_MENU_PLAY, 1, 2, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y - Utils::coord(50));
+        
+        this->setRegisterAsTouchable(true);
+        this->animate(0.1f);
     }
     
     void onTouch(CCTouch* touch, CCEvent* event)
@@ -90,6 +191,8 @@ public:
 Menu::Menu(ScreenManager* pScreenManager) :
     Popscreen(pScreenManager)
     {
+        this->mRateScreen = new Rate(pScreenManager);
+        
         this->mBackground1 = new Entity(Resources::R_MENU_BACKGROUND1, this);
     
         this->mStars = new BatchEntityManager(400, new Star(), this);
@@ -129,6 +232,15 @@ Menu::Menu(ScreenManager* pScreenManager) :
     
         this->generateStars();
         this->generatePeople();
+        
+        this->mMusicButton = new MusicButton(this);
+        this->mSoundButton = new SoundButton(this);
+        
+        this->mMoreButton = new MoreButton(this);
+        this->mTwitterButton = new TwitterButton(this);
+        this->mFacebookButton = new FacebookButton(this);
+        
+        this->addChild(this->mRateScreen, 500);
     }
 
 // ===========================================================
@@ -170,6 +282,29 @@ void Menu::generatePeople()
         
         k++;
     }
+}
+
+void Menu::showRate()
+{
+    this->mMusicButton->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mSoundButton->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    
+    this->mMoreButton->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mTwitterButton->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mFacebookButton->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    
+    this->mPlay->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mShop->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mScore->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    
+    this->mName->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mNamePanel->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mRateScreen->show();
+}
+
+void Menu::hideRate()
+{
+    
 }
 
 // ===========================================================

@@ -10,6 +10,7 @@
 #include "BatchEntityManager.h"
 
 #include "Popscreen.h"
+#include "Rate.h"
 
 class ScreenManager;
 
@@ -46,6 +47,14 @@ class Menu : public Popscreen
         Entity* mPlay;
         Entity* mScore;
         Entity* mShop;
+    
+        Rate* mRateScreen;
+    
+        Entity* mMusicButton;
+        Entity* mSoundButton;
+        Entity* mMoreButton;
+        Entity* mTwitterButton;
+        Entity* mFacebookButton;
 
 		// ===========================================================
 		// Constructors
@@ -110,6 +119,9 @@ class Menu : public Popscreen
 		// ===========================================================
 		// Methods
 		// ===========================================================
+    
+        void showRate();
+        void hideRate();
 		
 		// ===========================================================
 		// Virtual Methods
