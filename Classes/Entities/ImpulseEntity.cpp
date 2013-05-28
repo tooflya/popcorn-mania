@@ -55,16 +55,16 @@ void ImpulseEntity::update(float pDelta)
     {
         this->setCenterPosition(this->getCenterX(), this->getCenterY() - this->mWeight * pDelta);
         
-        this->mWeight += 5.0f;
+        this->mWeight += Utils::coord(5.0f);
     }
     
     this->setCenterPosition(this->getCenterX() - this->mSideImpulse * pDelta, this->getCenterY());
     this->setRotation(this->getRotation() - this->mRotateImpulse * pDelta);
     
-    if(this->getCenterY() < 0 && this->mImpulsePower < 0)
+    /*if(this->getCenterY() < 0 && this->mImpulsePower < 0)
     {
         this->destroy();
-    }
+    }*/
 }
 
 bool ImpulseEntity::isCollideWithPoint(float pX, float pY)

@@ -275,8 +275,17 @@ void Level::update(float pDelta)
         for(int i = 0; i < this->mBuckets->getCount(); i++)
         {
             Bucket* bucket = (Bucket*) this->mBuckets->objectAtIndex(i);
-        
-            if(bucket->getCenterY() < -bucket->getHeight() / 2 && !bucket->mIsGone && bucket->mImpulsePower <= 0 && this->mIsLevelRunning)
+            
+            if(bucket->isCollideWithPoint(this->mTouchCoordinateX, this->mTouchCoordinateY) && !bucket->mIsGone)
+            {
+                bucket->fall(this->mTouchCoordinateX, this->mTouchCoordinateY, this->mTouchCoordinateX < bucket->getCenterX());
+                
+                this->mBucketsCount++;
+                
+                this->mBucketsCountIcon->setScale(1.25f);
+                this->mBucketsCountIcon->runAction(CCScaleTo::create(0.3f, 1.0f));
+            }
+            else if(bucket->getCenterY() < -bucket->getHeight() / 2 && !bucket->mIsGone && bucket->mImpulsePower <= 0)
             {
                 this->mLoseMarks->create()->setCenterPosition(bucket->getCenterX(), Utils::coord(Utils::randomf(30.0f, 60.0f)));
             
@@ -292,16 +301,6 @@ void Level::update(float pDelta)
                 {
                     this->finishLevel();
                 }
-            }
-        
-            if(bucket->isCollideWithPoint(this->mTouchCoordinateX, this->mTouchCoordinateY) && !bucket->mIsGone)
-            {
-                bucket->fall(this->mTouchCoordinateX, this->mTouchCoordinateY, this->mTouchCoordinateX < bucket->getCenterX());
-            
-                this->mBucketsCount++;
-                
-                this->mBucketsCountIcon->setScale(1.25f);
-                this->mBucketsCountIcon->runAction(CCScaleTo::create(0.3f, 1.0f));
             }
         }
     }
