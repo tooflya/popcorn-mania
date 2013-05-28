@@ -186,6 +186,7 @@
 		782198F5175419370068F6D6 /* process-coin-shdw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "process-coin-shdw@2x.png"; sourceTree = "<group>"; };
 		782198F8175426C70068F6D6 /* bucket-shdw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bucket-shdw@2x.png"; sourceTree = "<group>"; };
 		782198F9175426C80068F6D6 /* game-corn-shdw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-corn-shdw@2x.png"; sourceTree = "<group>"; };
+		7821A268175436860068F6D6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		786052F9174FA93E00ACE2D3 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		786052FA174FA93E00ACE2D3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		786052FB174FA93E00ACE2D3 /* Options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Options.cpp; sourceTree = "<group>"; };
@@ -289,6 +290,7 @@
 		41851B8715B93C32004083E9 = {
 			isa = PBXGroup;
 			children = (
+				7821A268175436860068F6D6 /* AVFoundation.framework */,
 				15C156B01683151A00D239F2 /* cocos2dx.xcodeproj */,
 				786052FF174FA94500ACE2D3 /* Resources */,
 				786052F8174FA93E00ACE2D3 /* Classes */,
