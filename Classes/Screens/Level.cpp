@@ -7,12 +7,12 @@
 // Inner Classes
 // ===========================================================
 
-class PauseButton : public Entity
+class LevelPauseButton : public Entity
 {
     public:
         Level* mParent;
     
-        PauseButton(Level* pParent) :
+        LevelPauseButton(Level* pParent) :
             Entity(Resources::R_LEVEL_PAUSE, 1, 2, pParent)
         {
             this->mParent = pParent;
@@ -63,8 +63,8 @@ class PauseButton : public Entity
 Level::Level(ScreenManager* pScreenManager) :
     Popscreen(pScreenManager)
     {
-        this->mPauseScreen = new Pause(pScreenManager);
         this->mGameOverScreen = new GameOver(pScreenManager);
+        this->mPauseScreen = new Pause(pScreenManager);
         
         this->mTouchPreviousCoordinateX = -1;
         this->mTouchPreviousCoordinateY = -1;
@@ -96,7 +96,7 @@ Level::Level(ScreenManager* pScreenManager) :
         this->mBuckets = new EntityManager(10, new Bucket(), this, 5);
         this->mPopcorns = new EntityManager(500, new Popcorn(), this, 5);
         
-        PauseButton* pauseButton = new PauseButton(this);
+        LevelPauseButton* pauseButton = new LevelPauseButton(this);
         pauseButton->create()->setCenterPosition(Utils::coord(60), Utils::coord(48));
         pauseButton->setZOrder(501);
         
@@ -104,20 +104,28 @@ Level::Level(ScreenManager* pScreenManager) :
         this->mBucketsCountIcon->create()->setCenterPosition(Utils::coord(48), Options::CAMERA_HEIGHT - Utils::coord(48));
         this->mBucketsCountIcon->setZOrder(501);
         
-        /*Entity* coinsCount = new Entity(Resources::R_LEVEL_COINS_ICON, 3, 2, this);
-        coinsCount->create()->setCenterPosition(Utils::coord(48), Options::CAMERA_HEIGHT - Utils::coord(124));
-        coinsCount->animate(0.1f);
-        coinsCount->setZOrder(501);*/
-        
         this->mLoseMarks = new BatchEntityManager(3, new Lose(), this);
         
-        this->mBucketCountText = CCLabelTTF::create("41", "Arial",  Utils::coord(72));
-        this->mBucketCountText->setPosition(ccp(Utils::coord(120), Options::CAMERA_HEIGHT - Utils::coord(48)));
-        this->addChild(this->mBucketCountText, 501);
+        this->mLargeFont = new BatchEntityManager(10, new Entity(Resources::R_GAME_LARGE_FONT, 10, 1), this, 501);
         
-        this->mCoinsCountText = CCLabelTTF::create("Best: 14401", "Arial",  Utils::coord(36));
-        this->mCoinsCountText->setPosition(ccp(Utils::coord(120), Options::CAMERA_HEIGHT - Utils::coord(100)));
-        this->addChild(this->mCoinsCountText, 501);
+        for(int i = 0; i < 10; i++)
+            this->mLargeFont->create()->setCenterPosition(Utils::coord(100) + Utils::coord(30) * i, Options::CAMERA_HEIGHT - Utils::coord(50));
+        
+        for(int i = 0; i < 10; i++)
+            ((Entity*) this->mLargeFont->objectAtIndex(i))->setVisible(false);
+        
+        this->mSmallFont = new BatchEntityManager(10, new Entity(Resources::R_GAME_SMALL_FONT, 10, 1), this, 501);
+        
+        for(int i = 0; i < 10; i++)
+        this->mSmallFont->create()->setCenterPosition(Utils::coord(115) + Utils::coord(15) * i, Options::CAMERA_HEIGHT - Utils::coord(100));
+        
+        for(int i = 0; i < 10; i++)
+        ((Entity*) this->mSmallFont->objectAtIndex(i))->setVisible(false);
+        
+        this->mBestLabel = new Entity(Resources::R_LEVEL_LABEL_BEST, 1, 2, this);
+        this->mBestLabel->animate(0.2f);
+        this->mBestLabel->create()->setCenterPosition(Utils::coord(60), Options::CAMERA_HEIGHT - Utils::coord(100));
+        this->mBestLabel->setZOrder(501);
         
         this->mPaused = false;
         
@@ -140,6 +148,11 @@ Level::Level(ScreenManager* pScreenManager) :
         {
             this->mLifesIcons->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(40) - Utils::coord(50) * i, Options::CAMERA_HEIGHT - Utils::coord(40));
         }
+        
+        this->mLights = new BatchEntityManager(10, new Lights(), this);
+        
+        this->mLightsTime = Utils::randomf(0.5f, 3.0f);
+        this->mLightsTimeElapsed = 0;
     }
 
 // ===========================================================
@@ -183,6 +196,7 @@ void Level::startLevel()
     this->mBuckets->clear();
     this->mCoins->clear();
     this->mPopcorns->clear();
+    this->mLoseMarks->clear();
     
     this->mBuckets->resumeSchedulerAndActions();
     this->mCoins->resumeSchedulerAndActions();
@@ -190,6 +204,8 @@ void Level::startLevel()
     
     this->mLifes = 3;
     this->mBucketsCount = 0;
+    
+    this->updateFonts();
     
     this->mCounterBeforeStart = 3;
     this->mCounterBeforeStartTimeElapsed = 0.0f;
@@ -225,6 +241,83 @@ void Level::finishLevel()
 // Virtual Methods
 // ===========================================================
 
+void Level::updateFonts()
+{
+    if(this->mBucketsCount < 10)
+    {
+        ((Entity*) this->mLargeFont->objectAtIndex(0))->setCurrentFrameIndex(this->mBucketsCount);
+        
+        ((Entity*) this->mLargeFont->objectAtIndex(0))->setVisible(true);
+        ((Entity*) this->mLargeFont->objectAtIndex(1))->setVisible(false);
+        ((Entity*) this->mLargeFont->objectAtIndex(2))->setVisible(false);
+        ((Entity*) this->mLargeFont->objectAtIndex(3))->setVisible(false);
+        ((Entity*) this->mLargeFont->objectAtIndex(4))->setVisible(false);
+        ((Entity*) this->mLargeFont->objectAtIndex(5))->setVisible(false);
+    }
+    else if(this->mBucketsCount < 100)
+    {
+        ((Entity*) this->mLargeFont->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBucketsCount / 10));
+        ((Entity*) this->mLargeFont->objectAtIndex(1))->setCurrentFrameIndex(this->mBucketsCount - floor(this->mBucketsCount / 10) * 10);
+        
+        ((Entity*) this->mLargeFont->objectAtIndex(0))->setVisible(true);
+        ((Entity*) this->mLargeFont->objectAtIndex(1))->setVisible(true);
+        ((Entity*) this->mLargeFont->objectAtIndex(2))->setVisible(false);
+        ((Entity*) this->mLargeFont->objectAtIndex(3))->setVisible(false);
+        ((Entity*) this->mLargeFont->objectAtIndex(4))->setVisible(false);
+        ((Entity*) this->mLargeFont->objectAtIndex(5))->setVisible(false);
+    }
+    else if(this->mBucketsCount < 1000)
+    {
+        ((Entity*) this->mLargeFont->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBucketsCount / 100));
+        ((Entity*) this->mLargeFont->objectAtIndex(1))->setCurrentFrameIndex(floor(this->mBucketsCount - floor(this->mBucketsCount / 100) * 100) / 10);
+        ((Entity*) this->mLargeFont->objectAtIndex(2))->setCurrentFrameIndex(floor(this->mBucketsCount - floor(this->mBucketsCount / 10) * 10));
+        
+        ((Entity*) this->mLargeFont->objectAtIndex(0))->setVisible(true);
+        ((Entity*) this->mLargeFont->objectAtIndex(1))->setVisible(true);
+        ((Entity*) this->mLargeFont->objectAtIndex(2))->setVisible(true);
+        ((Entity*) this->mLargeFont->objectAtIndex(3))->setVisible(false);
+        ((Entity*) this->mLargeFont->objectAtIndex(4))->setVisible(false);
+        ((Entity*) this->mLargeFont->objectAtIndex(5))->setVisible(false);
+    }
+    
+    if(this->mBucketsCount < 10)
+    {
+        ((Entity*) this->mSmallFont->objectAtIndex(0))->setCurrentFrameIndex(this->mBucketsCount);
+        
+        ((Entity*) this->mSmallFont->objectAtIndex(0))->setVisible(true);
+        ((Entity*) this->mSmallFont->objectAtIndex(1))->setVisible(false);
+        ((Entity*) this->mSmallFont->objectAtIndex(2))->setVisible(false);
+        ((Entity*) this->mSmallFont->objectAtIndex(3))->setVisible(false);
+        ((Entity*) this->mSmallFont->objectAtIndex(4))->setVisible(false);
+        ((Entity*) this->mSmallFont->objectAtIndex(5))->setVisible(false);
+    }
+    else if(this->mBucketsCount < 100)
+    {
+        ((Entity*) this->mSmallFont->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBucketsCount / 10));
+        ((Entity*) this->mSmallFont->objectAtIndex(1))->setCurrentFrameIndex(this->mBucketsCount - floor(this->mBucketsCount / 10) * 10);
+        
+        ((Entity*) this->mSmallFont->objectAtIndex(0))->setVisible(true);
+        ((Entity*) this->mSmallFont->objectAtIndex(1))->setVisible(true);
+        ((Entity*) this->mSmallFont->objectAtIndex(2))->setVisible(false);
+        ((Entity*) this->mSmallFont->objectAtIndex(3))->setVisible(false);
+        ((Entity*) this->mSmallFont->objectAtIndex(4))->setVisible(false);
+        ((Entity*) this->mSmallFont->objectAtIndex(5))->setVisible(false);
+    }
+    else if(this->mBucketsCount < 1000)
+    {
+        ((Entity*) this->mSmallFont->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBucketsCount / 100));
+        ((Entity*) this->mSmallFont->objectAtIndex(1))->setCurrentFrameIndex((int) floor((this->mBucketsCount - floor(this->mBucketsCount / 100) * 100) / 10));
+        ((Entity*) this->mSmallFont->objectAtIndex(2))->setCurrentFrameIndex((int) floor(this->mBucketsCount % 10));
+        
+        ((Entity*) this->mSmallFont->objectAtIndex(0))->setVisible(true);
+        ((Entity*) this->mSmallFont->objectAtIndex(1))->setVisible(true);
+        ((Entity*) this->mSmallFont->objectAtIndex(2))->setVisible(true);
+        ((Entity*) this->mSmallFont->objectAtIndex(3))->setVisible(false);
+        ((Entity*) this->mSmallFont->objectAtIndex(4))->setVisible(false);
+        ((Entity*) this->mSmallFont->objectAtIndex(5))->setVisible(false);
+    }
+}
+
 void Level::update(float pDelta)
 {
     Popscreen::update(pDelta);
@@ -255,6 +348,8 @@ void Level::update(float pDelta)
         if(this->mBucketTimeElapsed >= this->mBucketTime && this->mIsLevelRunning)
         {
             this->mBucketTimeElapsed -= this->mBucketTime;
+            
+            this->mBucketTime -= 0.005f;
         
             Bucket* bucket = (Bucket*) this->mBuckets->create();
             Coin* coin = (Coin*) this->mCoins->create();
@@ -284,6 +379,8 @@ void Level::update(float pDelta)
                 
                 this->mBucketsCountIcon->setScale(1.25f);
                 this->mBucketsCountIcon->runAction(CCScaleTo::create(0.3f, 1.0f));
+                
+                this->updateFonts();
             }
             else if(bucket->getCenterY() < -bucket->getHeight() / 2 && !bucket->mIsGone && bucket->mImpulsePower <= 0)
             {
@@ -292,6 +389,7 @@ void Level::update(float pDelta)
                 bucket->destroy();
             
                 this->mLifes--;
+                this->mBucketsCount++;
                 
                 ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->setCurrentFrameIndex(1);
                 ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->setScale(1.25f);
@@ -302,6 +400,17 @@ void Level::update(float pDelta)
                     this->finishLevel();
                 }
             }
+        }
+        
+        
+        this->mLightsTimeElapsed += pDelta;
+        
+        if(this->mLightsTimeElapsed >= this->mLightsTime)
+        {
+            this->mLightsTime = Utils::randomf(0.5f, 3.0f);
+            this->mLightsTimeElapsed = 0;
+            
+            ((Lights*) this->mLights->create())->look(this->mTouchCoordinateX, this->mTouchCoordinateY);
         }
     }
     else

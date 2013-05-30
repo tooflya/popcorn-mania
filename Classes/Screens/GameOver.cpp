@@ -9,12 +9,12 @@
 // Inner Classes
 // ===========================================================
 
-class RestartButton : public Entity
+class GameRestartButton : public Entity
 {
 public:
     GameOver* mParent;
     
-    RestartButton(GameOver* pParent) :
+    GameRestartButton(GameOver* pParent) :
     Entity(Resources::R_PAUSE_RESTART_BUTTON, 1, 2, pParent)
     {
         this->mParent = pParent;
@@ -25,9 +25,15 @@ public:
         this->animate(0.1f);
     }
     
+    bool ccTouchBegan(CCTouch* touch, CCEvent* event)
+    {
+        if(!this->mParent->mShowed) return false;
+        
+        return Entity::ccTouchBegan(touch, event);
+    }
+    
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        if(!this->mParent->mShowed) return;
         
         Level* level = (Level*) this->mParent->getParent();
         
@@ -37,12 +43,12 @@ public:
     }
 };
 
-class MenuButton : public Entity
+class GameMenuButton : public Entity
 {
 public:
     GameOver* mParent;
     
-    MenuButton(GameOver* pParent) :
+    GameMenuButton(GameOver* pParent) :
     Entity(Resources::R_PAUSE_MENU_BUTTON, 1, 2, pParent)
     {
         this->mParent = pParent;
@@ -53,9 +59,15 @@ public:
         this->animate(0.1f);
     }
     
+    bool ccTouchBegan(CCTouch* touch, CCEvent* event)
+    {
+        if(!this->mParent->mShowed) return false;
+        
+        return Entity::ccTouchBegan(touch, event);
+    }
+    
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        
     }
 };
 
@@ -101,8 +113,8 @@ GameOver::GameOver(ScreenManager* pScreenManager) :
         this->mLines1->setPosition(ccp(0, Options::CAMERA_HEIGHT));
         this->mLines2->setPosition(ccp(0, -Options::CAMERA_HEIGHT));
         
-        this->mRestartButton = new RestartButton(this);
-        this->mMenuButton = new MenuButton(this);
+        this->mRestartButton = new GameRestartButton(this);
+        this->mMenuButton = new GameMenuButton(this);
         
         this->hide();
     }

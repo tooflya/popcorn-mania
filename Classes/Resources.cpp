@@ -32,9 +32,23 @@ const char* Resources::R_MENU_PLAY = "btn-play@2x.png";
 const char* Resources::R_MENU_SCORE = "btn-score@2x.png";
 const char* Resources::R_MENU_SHOP = "btn-shop@2x.png";
 const char* Resources::R_MENU_SHADOW = "dark-line@2x.png";
+const char* Resources::R_MENU_BUTTON_SOUND = "button-sound@2x.png";
+const char* Resources::R_MENU_BUTTON_MUSIC = "button-music@2x.png";
+const char* Resources::R_MENU_BUTTON_FACEBOOK = "button-facebook@2x.png";
+const char* Resources::R_MENU_BUTTON_TWITTER = "button-twitter@2x.png";
+const char* Resources::R_MENU_BUTTON_MORE_GAMES = "button-more-games@2x.png";
+
+const char* Resources::R_RATE_NAME = "rate-text@2x.png";
+const char* Resources::R_RATE_BUTTONS_BACKGROUND = "rate-btn-bg@2x.png";
+const char* Resources::R_RATE_BACKGROUND_DECORATION = "rate-bg-wh@2x.png";
+const char* Resources::R_RATE_BUTTON_NO = "rate-btn-no@2x.png";
+const char* Resources::R_RATE_BUTTON_YES = "rate-btn-yes@2x.png";
+const char* Resources::R_RATE_BUTTON_LATER = "rate-btn-later@2x.png";
 
 const char* Resources::R_GAME_CORN = "game-corn@2x.png";
 const char* Resources::R_GAME_CORN_SHADOW = "game-corn-shdw@2x.png";
+const char* Resources::R_GAME_LARGE_FONT = "num-sprite-big@2x.png";
+const char* Resources::R_GAME_SMALL_FONT = "num-sprite-small@2x.png";
 
 const char* Resources::R_SCREENS_LINES = "preload-lines@2x.png";
 const char* Resources::R_SCREENS_POPCORN = "preload-bar-sprite@2x.png";
@@ -56,6 +70,8 @@ const char* Resources::R_LEVEL_COINS_ICON = "process-coin-count-ico@2x.png";
 const char* Resources::R_LEVEL_START_BACKGROUND = "frames-count@2x.png";
 const char* Resources::R_LEVEL_START_NUMBERS = "frames-count-num-sprite@2x.png";
 const char* Resources::R_LEVEL_LIFES = "process-life-ticket-counter-sprite@2x.png";
+const char* Resources::R_LEVEL_PHOTO_LIGHTS = "photo-lights@2x.png";
+const char* Resources::R_LEVEL_LABEL_BEST = "best-score-text@2x.png";
 
 const char* Resources::R_PAUSE_NAME = "pause-text-sprite@2x.png";
 const char* Resources::R_PAUSE_NAME_PANEL = "pause-bg@2x.png";

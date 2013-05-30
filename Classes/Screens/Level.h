@@ -13,6 +13,7 @@
 #include "Lose.h"
 #include "Weapon.h"
 #include "Coin.h"
+#include "Lights.h"
 
 #include "EntityManager.h"
 #include "BatchEntityManager.h"
@@ -38,6 +39,9 @@ class Level : public Popscreen
         Entity* mBackgroundDecoration;
     
         bool mIsDecorationReverse;
+    
+        float mLightsTime;
+        float mLightsTimeElapsed;
 
 		// ===========================================================
 		// Constructors
@@ -69,9 +73,11 @@ class Level : public Popscreen
     
         BatchEntityManager* mDusts;
         BatchEntityManager* mLoseMarks;
+        BatchEntityManager* mLights;
+        BatchEntityManager* mLargeFont;
+        BatchEntityManager* mSmallFont;
     
-        CCLabelTTF* mBucketCountText;
-        CCLabelTTF* mCoinsCountText;
+        Entity* mBestLabel;
     
         BatchEntityManager* mLifesIcons;
     
@@ -142,6 +148,8 @@ class Level : public Popscreen
     
         void startLevel();
         void finishLevel();
+    
+        void updateFonts();
 		
 		// ===========================================================
 		// Virtual Methods
