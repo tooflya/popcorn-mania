@@ -5,6 +5,8 @@
 
 #include "Level.h"
 
+#include "AppDelegate.h"
+
 // ===========================================================
 // Inner Classes
 // ===========================================================
@@ -68,10 +70,20 @@ void Bucket::fall(float pVectorX, float pVectorY, bool pMustReverse)
     this->mGoneVectorX = pVectorX;
     this->mGoneVectorY = pVectorY;
     
-    this->mIsMustReverse = false;//pMustReverse;
+    this->mIsMustReverse = pMustReverse;
     
     this->mWeapon->create()->animate(0.05f, 1);
-    this->mWeapon->setCenterPosition(this->getWidth() / 2 + Utils::coord(110), this->getHeight() / 2 - Utils::coord(190));
+    
+    if(pMustReverse)
+    {
+        this->mWeapon->setCenterPosition(this->getWidth() / 2 - Utils::coord(110), this->getHeight() / 2 - Utils::coord(190));
+        this->mWeapon->setScaleX(-1);
+    }
+    else
+    {
+        this->mWeapon->setCenterPosition(this->getWidth() / 2 + Utils::coord(110), this->getHeight() / 2 - Utils::coord(190));
+        this->mWeapon->setScaleX(1);
+    }
 }
 
 void Bucket::update(float pDeltaTime)
@@ -115,6 +127,8 @@ void Bucket::update(float pDeltaTime)
                 popcorn->mSideImpulse   = Utils::randomf(-150.0f, 150.0f);
                 popcorn->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
             }
+            
+            this->mWeapon->destroy();
         }
         
         if(this->mIsDown)
@@ -128,7 +142,7 @@ void Bucket::update(float pDeltaTime)
         
             this->setRotation(this->getRotation() - this->mSideImpulse * pDeltaTime);
         
-            this->mWeight = this->mWeight > Utils::coord(10.0f) ? Utils::coord(10.0f) : this->mWeight + Utils::coord(0.2f);
+            this->mWeight = this->mWeight >= Utils::coord(10.0f) ? Utils::coord(10.0f) : this->mWeight + Utils::coord(0.2f);
             
             Entity::update(pDeltaTime);
         }
@@ -142,12 +156,9 @@ void Bucket::update(float pDeltaTime)
         ImpulseEntity::update(pDeltaTime);
     }
     
-    if(this->mImpulsePower <= 0)
+    if(this->getCenterY() < -Utils::coord(200))
     {
-        if(this->getCenterY() < -this->getHeight())
-        {
-            this->destroy();
-        }
+        this->destroy();
     }
 }
 

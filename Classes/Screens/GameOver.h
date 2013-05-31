@@ -87,7 +87,7 @@ class GameOver : public Popscreen
 		// Constructors
         // ===========================================================
     
-        GameOver(ScreenManager* pScreenManager);
+        GameOver();
 
 		// ===========================================================
 		// Methods

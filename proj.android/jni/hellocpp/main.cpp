@@ -29,6 +29,8 @@
 #include "Spotlight.cpp"
 #include "Utils.cpp"
 #include "Bucket.cpp"
+#include "Cola.cpp"
+#include "Shop.cpp"
 #include "platform/android/jni/JniHelper.h"
 #include <jni.h>
 #include <android/log.h>

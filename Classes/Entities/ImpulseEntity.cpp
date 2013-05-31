@@ -3,6 +3,8 @@
 
 #include "ImpulseEntity.h"
 
+#include "AppDelegate.h"
+
 // ===========================================================
 // Inner Classes
 // ===========================================================
@@ -43,28 +45,32 @@ ImpulseEntity::ImpulseEntity(const char* pTextureFileName, int pHorizontalFrames
 
 void ImpulseEntity::update(float pDelta)
 {
+    if(!this->isVisible()) return;
+    
     Entity::update(pDelta);
     
-    if(this->mImpulsePower > 0)
+    pDelta *= AppDelegate::mSpeedDecreaseFactor;
+    
+    if(this->mImpulsePower >= 0.0f)
     {
         this->setCenterPosition(this->getCenterX(), this->getCenterY() + this->mImpulsePower * pDelta);
         
-        this->mImpulsePower -= this->mWeight;
+        this->mImpulsePower -= this->mWeight * AppDelegate::mSpeedDecreaseFactor;
     }
     else
     {
         this->setCenterPosition(this->getCenterX(), this->getCenterY() - this->mWeight * pDelta);
         
-        this->mWeight += Utils::coord(5.0f);
+        this->mWeight += Utils::coord(5.0f) * AppDelegate::mSpeedDecreaseFactor;
     }
     
     this->setCenterPosition(this->getCenterX() - this->mSideImpulse * pDelta, this->getCenterY());
     this->setRotation(this->getRotation() - this->mRotateImpulse * pDelta);
     
-    /*if(this->getCenterY() < 0 && this->mImpulsePower < 0)
+    if(this->getCenterY() < -Utils::coord(200) && this->mImpulsePower <= 0.0f)
     {
         this->destroy();
-    }*/
+    }
 }
 
 bool ImpulseEntity::isCollideWithPoint(float pX, float pY)

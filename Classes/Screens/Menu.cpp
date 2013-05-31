@@ -5,21 +5,67 @@
 
 #include "ScreenManager.h"
 
+#include "AppDelegate.h"
+
 // ===========================================================
 // Inner Classes
 // ===========================================================
 
-class SoundButton : public Entity
+class BottomButton : public Entity
 {
 public:
-    Menu* mParent;
+    Entity* mParent;
     
+    float mRotationSpeed;
+    float mRotationMax;
+    
+    bool mAnimationReverse;
+    
+    BottomButton(const char* pFileName, int pHorizontalFramesCount, int pVerticalFramesCount, Entity* pParent) :
+    Entity(pFileName, pHorizontalFramesCount, pVerticalFramesCount, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->mRotationSpeed = 1.0f;
+        this->mRotationMax = 3.0f;
+        
+        this->setRotation(Utils::randomf(-3.0f, 3.0f));
+        
+        this->mAnimationReverse = this->getRotation() > 0;
+    }
+    
+    void update(float pDeltaTime)
+    {
+        Entity::update(pDeltaTime);
+        
+        if(this->mAnimationReverse)
+        {
+            this->setRotation(this->getRotation() - this->mRotationSpeed);
+            
+            if(this->getRotation() <= -this->mRotationMax)
+            {
+                this->mAnimationReverse = !this->mAnimationReverse;
+            }
+        }
+        else
+        {
+            this->setRotation(this->getRotation() + this->mRotationSpeed);
+            
+            if(this->getRotation() >= this->mRotationMax)
+            {
+                this->mAnimationReverse = !this->mAnimationReverse;
+            }
+        }
+    }
+};
+
+class SoundButton : public BottomButton
+{
+public:
     SoundButton(Menu* pParent) :
-    Entity(Resources::R_MENU_BUTTON_SOUND, 1, 2, pParent)
+    BottomButton(Resources::R_MENU_BUTTON_SOUND, 1, 2, pParent->mSocialPanel)
     {
-        this->mParent = pParent;
-        
-        this->create()->setCenterPosition(Utils::coord(141), Utils::coord(48));
+        this->create()->setCenterPosition(Utils::coord(161), Utils::coord(36));
         
         this->setRegisterAsTouchable(true);
     }
@@ -30,17 +76,13 @@ public:
     }
 };
 
-class MusicButton : public Entity
+class MusicButton : public BottomButton
 {
 public:
-    Menu* mParent;
-    
     MusicButton(Menu* pParent) :
-    Entity(Resources::R_MENU_BUTTON_MUSIC, 1, 2, pParent)
+    BottomButton(Resources::R_MENU_BUTTON_MUSIC, 1, 2, pParent->mSocialPanel)
     {
-        this->mParent = pParent;
-        
-        this->create()->setCenterPosition(Utils::coord(48), Utils::coord(48));
+        this->create()->setCenterPosition(Utils::coord(68), Utils::coord(36));
         
         this->setRegisterAsTouchable(true);
     }
@@ -51,17 +93,13 @@ public:
     }
 };
 
-class FacebookButton : public Entity
+class FacebookButton : public BottomButton
 {
 public:
-    Menu* mParent;
-    
     FacebookButton(Menu* pParent) :
-    Entity(Resources::R_MENU_BUTTON_FACEBOOK, 1, 1, pParent)
+    BottomButton(Resources::R_MENU_BUTTON_FACEBOOK, 1, 1, pParent->mSocialPanel)
     {
-        this->mParent = pParent;
-        
-        this->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(48), Utils::coord(48));
+        this->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(48), Utils::coord(36));
         
         this->setRegisterAsTouchable(true);
     }
@@ -71,17 +109,13 @@ public:
     }
 };
 
-class TwitterButton : public Entity
+class TwitterButton : public BottomButton
 {
 public:
-    Menu* mParent;
-    
     TwitterButton(Menu* pParent) :
-    Entity(Resources::R_MENU_BUTTON_TWITTER, 1, 1, pParent)
+    BottomButton(Resources::R_MENU_BUTTON_TWITTER, 1, 1, pParent->mSocialPanel)
     {
-        this->mParent = pParent;
-        
-        this->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(141), Utils::coord(48));
+        this->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(141), Utils::coord(36));
         
         this->setRegisterAsTouchable(true);
     }
@@ -104,25 +138,22 @@ public:
         this->create()->setCenterPosition(Options::CAMERA_CENTER_X - Utils::coord(270), Options::CAMERA_CENTER_Y - Utils::coord(50));
         
         this->setRegisterAsTouchable(true);
+        this->animate(0.2f);
     }
     
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        this->mParent->mScreenManager->set(1);
+        this->mParent->showRate();
     }
 };
 
-class MoreButton : public Entity
+class MoreButton : public BottomButton
 {
 public:
-    Menu* mParent;
-    
     MoreButton(Menu* pParent) :
-    Entity(Resources::R_MENU_BUTTON_MORE_GAMES, 1, 1, pParent)
+    BottomButton(Resources::R_MENU_BUTTON_MORE_GAMES, 1, 1, pParent->mSocialPanel)
     {
-        this->mParent = pParent;
-        
-        this->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(234), Utils::coord(48));
+        this->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(234), Utils::coord(36));
         
         this->setRegisterAsTouchable(true);
     }
@@ -150,7 +181,7 @@ public:
     
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        this->mParent->mScreenManager->set(1);
+        AppDelegate::screens->set(0.5f, 1);
     }
 };
 
@@ -172,7 +203,53 @@ public:
     
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        this->mParent->mScreenManager->set(1);
+        this->mParent->showShop();
+    }
+};
+
+class SocialLabel : public Entity
+{
+public:
+    Entity* mParent;
+    
+    SocialLabel(Entity* pParent) :
+    Entity(Resources::R_MENU_SOCIAL_LABEL, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->setRegisterAsTouchable(true);
+    }
+    
+    void onTouch(CCTouch* touch, CCEvent* event)
+    {
+        
+    }
+    
+    
+    void ccTouchMoved(CCTouch* touch, CCEvent* event)
+    {
+        float y = touch->getLocation().y - this->mParent->getHeight() / 2;
+        
+        y = y > Utils::coord(60) ? Utils::coord(60) : y;
+        y = y < Utils::coord(-35) ? Utils::coord(-35) : y;
+        
+        this->mParent->setCenterPosition(this->mParent->getCenterX(), y);
+    }
+    
+    void ccTouchEnded(CCTouch* touch, CCEvent* event)
+    {
+        Entity::ccTouchEnded(touch, event);
+        
+        float y = this->mParent->getCenterY();
+        
+        if(y <= Utils::coord(60) && y > Utils::coord(30))
+        {
+            this->mParent->runAction(CCMoveTo::create(0.3f, ccp(this->mParent->getCenterX(), Utils::coord(65))));
+        }
+        else
+        {
+            this->mParent->runAction(CCMoveTo::create(0.3f, ccp(this->mParent->getCenterX(), Utils::coord(-35))));
+        }
     }
 };
 
@@ -188,10 +265,11 @@ public:
 // Constructors
 // ===========================================================
 
-Menu::Menu(ScreenManager* pScreenManager) :
-    Popscreen(pScreenManager)
+Menu::Menu() :
+    Screen()
     {
-        this->mRateScreen = new Rate(pScreenManager);
+        this->mRateScreen = new Rate(this);
+        this->mShopScreen = new Shop(this);
         
         this->mBackground1 = new Entity(Resources::R_MENU_BACKGROUND1, this);
     
@@ -233,6 +311,12 @@ Menu::Menu(ScreenManager* pScreenManager) :
         this->generateStars();
         this->generatePeople();
         
+        this->mSocialPanel = new Entity(Resources::R_MENU_SOCIAL_PANEL, this);
+        this->mSocialPanel->create()->setCenterPosition(Options::CAMERA_CENTER_X, Utils::coord(60));
+        
+        this->mSocialLabel = new SocialLabel(this->mSocialPanel);
+        this->mSocialLabel->create()->setCenterPosition(Utils::coord(50), Utils::coord(100));
+        
         this->mMusicButton = new MusicButton(this);
         this->mSoundButton = new SoundButton(this);
         
@@ -241,6 +325,9 @@ Menu::Menu(ScreenManager* pScreenManager) :
         this->mFacebookButton = new FacebookButton(this);
         
         this->addChild(this->mRateScreen, 500);
+        this->addChild(this->mShopScreen, 500);
+        
+        this->mTimeToHidePanelElapsed = 0;
     }
 
 // ===========================================================
@@ -286,29 +373,114 @@ void Menu::generatePeople()
 
 void Menu::showRate()
 {
-    this->mMusicButton->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
-    this->mSoundButton->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mMusicButton->runAction(CCMoveTo::create(0.3f, ccp(this->mMusicButton->getCenterX(), this->mMusicButton->getCenterY() - Utils::coord(100))));
+    this->mSoundButton->runAction(CCMoveTo::create(0.3f, ccp(this->mSoundButton->getCenterX(), this->mSoundButton->getCenterY() - Utils::coord(100))));
     
-    this->mMoreButton->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
-    this->mTwitterButton->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
-    this->mFacebookButton->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mMoreButton->runAction(CCMoveTo::create(0.3f, ccp(this->mMoreButton->getCenterX(), this->mMoreButton->getCenterY() - Utils::coord(100))));
+    this->mTwitterButton->runAction(CCMoveTo::create(0.3f, ccp(this->mTwitterButton->getCenterX(), this->mTwitterButton->getCenterY() - Utils::coord(100))));
+    this->mFacebookButton->runAction(CCMoveTo::create(0.3f, ccp(this->mFacebookButton->getCenterX(), this->mFacebookButton->getCenterY() - Utils::coord(100))));
     
-    this->mPlay->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
-    this->mShop->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
-    this->mScore->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mPlay->runAction(CCMoveTo::create(0.3f, ccp(this->mPlay->getCenterX(), this->mPlay->getCenterY() + Utils::coord(500))));
+    this->mShop->runAction(CCMoveTo::create(0.3f, ccp(this->mShop->getCenterX() + Utils::coord(500), this->mShop->getCenterY())));
+    this->mScore->runAction(CCMoveTo::create(0.3f, ccp(this->mScore->getCenterX() - Utils::coord(500), this->mScore->getCenterY())));
     
-    this->mName->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
-    this->mNamePanel->runAction(CCMoveTo::create(1.0f, ccp(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(490))));
+    this->mName->runAction(CCMoveTo::create(0.3f, ccp(this->mName->getCenterX(), this->mName->getCenterY() + Utils::coord(500))));
+    this->mNamePanel->runAction(CCMoveTo::create(0.3f, ccp(this->mNamePanel->getCenterX(), this->mNamePanel->getCenterY() + Utils::coord(500))));
+    
+    this->mSocialPanel->runAction(CCMoveTo::create(0.3f, ccp(this->mSocialPanel->getCenterX(), Utils::coord(-160))));
+    
     this->mRateScreen->show();
 }
 
 void Menu::hideRate()
 {
+    this->mMusicButton->runAction(CCMoveTo::create(0.3f, ccp(this->mMusicButton->getCenterX(), this->mMusicButton->getCenterY() + Utils::coord(100))));
+    this->mSoundButton->runAction(CCMoveTo::create(0.3f, ccp(this->mSoundButton->getCenterX(), this->mSoundButton->getCenterY() + Utils::coord(100))));
     
+    this->mMoreButton->runAction(CCMoveTo::create(0.3f, ccp(this->mMoreButton->getCenterX(), this->mMoreButton->getCenterY() + Utils::coord(100))));
+    this->mTwitterButton->runAction(CCMoveTo::create(0.3f, ccp(this->mTwitterButton->getCenterX(), this->mTwitterButton->getCenterY() + Utils::coord(100))));
+    this->mFacebookButton->runAction(CCMoveTo::create(0.3f, ccp(this->mFacebookButton->getCenterX(), this->mFacebookButton->getCenterY() + Utils::coord(100))));
+    
+    this->mPlay->runAction(CCMoveTo::create(0.3f, ccp(this->mPlay->getCenterX(), this->mPlay->getCenterY() - Utils::coord(500))));
+    this->mShop->runAction(CCMoveTo::create(0.3f, ccp(this->mShop->getCenterX() - Utils::coord(500), this->mShop->getCenterY())));
+    this->mScore->runAction(CCMoveTo::create(0.3f, ccp(this->mScore->getCenterX() + Utils::coord(500), this->mScore->getCenterY())));
+    
+    this->mName->runAction(CCMoveTo::create(0.3f, ccp(this->mName->getCenterX(), this->mName->getCenterY() - Utils::coord(500))));
+    this->mNamePanel->runAction(CCMoveTo::create(0.3f, ccp(this->mNamePanel->getCenterX(), this->mNamePanel->getCenterY() - Utils::coord(500))));
+    
+    this->mSocialPanel->runAction(CCMoveTo::create(0.3f, ccp(this->mSocialPanel->getCenterX(), Utils::coord(60))));
+    this->mTimeToHidePanelElapsed = 0;
+    
+    this->mRateScreen->hide();
+}
+
+void Menu::showShop()
+{
+    this->mMusicButton->runAction(CCMoveTo::create(0.3f, ccp(this->mMusicButton->getCenterX(), this->mMusicButton->getCenterY() - Utils::coord(100))));
+    this->mSoundButton->runAction(CCMoveTo::create(0.3f, ccp(this->mSoundButton->getCenterX(), this->mSoundButton->getCenterY() - Utils::coord(100))));
+    
+    this->mMoreButton->runAction(CCMoveTo::create(0.3f, ccp(this->mMoreButton->getCenterX(), this->mMoreButton->getCenterY() - Utils::coord(100))));
+    this->mTwitterButton->runAction(CCMoveTo::create(0.3f, ccp(this->mTwitterButton->getCenterX(), this->mTwitterButton->getCenterY() - Utils::coord(100))));
+    this->mFacebookButton->runAction(CCMoveTo::create(0.3f, ccp(this->mFacebookButton->getCenterX(), this->mFacebookButton->getCenterY() - Utils::coord(100))));
+    
+    this->mPlay->runAction(CCMoveTo::create(0.3f, ccp(this->mPlay->getCenterX(), this->mPlay->getCenterY() + Utils::coord(500))));
+    this->mShop->runAction(CCMoveTo::create(0.3f, ccp(this->mShop->getCenterX() + Utils::coord(500), this->mShop->getCenterY())));
+    this->mScore->runAction(CCMoveTo::create(0.3f, ccp(this->mScore->getCenterX() - Utils::coord(500), this->mScore->getCenterY())));
+    
+    this->mName->runAction(CCMoveTo::create(0.3f, ccp(this->mName->getCenterX(), this->mName->getCenterY() + Utils::coord(500))));
+    this->mNamePanel->runAction(CCMoveTo::create(0.3f, ccp(this->mNamePanel->getCenterX(), this->mNamePanel->getCenterY() + Utils::coord(500))));
+    
+    this->mSocialPanel->runAction(CCMoveTo::create(0.3f, ccp(this->mSocialPanel->getCenterX(), Utils::coord(-160))));
+    
+    this->mShopScreen->show();
+}
+
+void Menu::hideShop()
+{
+    this->mMusicButton->runAction(CCMoveTo::create(0.3f, ccp(this->mMusicButton->getCenterX(), this->mMusicButton->getCenterY() + Utils::coord(100))));
+    this->mSoundButton->runAction(CCMoveTo::create(0.3f, ccp(this->mSoundButton->getCenterX(), this->mSoundButton->getCenterY() + Utils::coord(100))));
+    
+    this->mMoreButton->runAction(CCMoveTo::create(0.3f, ccp(this->mMoreButton->getCenterX(), this->mMoreButton->getCenterY() + Utils::coord(100))));
+    this->mTwitterButton->runAction(CCMoveTo::create(0.3f, ccp(this->mTwitterButton->getCenterX(), this->mTwitterButton->getCenterY() + Utils::coord(100))));
+    this->mFacebookButton->runAction(CCMoveTo::create(0.3f, ccp(this->mFacebookButton->getCenterX(), this->mFacebookButton->getCenterY() + Utils::coord(100))));
+    
+    this->mPlay->runAction(CCMoveTo::create(0.3f, ccp(this->mPlay->getCenterX(), this->mPlay->getCenterY() - Utils::coord(500))));
+    this->mShop->runAction(CCMoveTo::create(0.3f, ccp(this->mShop->getCenterX() - Utils::coord(500), this->mShop->getCenterY())));
+    this->mScore->runAction(CCMoveTo::create(0.3f, ccp(this->mScore->getCenterX() + Utils::coord(500), this->mScore->getCenterY())));
+    
+    this->mName->runAction(CCMoveTo::create(0.3f, ccp(this->mName->getCenterX(), this->mName->getCenterY() - Utils::coord(500))));
+    this->mNamePanel->runAction(CCMoveTo::create(0.3f, ccp(this->mNamePanel->getCenterX(), this->mNamePanel->getCenterY() - Utils::coord(500))));
+    
+    this->mSocialPanel->runAction(CCMoveTo::create(0.3f, ccp(this->mSocialPanel->getCenterX(), Utils::coord(60))));
+    this->mTimeToHidePanelElapsed = 0;
+    
+    this->mShopScreen->hide();
 }
 
 // ===========================================================
 // Virtual Methods
 // ===========================================================
+
+void Menu::onEnter()
+{
+    Screen::onEnter();
+    
+    if(AppDelegate::mIsAlreadyPlayed)
+    {
+        this->showRate();
+    }
+}
+
+void Menu::update(float pDeltaTime)
+{
+    this->mTimeToHidePanelElapsed += pDeltaTime;
+    
+    if(this->mTimeToHidePanelElapsed >= 1.0f)
+    {
+        this->mTimeToHidePanelElapsed = -1000;
+        
+        this->mSocialPanel->runAction(CCMoveTo::create(0.3f, ccp(this->mSocialPanel->getCenterX(), this->mSocialPanel->getCenterY() - Utils::coord(95))));
+    }
+}
 
 #endif

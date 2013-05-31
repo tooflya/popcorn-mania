@@ -2,7 +2,6 @@
 #define CONST_APPDELEGATE
 
 #include "AppDelegate.h"
-#include "ScreenManager.h"
 
 // ===========================================================
 // Inner Classes
@@ -11,6 +10,12 @@
 // ===========================================================
 // Constants
 // ===========================================================
+
+float AppDelegate::mSpeedDecreaseFactor = 1.0f;
+
+bool AppDelegate::mIsAlreadyPlayed = false;
+
+ScreenManager* AppDelegate::screens = NULL;
 
 // ===========================================================
 // Fields
@@ -53,8 +58,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 	director->setDisplayStats(false);
 	director->setAnimationInterval(1.0f / 60.0f);
 	director->setProjection(kCCDirectorProjection2D);
+    
+    AppDelegate::screens = new ScreenManager();
 
-	director->runWithScene(new ScreenManager());
+	director->runWithScene(AppDelegate::screens->mScreens[0]);
 
 	return true;
 }

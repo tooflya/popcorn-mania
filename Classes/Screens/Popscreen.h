@@ -7,8 +7,6 @@
 #include "Resources.h"
 #include "Entity.h"
 
-class ScreenManager;
-
 using namespace cocos2d;
 
 class Popscreen : public CCLayer
@@ -76,15 +74,13 @@ class Popscreen : public CCLayer
 		// Fields
         // ===========================================================
     
-        ScreenManager* mScreenManager;
-    
         bool mShowed;
 
 		// ===========================================================
 		// Constructors
 		// ===========================================================
 
-		Popscreen(ScreenManager* pScreenManager);
+		Popscreen();
 
 		// ===========================================================
 		// Methods

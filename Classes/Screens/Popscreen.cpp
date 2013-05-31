@@ -31,10 +31,8 @@
 // Constructors
 // ===========================================================
 
-Popscreen::Popscreen(ScreenManager* pScreenManager)
+Popscreen::Popscreen()
 {
-    this->mScreenManager = pScreenManager;
-    
 	this->scheduleUpdate();
 }
 
@@ -76,13 +74,11 @@ void Popscreen::onTouch(CCTouch* touch, CCEvent* event)
 
 void Popscreen::onEnter()
 {
-	//CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 	CCLayer::onEnter();
 }
 
 void Popscreen::onExit()
 {
-	//CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 	CCLayer::onExit();
 }
 

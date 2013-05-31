@@ -23,7 +23,7 @@ Coin::Coin() :
     ImpulseEntity(Resources::R_LEVEL_COIN, 3, 2)
     {
         this->setShadowed(Resources::R_LEVEL_COIN_SHADOW);
-        this->setRegisterAsTouchable(true);
+        //this->setRegisterAsTouchable(true);
         
         this->animate(0.1f);
     }
@@ -43,7 +43,7 @@ Entity* Coin::create()
     entity->setCenterPosition(Utils::randomf(0.0f, Options::CAMERA_WIDTH), 0);
     
     entity->mSideImpulse   = Utils::randomf(100.0f, 300.0f);
-    entity->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
+    entity->mRotateImpulse = Utils::randomf(-360.0f, 360.0f);
     
     entity->mSideImpulse = entity->getCenterX() < Options::CAMERA_CENTER_X ? -entity->mSideImpulse : entity->mSideImpulse;
     
@@ -59,15 +59,9 @@ void Coin::onTouch(CCTouch* touch, CCEvent* event)
 
 void Coin::update(float pDeltaTime)
 {
-    ImpulseEntity::update(pDeltaTime);
+    if(!this->isVisible()) return;
     
-    if(this->mImpulsePower <= 0)
-    {
-        if(this->getCenterY() < -this->getHeight() / 2)
-        {
-            this->destroy();
-        }
-    }
+    ImpulseEntity::update(pDeltaTime);
 }
 
 // ===========================================================

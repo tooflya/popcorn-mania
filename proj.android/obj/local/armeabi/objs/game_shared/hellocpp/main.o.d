@@ -231,7 +231,7 @@ obj/local/armeabi/objs/game_shared/hellocpp/main.o: jni/hellocpp/main.cpp \
  /Users/igor/Development/cocos2d-x/cocos2dx/support/data_support/uthash.h \
  /Users/igor/Development/cocos2d-x/CocosDenshion/android/../include/SimpleAudioEngine.h \
  /Users/igor/Development/cocos2d-x/CocosDenshion/android/../include/Export.h \
- jni/../../Classes/Options.h jni/../../Classes/Managers/ScreenManager.h \
+ jni/../../Classes/Managers/ScreenManager.h \
  jni/../../Classes/Screens/Screen.h jni/../../Classes/Utils/Touchable.h \
  jni/../../Classes/Resources.h jni/../../Classes/Entities/Entity.h \
  jni/../../Classes/Graphics/Texture.h jni/../../Classes/Utils/Utils.h \
@@ -241,7 +241,8 @@ obj/local/armeabi/objs/game_shared/hellocpp/main.o: jni/hellocpp/main.cpp \
  jni/../../Classes/Entities/People.h \
  jni/../../Classes/Entities/Spotlight.h \
  jni/../../Classes/Managers/BatchEntityManager.h \
- jni/../../Classes/Screens/Popscreen.h jni/../../Classes/Screens/Rate.h \
+ jni/../../Classes/Screens/Screen.h jni/../../Classes/Screens/Rate.h \
+ jni/../../Classes/Screens/Popscreen.h jni/../../Classes/Screens/Shop.h \
  jni/../../Classes/Screens/Level.h jni/../../Classes/Screens/Pause.h \
  jni/../../Classes/Screens/GameOver.h jni/../../Classes/Entities/Bucket.h \
  jni/../../Classes/Entities/ImpulseEntity.h \
@@ -249,22 +250,22 @@ obj/local/armeabi/objs/game_shared/hellocpp/main.o: jni/hellocpp/main.cpp \
  jni/../../Classes/Entities/Popcorn.h jni/../../Classes/Entities/Dust.h \
  jni/../../Classes/Entities/Lose.h jni/../../Classes/Entities/Weapon.h \
  jni/../../Classes/Entities/Coin.h jni/../../Classes/Entities/Lights.h \
- jni/../../Classes/Managers/EntityManager.h \
- jni/../../Classes/Managers/BatchEntityManager.h \
+ jni/../../Classes/Entities/Cola.h \
+ jni/../../Classes/Managers/EntityManager.h jni/../../Classes/Options.h \
  jni/../../Classes/Options.cpp jni/../../Classes/Graphics/Texture.cpp \
  jni/../../Classes/Graphics/Texture.h \
  jni/../../Classes/Managers/EntityManager.cpp \
  jni/../../Classes/Managers/EntityManager.h \
  jni/../../Classes/Managers/BatchEntityManager.cpp \
+ jni/../../Classes/Managers/BatchEntityManager.h \
  jni/../../Classes/Entities/Entity.cpp \
- jni/../../Classes/Screens/Screen.cpp jni/../../Classes/Screens/Screen.h \
- jni/../../Classes/Screens/Level.cpp jni/../../Classes/Screens/Level.h \
+ jni/../../Classes/Screens/Screen.cpp jni/../../Classes/Screens/Level.cpp \
+ jni/../../Classes/Screens/Level.h jni/../../Classes/AppDelegate.h \
  jni/../../Classes/Screens/Popscreen.cpp \
  jni/../../Classes/Utils/Touchable.cpp \
  jni/../../Classes/Utils/Touchable.h \
  jni/../../Classes/Managers/ScreenManager.cpp \
  jni/../../Classes/Managers/ScreenManager.h \
- jni/../../Classes/Screens/Popscreen.h \
  jni/../../Classes/Entities/Lights.cpp \
  jni/../../Classes/Entities/Lights.h \
  jni/../../Classes/Entities/Bucket.cpp \
@@ -284,7 +285,8 @@ obj/local/armeabi/objs/game_shared/hellocpp/main.o: jni/hellocpp/main.cpp \
  jni/../../Classes/Entities/Coin.cpp jni/../../Classes/Entities/Coin.h \
  jni/../../Classes/Entities/Spotlight.cpp \
  jni/../../Classes/Entities/Spotlight.h jni/../../Classes/Utils/Utils.cpp \
- jni/../../Classes/Utils/Utils.h \
+ jni/../../Classes/Utils/Utils.h jni/../../Classes/Entities/Cola.cpp \
+ jni/../../Classes/Entities/Cola.h jni/../../Classes/Screens/Shop.cpp \
  /Users/igor/Development/cocos2d-x/cocos2dx/platform/android/jni/JniHelper.h \
  /Users/igor/.android/ndk/platforms/android-14/arch-arm/usr/include/jni.h
 
@@ -754,8 +756,6 @@ jni/../../Classes/AppDelegate.h:
 
 /Users/igor/Development/cocos2d-x/CocosDenshion/android/../include/Export.h:
 
-jni/../../Classes/Options.h:
-
 jni/../../Classes/Managers/ScreenManager.h:
 
 jni/../../Classes/Screens/Screen.h:
@@ -786,9 +786,13 @@ jni/../../Classes/Entities/Spotlight.h:
 
 jni/../../Classes/Managers/BatchEntityManager.h:
 
-jni/../../Classes/Screens/Popscreen.h:
+jni/../../Classes/Screens/Screen.h:
 
 jni/../../Classes/Screens/Rate.h:
+
+jni/../../Classes/Screens/Popscreen.h:
+
+jni/../../Classes/Screens/Shop.h:
 
 jni/../../Classes/Screens/Level.h:
 
@@ -816,9 +820,11 @@ jni/../../Classes/Entities/Coin.h:
 
 jni/../../Classes/Entities/Lights.h:
 
+jni/../../Classes/Entities/Cola.h:
+
 jni/../../Classes/Managers/EntityManager.h:
 
-jni/../../Classes/Managers/BatchEntityManager.h:
+jni/../../Classes/Options.h:
 
 jni/../../Classes/Options.cpp:
 
@@ -832,15 +838,17 @@ jni/../../Classes/Managers/EntityManager.h:
 
 jni/../../Classes/Managers/BatchEntityManager.cpp:
 
+jni/../../Classes/Managers/BatchEntityManager.h:
+
 jni/../../Classes/Entities/Entity.cpp:
 
 jni/../../Classes/Screens/Screen.cpp:
 
-jni/../../Classes/Screens/Screen.h:
-
 jni/../../Classes/Screens/Level.cpp:
 
 jni/../../Classes/Screens/Level.h:
+
+jni/../../Classes/AppDelegate.h:
 
 jni/../../Classes/Screens/Popscreen.cpp:
 
@@ -851,8 +859,6 @@ jni/../../Classes/Utils/Touchable.h:
 jni/../../Classes/Managers/ScreenManager.cpp:
 
 jni/../../Classes/Managers/ScreenManager.h:
-
-jni/../../Classes/Screens/Popscreen.h:
 
 jni/../../Classes/Entities/Lights.cpp:
 
@@ -909,6 +915,12 @@ jni/../../Classes/Entities/Spotlight.h:
 jni/../../Classes/Utils/Utils.cpp:
 
 jni/../../Classes/Utils/Utils.h:
+
+jni/../../Classes/Entities/Cola.cpp:
+
+jni/../../Classes/Entities/Cola.h:
+
+jni/../../Classes/Screens/Shop.cpp:
 
 /Users/igor/Development/cocos2d-x/cocos2dx/platform/android/jni/JniHelper.h:
 

@@ -34,7 +34,6 @@ public:
     
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        
         Level* level = (Level*) this->mParent->getParent();
         
         level->startLevel();
@@ -83,8 +82,7 @@ public:
 // Constructors
 // ===========================================================
 
-GameOver::GameOver(ScreenManager* pScreenManager) :
-    Popscreen(pScreenManager)
+GameOver::GameOver()
     {
         this->mLines1 = new BatchEntityManager(20, new Entity(Resources::R_SCREENS_LINES, 2, 1), this);
         this->mLines2 = new BatchEntityManager(20, new Entity(Resources::R_SCREENS_LINES, 2, 1), this);

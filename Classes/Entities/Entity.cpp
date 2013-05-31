@@ -729,6 +729,7 @@ void Entity::update(float pDeltaTime)
         this->mShadow->setScaleX(this->getScaleX() - 0.1f);
         this->mShadow->setRotation(this->getRotation());
         this->mShadow->setCurrentFrameIndex(this->getCurrentFrameIndex());
+        //this->mShadow->setVisible(this->isVisible());
     }
 }
 

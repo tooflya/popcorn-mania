@@ -2,6 +2,7 @@
 #define CONST_RATE
 
 #include "Rate.h"
+#include "Menu.h"
 
 // ===========================================================
 // Inner Classes
@@ -11,11 +12,13 @@ class YesButton : public Entity
 {
 public:
     Rate* mParent;
+    Menu* mMenu;
     
-    YesButton(Rate* pParent) :
+    YesButton(Rate* pParent, Menu* pMenu) :
     Entity(Resources::R_RATE_BUTTONS_BACKGROUND, 2, 2, pParent)
     {
         this->mParent = pParent;
+        this->mMenu = pMenu;
         
         this->create()->setCenterPosition(Options::CAMERA_CENTER_X - Utils::coord(200), Options::CAMERA_CENTER_Y);
         
@@ -26,9 +29,16 @@ public:
         capture->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(3));
     }
     
+    bool ccTouchBegan(CCTouch* touch, CCEvent* event)
+    {
+        if(!this->mParent->mShowed) return false;
+        
+        return Entity::ccTouchBegan(touch, event);
+    }
+    
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        
+        this->mMenu->hideRate();
     }
     
     void setOpacity(GLubyte pOpacity)
@@ -43,11 +53,13 @@ class NoButton : public Entity
 {
 public:
     Rate* mParent;
+    Menu* mMenu;
     
-    NoButton(Rate* pParent) :
+    NoButton(Rate* pParent, Menu* pMenu) :
     Entity(Resources::R_RATE_BUTTONS_BACKGROUND, 2, 2, pParent)
     {
         this->mParent = pParent;
+        this->mMenu = pMenu;
         
         this->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y);
         
@@ -58,9 +70,16 @@ public:
         capture->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(3));
     }
     
+    bool ccTouchBegan(CCTouch* touch, CCEvent* event)
+    {
+        if(!this->mParent->mShowed) return false;
+        
+        return Entity::ccTouchBegan(touch, event);
+    }
+    
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        
+        this->mMenu->hideRate();
     }
     
     void setOpacity(GLubyte pOpacity)
@@ -75,11 +94,13 @@ class LaterButton : public Entity
 {
 public:
     Rate* mParent;
+    Menu* mMenu;
     
-    LaterButton(Rate* pParent) :
+    LaterButton(Rate* pParent, Menu* pMenu) :
     Entity(Resources::R_RATE_BUTTONS_BACKGROUND, 2, 2, pParent)
     {
         this->mParent = pParent;
+        this->mMenu = pMenu;
         
         this->create()->setCenterPosition(Options::CAMERA_CENTER_X + Utils::coord(200), Options::CAMERA_CENTER_Y);
         
@@ -90,9 +111,16 @@ public:
         capture->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(3));
     }
     
+    bool ccTouchBegan(CCTouch* touch, CCEvent* event)
+    {
+        if(!this->mParent->mShowed) return false;
+        
+        return Entity::ccTouchBegan(touch, event);
+    }
+    
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        
+        this->mMenu->hideRate();
     }
     
     void setOpacity(GLubyte pOpacity)
@@ -115,8 +143,8 @@ public:
 // Constructors
 // ===========================================================
 
-Rate::Rate(ScreenManager* pScreenManager) :
-    Popscreen(pScreenManager)
+Rate::Rate(Menu* pMenu) :
+    Popscreen()
     {
         this->mBackgroundDecoration = new Entity(Resources::R_RATE_BACKGROUND_DECORATION, this);
         this->mBackgroundDecoration->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_HEIGHT - Utils::coord(150));
@@ -132,9 +160,9 @@ Rate::Rate(ScreenManager* pScreenManager) :
         this->mName->setStartFrame(0);
         this->mName->setFinishFrame(4);
         
-        new YesButton(this);
-        new NoButton(this);
-        new LaterButton(this);
+        new YesButton(this, pMenu);
+        new NoButton(this, pMenu);
+        new LaterButton(this, pMenu);
         
         for(int i = 0; i < this->getChildren()->count(); i++)
         {

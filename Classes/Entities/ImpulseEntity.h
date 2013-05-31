@@ -75,7 +75,6 @@ class ImpulseEntity : public Entity
         float mImpulsePower;
         float mSideImpulse;
         float mRotateImpulse;
-        
         float mWeight;
 
 		// ===========================================================

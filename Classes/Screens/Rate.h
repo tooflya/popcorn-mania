@@ -7,6 +7,8 @@
 
 #include "BatchEntityManager.h"
 
+class Menu;
+
 using namespace cocos2d;
 
 class Rate : public Popscreen
@@ -83,7 +85,7 @@ class Rate : public Popscreen
 		// Constructors
         // ===========================================================
     
-        Rate(ScreenManager* pScreenManager);
+        Rate(Menu* pMenu);
 
 		// ===========================================================
 		// Methods

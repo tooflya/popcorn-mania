@@ -5,6 +5,10 @@
 
 #include "Level.h"
 
+#include "ScreenManager.h"
+
+#include "AppDelegate.h"
+
 // ===========================================================
 // Inner Classes
 // ===========================================================
@@ -44,6 +48,42 @@ public:
     }
 };
 
+
+class PauseContinueButton : public Entity
+{
+public:
+    Pause* mParent;
+    
+    PauseContinueButton(Pause* pParent) :
+    Entity(Resources::R_PAUSE_CONTINUE_BUTTON, 1, 2, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(50));
+        
+        this->setRegisterAsTouchable(true);
+        this->animate(0.1f);
+    }
+    
+    bool ccTouchBegan(CCTouch* touch, CCEvent* event)
+    {
+        if(!this->mParent->mShowed) return false;
+        
+        return Entity::ccTouchBegan(touch, event);
+    }
+    
+    void onTouch(CCTouch* touch, CCEvent* event)
+    {
+        if(!this->mParent->mShowed) return;
+        
+        Level* level = (Level*) this->mParent->getParent();
+        
+        level->continueLevel();
+        
+        this->mParent->hide();
+    }
+};
+
 class PauseMenuButton : public Entity
 {
 public:
@@ -69,7 +109,7 @@ public:
     
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        
+        AppDelegate::screens->set(0.5f, 0);
     }
 };
 
@@ -85,8 +125,7 @@ public:
 // Constructors
 // ===========================================================
 
-Pause::Pause(ScreenManager* pScreenManager) :
-    Popscreen(pScreenManager)
+Pause::Pause()
     {
         this->mLines1 = new BatchEntityManager(20, new Entity(Resources::R_SCREENS_LINES, 2, 1), this);
         this->mLines2 = new BatchEntityManager(20, new Entity(Resources::R_SCREENS_LINES, 2, 1), this);
@@ -115,6 +154,7 @@ Pause::Pause(ScreenManager* pScreenManager) :
         this->mLines1->setPosition(ccp(0, Options::CAMERA_HEIGHT));
         this->mLines2->setPosition(ccp(0, -Options::CAMERA_HEIGHT));
         
+        this->mContinueButton = new PauseContinueButton(this);
         this->mRestartButton = new PauseRestartButton(this);
         this->mMenuButton = new PauseMenuButton(this);
         

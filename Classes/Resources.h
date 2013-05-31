@@ -82,6 +82,8 @@ class Resources
         static const char* R_MENU_BUTTON_FACEBOOK;
         static const char* R_MENU_BUTTON_TWITTER;
         static const char* R_MENU_BUTTON_MORE_GAMES;
+        static const char* R_MENU_SOCIAL_PANEL;
+        static const char* R_MENU_SOCIAL_LABEL;
     
         static const char* R_RATE_NAME;
         static const char* R_RATE_BUTTONS_BACKGROUND;
@@ -117,16 +119,24 @@ class Resources
         static const char* R_LEVEL_LIFES;
         static const char* R_LEVEL_PHOTO_LIGHTS;
         static const char* R_LEVEL_LABEL_BEST;
+        static const char* R_LEVEL_COLA;
+        static const char* R_LEVEL_COLA_SHADOW;
     
         static const char* R_PAUSE_NAME;
         static const char* R_PAUSE_NAME_PANEL;
         static const char* R_PAUSE_MENU_BUTTON;
         static const char* R_PAUSE_RESTART_BUTTON;
+        static const char* R_PAUSE_CONTINUE_BUTTON;
     
         static const char* R_GAMEOVER_NAME;
         static const char* R_GAMEOVER_NAME_PANEL;
     
         static const char* R_WEAPON_1;
+    
+        static const char* R_SHOP_BUTTON_BACK;
+        static const char* R_SHOP_BUTTON_GET_PANEL;
+        static const char* R_SHOP_BUTTON_GET_NAME;
+        static const char* R_SHOP_STROKE;
     
         static const char* S_SCREENS_TIP1;
         static const char* S_SCREENS_TIP2;

@@ -9,14 +9,16 @@
 
 #include "BatchEntityManager.h"
 
-#include "Popscreen.h"
+#include "Screen.h"
 #include "Rate.h"
+#include "Shop.h"
 
 class ScreenManager;
+class SocialLabel;
 
 using namespace cocos2d;
 
-class Menu : public Popscreen
+class Menu : public Screen
 {
 	protected:
 		// ===========================================================
@@ -30,6 +32,8 @@ class Menu : public Popscreen
 		// ===========================================================
 		// Fields
         // ===========================================================
+    
+        float mTimeToHidePanelElapsed;
     
         Entity* mBackground1;
         Entity* mBackground2;
@@ -49,6 +53,7 @@ class Menu : public Popscreen
         Entity* mShop;
     
         Rate* mRateScreen;
+        Shop* mShopScreen;
     
         Entity* mMusicButton;
         Entity* mSoundButton;
@@ -109,23 +114,33 @@ class Menu : public Popscreen
 		// ===========================================================
 		// Fields
         // ===========================================================
+    
+        Entity* mSocialPanel;
+        SocialLabel* mSocialLabel;
 
 		// ===========================================================
 		// Constructors
 		// ===========================================================
     
-        Menu(ScreenManager* pScreenManager);
+        Menu();
 
 		// ===========================================================
 		// Methods
-		// ===========================================================
+    // ===========================================================
     
         void showRate();
         void hideRate();
+    
+        void showShop();
+        void hideShop();
 		
 		// ===========================================================
 		// Virtual Methods
 		// ===========================================================
+    
+        void onEnter();
+    
+        void update(float pDeltaTime);
 };
 
 #endif
