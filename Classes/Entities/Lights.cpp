@@ -61,6 +61,8 @@ void Lights::onAnimationEnd()
 
 void Lights::update(float pDeltaTime)
 {
+    if(!this->isVisible()) return;
+    
     Entity::update(pDeltaTime);
     
     this->mLifeTimeElapsed += pDeltaTime;

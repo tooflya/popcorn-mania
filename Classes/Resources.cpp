@@ -37,6 +37,8 @@ const char* Resources::R_MENU_BUTTON_MUSIC = "button-music@2x.png";
 const char* Resources::R_MENU_BUTTON_FACEBOOK = "button-facebook@2x.png";
 const char* Resources::R_MENU_BUTTON_TWITTER = "button-twitter@2x.png";
 const char* Resources::R_MENU_BUTTON_MORE_GAMES = "button-more-games@2x.png";
+const char* Resources::R_MENU_SOCIAL_PANEL = "soc-btns-bg@2x.png";
+const char* Resources::R_MENU_SOCIAL_LABEL = "soc-btns-bg-tong@2x.png";
 
 const char* Resources::R_RATE_NAME = "rate-text@2x.png";
 const char* Resources::R_RATE_BUTTONS_BACKGROUND = "rate-btn-bg@2x.png";
@@ -72,11 +74,19 @@ const char* Resources::R_LEVEL_START_NUMBERS = "frames-count-num-sprite@2x.png";
 const char* Resources::R_LEVEL_LIFES = "process-life-ticket-counter-sprite@2x.png";
 const char* Resources::R_LEVEL_PHOTO_LIGHTS = "photo-lights@2x.png";
 const char* Resources::R_LEVEL_LABEL_BEST = "best-score-text@2x.png";
+const char* Resources::R_LEVEL_COLA = "process-cola@2x.png";
+const char* Resources::R_LEVEL_COLA_SHADOW = "process-cola-shadow@2x.png";
+
+const char* Resources::R_SHOP_BUTTON_BACK = "shop-btn-back@2x.png";
+const char* Resources::R_SHOP_BUTTON_GET_PANEL = "shop-btn-get-coins-bg@2x.png";
+const char* Resources::R_SHOP_BUTTON_GET_NAME = "shop-btn-get-coins-text@2x.png";
+const char* Resources::R_SHOP_STROKE = "shop-stroke@2x.png";
 
 const char* Resources::R_PAUSE_NAME = "pause-text-sprite@2x.png";
 const char* Resources::R_PAUSE_NAME_PANEL = "pause-bg@2x.png";
 const char* Resources::R_PAUSE_MENU_BUTTON = "pause-menu-btn@2x.png";
 const char* Resources::R_PAUSE_RESTART_BUTTON = "pause-rs-btn@2x.png";
+const char* Resources::R_PAUSE_CONTINUE_BUTTON = "pause-cont-btn@2x.png";
 
 const char* Resources::R_GAMEOVER_NAME = "game-over-text-sprite@2x.png";
 const char* Resources::R_GAMEOVER_NAME_PANEL = "pause-bg@2x.png";

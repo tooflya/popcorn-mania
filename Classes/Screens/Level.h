@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 
-#include "Popscreen.h"
+#include "Screen.h"
 #include "Pause.h"
 #include "GameOver.h"
 
@@ -14,13 +14,16 @@
 #include "Weapon.h"
 #include "Coin.h"
 #include "Lights.h"
+#include "Cola.h"
 
 #include "EntityManager.h"
 #include "BatchEntityManager.h"
 
+class LevelPauseButton;
+
 using namespace cocos2d;
 
-class Level : public Popscreen
+class Level : public Screen
 {
 	protected:
 		// ===========================================================
@@ -42,6 +45,8 @@ class Level : public Popscreen
     
         float mLightsTime;
         float mLightsTimeElapsed;
+    
+        LevelPauseButton* mPauseButton;
 
 		// ===========================================================
 		// Constructors
@@ -76,12 +81,10 @@ class Level : public Popscreen
         BatchEntityManager* mLights;
         BatchEntityManager* mLargeFont;
         BatchEntityManager* mSmallFont;
-    
-        Entity* mBestLabel;
-    
         BatchEntityManager* mLifesIcons;
     
         Entity* mBucketsCountIcon;
+        Entity* mBestLabel;
 
 		// ===========================================================
 		// Constructors
@@ -108,7 +111,8 @@ class Level : public Popscreen
 		// Fields
         // ===========================================================
     
-        EntityManager* mPopcorns;
+        BatchEntityManager* mPopcorns;
+        BatchEntityManager* mPopcornsShadows;
     
         float mTouchPreviousCoordinateX;
         float mTouchPreviousCoordinateY;
@@ -127,6 +131,7 @@ class Level : public Popscreen
         bool mPaused;
     
         EntityManager* mBuckets;
+        EntityManager* mColas;
         EntityManager* mCoins;
         
         Entity* mStartLevelBackground;
@@ -136,11 +141,13 @@ class Level : public Popscreen
     
         int mCounterBeforeStart;
     
+        bool mScaleAnimation;
+    
 		// ===========================================================
 		// Constructors
         // ===========================================================
     
-        Level(ScreenManager* pScreenManager);
+        Level();
 
 		// ===========================================================
 		// Methods
@@ -148,6 +155,8 @@ class Level : public Popscreen
     
         void startLevel();
         void finishLevel();
+    
+        void continueLevel();
     
         void updateFonts();
 		
@@ -162,6 +171,8 @@ class Level : public Popscreen
         virtual void onTouch(CCTouch* touch, CCEvent* event);
     
         void update(float pDelta);
+    
+        void onEnter();
 };
 
 #endif

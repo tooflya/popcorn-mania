@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 
+#include "ScreenManager.h"
+
 #include <vector>
 
 #include "Options.h"
@@ -83,7 +85,13 @@ class AppDelegate : private CCApplication
 
 		// ===========================================================
 		// Constants
-		// ===========================================================
+        // ===========================================================
+    
+        static float mSpeedDecreaseFactor;
+    
+        static bool mIsAlreadyPlayed;
+    
+        static ScreenManager* screens;
 
 		// ===========================================================
 		// Fields

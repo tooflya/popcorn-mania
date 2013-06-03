@@ -56,6 +56,8 @@ Entity* Dust::create()
 
 void Dust::update(float pDeltaTime)
 {
+    if(!this->isVisible()) return;
+    
     Entity::update(pDeltaTime);
     
     if(this->mIsMustChangeSpeedX || this->mIsMustChangeSpeedY)

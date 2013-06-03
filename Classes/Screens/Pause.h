@@ -30,6 +30,7 @@ class Pause : public Popscreen
         Entity* mPanel;
         Entity* mName;
     
+        Entity* mContinueButton;
         Entity* mRestartButton;
         Entity* mMenuButton;
 
@@ -87,7 +88,7 @@ class Pause : public Popscreen
 		// Constructors
         // ===========================================================
     
-        Pause(ScreenManager* pScreenManager);
+        Pause();
 
 		// ===========================================================
 		// Methods
