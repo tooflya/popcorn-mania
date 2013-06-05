@@ -24,6 +24,13 @@ class GameOver : public Popscreen
 		// Fields
         // ===========================================================
     
+        int mAnimationsCountElapsed;
+        int mBucketsCount;
+    
+        float mAnimationButtonTimeElapsed;
+    
+        bool mAnimationNeedShowButtons;
+    
         BatchEntityManager* mLines1;
         BatchEntityManager* mLines2;
     
@@ -32,6 +39,17 @@ class GameOver : public Popscreen
     
         Entity* mRestartButton;
         Entity* mMenuButton;
+    
+        Entity* mBucketsCountIcon;
+        Entity* mCoinsCountIcon;
+        Entity* mBestLabel;
+    
+        EntityManager* mBucketsCountText;
+        EntityManager* mBucketsBestCountText;
+        EntityManager* mCoinsCountText;
+    
+        Entity* mTwitterButton;
+        Entity* mFacebookButton;
 
 		// ===========================================================
 		// Constructors
@@ -99,6 +117,8 @@ class GameOver : public Popscreen
 		// ===========================================================
 		// Virtual Methods
         // ===========================================================
+    
+        void update(float pDeltaTime);
 };
 
 #endif

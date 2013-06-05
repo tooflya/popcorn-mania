@@ -14,7 +14,6 @@
 #include "Weapon.h"
 #include "Coin.h"
 #include "Lights.h"
-#include "Cola.h"
 
 #include "EntityManager.h"
 #include "BatchEntityManager.h"
@@ -131,7 +130,6 @@ class Level : public Screen
         bool mPaused;
     
         EntityManager* mBuckets;
-        EntityManager* mColas;
         EntityManager* mCoins;
         
         Entity* mStartLevelBackground;

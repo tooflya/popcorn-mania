@@ -72,12 +72,12 @@ Shop::Shop(Menu* pMenu)
             (new Entity(Resources::R_SHOP_STROKE, this))->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_HEIGHT - Utils::coord(160) * i - Utils::coord(100));
         }
         
-        for(int i = 0; i < this->getChildren()->count(); i++)
-        {
-            ((Entity*) this->getChildren()->objectAtIndex(i))->setOpacity(0);
-        }
+        this->hide();
         
         this->mShowed = false;
+        this->mNeedToHide = false;
+        
+        this->mHideTimeElapsed = 0;
     }
 
 // ===========================================================
@@ -92,6 +92,8 @@ void Shop::hide()
     {
         ((CCNode*) this->getChildren()->objectAtIndex(i))->runAction(CCFadeOut::create(0.3f));
     }
+    
+    this->mNeedToHide = true;
 }
 
 void Shop::show()

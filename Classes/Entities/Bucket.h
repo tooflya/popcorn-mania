@@ -24,6 +24,8 @@ class Bucket : public ImpulseEntity
 		// Fields
 		// ===========================================================
     
+        int mType;
+    
         Weapon* mWeapon;
 
 		// ===========================================================
@@ -97,13 +99,15 @@ class Bucket : public ImpulseEntity
 		// Methods
 		// ===========================================================
     
-        Entity* create();
         void fall(float pVectorX, float pVectorY, bool pMustReverse);
         void update(float pDelta);
 		
 		// ===========================================================
 		// Virtual Methods
 		// ===========================================================
+    
+        virtual void onCreate();
+        virtual void onDestroy();
     
         virtual Bucket* deepCopy();
 };

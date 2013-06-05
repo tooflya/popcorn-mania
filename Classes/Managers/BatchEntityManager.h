@@ -28,6 +28,11 @@ public:
 
 		Entity* create();
 		void destroy(int pIndex);
+    
+        void pauseSchedulerAndActions();
+        void resumeSchedulerAndActions();
+    
+        void setOpacity(GLubyte pOpaquee);
 };
 
 #endif

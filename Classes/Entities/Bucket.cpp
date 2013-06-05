@@ -24,13 +24,13 @@
 // ===========================================================
 
 Bucket::Bucket() :
-    ImpulseEntity(Resources::R_LEVEL_BUCKET, 3, 4)
+    ImpulseEntity(Resources::R_LEVEL_BUCKET, 4, 8)
     {
         this->mWeapon = new Weapon(this);
         
         this->setSpeed(700.0f);
         
-        this->mTimeUntilDown = 0.17f;
+        this->mTimeUntilDown = 0.22;
         
         this->setShadowed(Resources::R_LEVEL_BUCKET_SHADOW);
     }
@@ -38,30 +38,6 @@ Bucket::Bucket() :
 // ===========================================================
 // Methods
 // ===========================================================
-
-Entity* Bucket::create()
-{
-    Bucket* entity = (Bucket*) Entity::create();
-    
-    entity->mIsDown = false;
-    entity->mTimeUntilDownElapsed = 0;
-    entity->setScaleX(1);
-    entity->mWeight = Utils::coord(20.0f);
-    entity->mImpulsePower = Utils::coord(1200.0f);
-    
-    entity->mIsGone = false;
-    
-    entity->setCenterPosition(Utils::randomf(0.0f, Options::CAMERA_WIDTH), 0);
-    
-    entity->mSideImpulse   = Utils::coord(Utils::randomf(100.0f, 300.0f));
-    entity->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
-    
-    entity->mSideImpulse = entity->getCenterX() < Options::CAMERA_CENTER_X ? -entity->mSideImpulse : entity->mSideImpulse;
-
-    entity->setCurrentFrameIndex(Utils::random(0, 2));
-    
-    return entity;
-}
 
 void Bucket::fall(float pVectorX, float pVectorY, bool pMustReverse)
 {
@@ -72,7 +48,8 @@ void Bucket::fall(float pVectorX, float pVectorY, bool pMustReverse)
     
     this->mIsMustReverse = pMustReverse;
     
-    this->mWeapon->create()->animate(0.05f, 1);
+    this->mWeapon->create();
+    this->mWeapon->animation();
     
     if(pMustReverse)
     {
@@ -84,6 +61,8 @@ void Bucket::fall(float pVectorX, float pVectorY, bool pMustReverse)
         this->mWeapon->setCenterPosition(this->getWidth() / 2 + Utils::coord(110), this->getHeight() / 2 - Utils::coord(190));
         this->mWeapon->setScaleX(1);
     }
+    
+    //SimpleAudioEngine::sharedEngine()->playEffect(Resources::SFX_KICK1);
 }
 
 void Bucket::update(float pDeltaTime)
@@ -165,6 +144,42 @@ void Bucket::update(float pDeltaTime)
 // ===========================================================
 // Virtual Methods
 // ===========================================================
+
+void Bucket::onCreate()
+{
+    this->mType = 0;//Utils::random(0, 2);
+    
+    this->mIsDown = false;
+    this->mTimeUntilDownElapsed = 0;
+    this->setScaleX(1);
+    this->mWeight = Utils::coord(20.0f);
+    this->mImpulsePower = Utils::coord(1200.0f);
+    
+    this->mIsGone = false;
+    
+    this->setCenterPosition(Utils::randomf(0.0f, Options::CAMERA_WIDTH), 0);
+    
+    this->mSideImpulse   = Utils::coord(Utils::randomf(100.0f, 300.0f));
+    this->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
+    
+    this->mSideImpulse = this->getCenterX() < Options::CAMERA_CENTER_X ? -this->mSideImpulse : this->mSideImpulse;
+    
+    switch(this->mType)
+    {
+        case 0:
+            this->setCurrentFrameIndex(Utils::random(0, 2) * 4);
+            break;
+            
+        case 1:
+            this->setCurrentFrameIndex(Utils::random(0, 2));
+            break;
+    }
+}
+
+void Bucket::onDestroy()
+{
+    
+}
 
 Bucket* Bucket::deepCopy()
 {

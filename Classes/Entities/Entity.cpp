@@ -248,6 +248,8 @@ Entity* Entity::create()
         
         this->mShadow->create();
     }
+    
+    this->onCreate();
 
 	return this;
 }
@@ -272,6 +274,8 @@ bool Entity::destroy(bool pManage)
 			this->mBatchEntityManager->destroy(this->id);
 		}
 	}
+    
+    this->onDestroy();
 
 	return false;
 }
@@ -279,6 +283,16 @@ bool Entity::destroy(bool pManage)
 bool Entity::destroy()
 {
 	return this->destroy(true);
+}
+
+void Entity::onCreate()
+{
+    
+}
+
+void Entity::onDestroy()
+{
+    
 }
 
 void Entity::setEntityManager(EntityManager* pEntityManager)
@@ -470,6 +484,8 @@ void Entity::setStartFrame(int pStartFrame)
 {
 	this->mAnimationFinishFrame = (this->mAnimationFinishFrame - this->mAnimationStartFrame) + pStartFrame;
 	this->mAnimationStartFrame = pStartFrame;
+    
+    this->setCurrentFrameIndex(pStartFrame);
 }
 
 void Entity::setFinishFrame(int pFinishFrame)

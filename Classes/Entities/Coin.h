@@ -82,15 +82,16 @@ class Coin : public ImpulseEntity
 		// Methods
 		// ===========================================================
     
-        Entity* create();
-    
         void update(float pDelta);
     
         void onTouch(CCTouch* touch, CCEvent* event);
 		
 		// ===========================================================
 		// Virtual Methods
-		// ===========================================================
+        // ===========================================================
+    
+        virtual void onCreate();
+        virtual void onDestroy();
     
         virtual Coin* deepCopy();
 };

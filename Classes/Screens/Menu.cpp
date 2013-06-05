@@ -281,9 +281,7 @@ Menu::Menu() :
     
         this->mName = new Entity(Resources::R_MENU_NAME, 2, 3, this);
     
-        this->mSpotlight1 = new Spotlight(this);
-        this->mSpotlight2 = new Spotlight(this);
-        this->mShadowDecoration = new Entity(Resources::R_MENU_SHADOW, this);
+        this->mSpotlights = new BatchEntityManager(2, new Spotlight(), this);
         this->mPeople = new BatchEntityManager(20, new People(), this);
     
         this->mPlay = new PlayButton(this);
@@ -293,12 +291,10 @@ Menu::Menu() :
         this->mBackground1->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y);
         this->mBackground2->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y);
     
-        this->mSpotlight1->create()->setCenterPosition(Utils::coord(50), 0);
-        this->mSpotlight2->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(50), 0);
+        this->mSpotlights->create()->setCenterPosition(Utils::coord(50), 0);
+        this->mSpotlights->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(50), 0);
     
-        this->mSpotlight2->setScaleX(-1);
-        
-        this->mShadowDecoration->create()->setCenterPosition(Options::CAMERA_CENTER_X, Utils::coord(100));
+        ((Entity*) this->mSpotlights->objectAtIndex(1))->setScaleX(-1);
     
         this->mNamePanel->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(170));
         this->mName->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y + Utils::coord(190));
@@ -323,9 +319,6 @@ Menu::Menu() :
         this->mMoreButton = new MoreButton(this);
         this->mTwitterButton = new TwitterButton(this);
         this->mFacebookButton = new FacebookButton(this);
-        
-        this->addChild(this->mRateScreen, 500);
-        this->addChild(this->mShopScreen, 500);
         
         this->mTimeToHidePanelElapsed = 0;
     }
@@ -373,6 +366,9 @@ void Menu::generatePeople()
 
 void Menu::showRate()
 {
+    this->mRateScreen->retain();
+    this->addChild(this->mRateScreen, 500);
+    
     this->mMusicButton->runAction(CCMoveTo::create(0.3f, ccp(this->mMusicButton->getCenterX(), this->mMusicButton->getCenterY() - Utils::coord(100))));
     this->mSoundButton->runAction(CCMoveTo::create(0.3f, ccp(this->mSoundButton->getCenterX(), this->mSoundButton->getCenterY() - Utils::coord(100))));
     
@@ -416,6 +412,9 @@ void Menu::hideRate()
 
 void Menu::showShop()
 {
+    this->mShopScreen->retain();
+    this->addChild(this->mShopScreen, 500);
+    
     this->mMusicButton->runAction(CCMoveTo::create(0.3f, ccp(this->mMusicButton->getCenterX(), this->mMusicButton->getCenterY() - Utils::coord(100))));
     this->mSoundButton->runAction(CCMoveTo::create(0.3f, ccp(this->mSoundButton->getCenterX(), this->mSoundButton->getCenterY() - Utils::coord(100))));
     

@@ -109,7 +109,7 @@ public:
     
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        AppDelegate::screens->set(0.5f, 0);
+        AppDelegate::screens->set(0.5f, 1);
     }
 };
 
@@ -159,6 +159,11 @@ Pause::Pause()
         this->mMenuButton = new PauseMenuButton(this);
         
         this->hide();
+        
+        this->mShowed = false;
+        this->mNeedToHide = false;
+        
+        this->mHideTimeElapsed = 0;
     }
 
 // ===========================================================
@@ -176,6 +181,8 @@ void Pause::hide()
     {
         ((CCNode*) this->getChildren()->objectAtIndex(i))->runAction(CCFadeOut::create(0.3f));
     }
+    
+    this->mNeedToHide = true;
 }
 
 void Pause::show()

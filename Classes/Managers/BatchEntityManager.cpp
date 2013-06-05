@@ -102,4 +102,28 @@ CCObject* BatchEntityManager::objectAtIndex(int pIndex)
 	return this->getChildren()->objectAtIndex(pIndex);
 }
 
+void BatchEntityManager::pauseSchedulerAndActions()
+{
+	for(int i = 0; i < this->getCapacity(); i++)
+	{
+		((Entity*) this->objectAtIndex(i))->pauseSchedulerAndActions();
+	}
+}
+
+void BatchEntityManager::resumeSchedulerAndActions()
+{
+	for(int i = 0; i < this->getCapacity(); i++)
+	{
+		((Entity*) this->objectAtIndex(i))->resumeSchedulerAndActions();
+	}
+}
+
+void BatchEntityManager::setOpacity(GLubyte pOpaquee)
+{
+	for(int i = 0; i < this->getCapacity(); i++)
+	{
+		((Entity*) this->objectAtIndex(i))->setOpacity(pOpaquee);
+	}
+}
+
 #endif

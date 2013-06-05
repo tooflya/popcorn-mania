@@ -54,7 +54,7 @@ Screen::Screen()
 
 bool Screen::containsTouchLocation(CCTouch* touch)
 {
-	return true;
+	return false;
 }
 
 void Screen::onEnter()

@@ -27,7 +27,7 @@
         android:installLocation="auto"
         android:label="@string/app_name" >
         <activity
-            android:name="com.tooflya.popcornmania.Game"
+            android:name="com.tooflya.popcornmania.Intro"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
@@ -37,6 +37,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tooflya.popcornmania.Game"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
 
         <!-- AdMobActivity definition -->

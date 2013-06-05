@@ -76,7 +76,6 @@ class Resources
         static const char* R_MENU_PLAY;
         static const char* R_MENU_SCORE;
         static const char* R_MENU_SHOP;
-        static const char* R_MENU_SHADOW;
         static const char* R_MENU_BUTTON_SOUND;
         static const char* R_MENU_BUTTON_MUSIC;
         static const char* R_MENU_BUTTON_FACEBOOK;
@@ -119,8 +118,8 @@ class Resources
         static const char* R_LEVEL_LIFES;
         static const char* R_LEVEL_PHOTO_LIGHTS;
         static const char* R_LEVEL_LABEL_BEST;
-        static const char* R_LEVEL_COLA;
-        static const char* R_LEVEL_COLA_SHADOW;
+    
+        static const char* R_LOADING_BACKGROUND;
     
         static const char* R_PAUSE_NAME;
         static const char* R_PAUSE_NAME_PANEL;
@@ -140,6 +139,9 @@ class Resources
     
         static const char* S_SCREENS_TIP1;
         static const char* S_SCREENS_TIP2;
+    
+        static const char* SFX_CAT1;
+        static const char* SFX_KICK1;
     
         // ===========================================================
         // Fields
