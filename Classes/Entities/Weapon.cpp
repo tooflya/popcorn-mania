@@ -19,14 +19,8 @@
 // Constructors
 // ===========================================================
 
-Weapon::Weapon() :
-    Entity(Resources::R_WEAPON_1, 5, 1)
-    {
-    
-    }
-
 Weapon::Weapon(CCNode* pParent) :
-    Entity(Resources::R_WEAPON_1, 5, 1, pParent)
+    Entity(Resources::R_WEAPON_1, 5, 4, pParent)
     {
         
     }
@@ -38,6 +32,18 @@ Weapon::Weapon(CCNode* pParent) :
 void Weapon::onAnimationEnd()
 {
     this->destroy();
+}
+
+void Weapon::animation()
+{
+    int startFrame = 15;//Utils::random(0, 3) * 5;
+    
+    this->setStartFrame(startFrame);
+    this->setFinishFrame(startFrame + 5);
+    
+    this->animate(0.07f, 1);
+    
+    //SimpleAudioEngine::sharedEngine()->playEffect(Resources::SFX_CAT1);
 }
 
 // ===========================================================

@@ -50,7 +50,7 @@ Popscreen::Popscreen()
 
 bool Popscreen::ccTouchBegan(CCTouch* touch, CCEvent* event)
 {
-	return true;
+	return false;
 }
 
 void Popscreen::ccTouchMoved(CCTouch* touch, CCEvent* event)
@@ -82,4 +82,21 @@ void Popscreen::onExit()
 	CCLayer::onExit();
 }
 
+void Popscreen::update(float pDeltaTime)
+{
+    CCLayer::update(pDeltaTime);
+    
+    if(this->mNeedToHide)
+    {
+        this->mHideTimeElapsed += pDeltaTime;
+        
+        if(this->mHideTimeElapsed >= 0.35f)
+        {
+            this->mNeedToHide = false;
+            this->mHideTimeElapsed = 0;
+            
+            this->removeFromParentAndCleanup(false);
+        }
+    }
+}
 #endif

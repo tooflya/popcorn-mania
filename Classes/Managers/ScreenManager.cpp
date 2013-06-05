@@ -51,7 +51,8 @@ ScreenManager::ScreenManager()
 void ScreenManager::generate()
 {
 	this->mScreens[0] = new Menu();
-	this->mScreens[1] = new Level();
+	this->mScreens[1] = new Loading();
+	this->mScreens[2] = new Level();
 }
 
 void ScreenManager::set(float pAnimationTime, int pIndex)

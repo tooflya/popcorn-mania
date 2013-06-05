@@ -76,7 +76,6 @@ class Weapon : public Entity
 		// Constructors
 		// ===========================================================
     
-        Weapon();
         Weapon(CCNode* pParent);
 
 		// ===========================================================
@@ -84,6 +83,8 @@ class Weapon : public Entity
 		// ===========================================================
     
         void onAnimationEnd();
+    
+        void animation();
 		
 		// ===========================================================
 		// Virtual Methods

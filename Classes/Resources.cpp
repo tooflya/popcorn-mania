@@ -31,7 +31,6 @@ const char* Resources::R_MENU_NAME = "name-sprite@2x.png";
 const char* Resources::R_MENU_PLAY = "btn-play@2x.png";
 const char* Resources::R_MENU_SCORE = "btn-score@2x.png";
 const char* Resources::R_MENU_SHOP = "btn-shop@2x.png";
-const char* Resources::R_MENU_SHADOW = "dark-line@2x.png";
 const char* Resources::R_MENU_BUTTON_SOUND = "button-sound@2x.png";
 const char* Resources::R_MENU_BUTTON_MUSIC = "button-music@2x.png";
 const char* Resources::R_MENU_BUTTON_FACEBOOK = "button-facebook@2x.png";
@@ -39,6 +38,8 @@ const char* Resources::R_MENU_BUTTON_TWITTER = "button-twitter@2x.png";
 const char* Resources::R_MENU_BUTTON_MORE_GAMES = "button-more-games@2x.png";
 const char* Resources::R_MENU_SOCIAL_PANEL = "soc-btns-bg@2x.png";
 const char* Resources::R_MENU_SOCIAL_LABEL = "soc-btns-bg-tong@2x.png";
+
+const char* Resources::R_LOADING_BACKGROUND = "preload-background@2x.png";
 
 const char* Resources::R_RATE_NAME = "rate-text@2x.png";
 const char* Resources::R_RATE_BUTTONS_BACKGROUND = "rate-btn-bg@2x.png";
@@ -56,7 +57,7 @@ const char* Resources::R_SCREENS_LINES = "preload-lines@2x.png";
 const char* Resources::R_SCREENS_POPCORN = "preload-bar-sprite@2x.png";
 
 const char* Resources::R_LEVEL_BACKGROUND = "level-bg@2x.png";
-const char* Resources::R_LEVEL_BUCKET = "bucket@2x.png";
+const char* Resources::R_LEVEL_BUCKET = "stuff-sprite@2x.png";
 const char* Resources::R_LEVEL_BUCKET_SHADOW = "bucket-shdw@2x.png";
 const char* Resources::R_LEVEL_DUST = "process-dust@2x.png";
 const char* Resources::R_LEVEL_PAUSE = "process-pause@2x.png";
@@ -74,8 +75,6 @@ const char* Resources::R_LEVEL_START_NUMBERS = "frames-count-num-sprite@2x.png";
 const char* Resources::R_LEVEL_LIFES = "process-life-ticket-counter-sprite@2x.png";
 const char* Resources::R_LEVEL_PHOTO_LIGHTS = "photo-lights@2x.png";
 const char* Resources::R_LEVEL_LABEL_BEST = "best-score-text@2x.png";
-const char* Resources::R_LEVEL_COLA = "process-cola@2x.png";
-const char* Resources::R_LEVEL_COLA_SHADOW = "process-cola-shadow@2x.png";
 
 const char* Resources::R_SHOP_BUTTON_BACK = "shop-btn-back@2x.png";
 const char* Resources::R_SHOP_BUTTON_GET_PANEL = "shop-btn-get-coins-bg@2x.png";
@@ -91,9 +90,15 @@ const char* Resources::R_PAUSE_CONTINUE_BUTTON = "pause-cont-btn@2x.png";
 const char* Resources::R_GAMEOVER_NAME = "game-over-text-sprite@2x.png";
 const char* Resources::R_GAMEOVER_NAME_PANEL = "pause-bg@2x.png";
 
-const char* Resources::R_WEAPON_1 = "weapon-animation1@2x.png";
+const char* Resources::R_WEAPON_1 = "weapon-sprite@2x.png";
+
+const char* Resources::SFX_CAT1 = "cat1.mp3";
+const char* Resources::SFX_KICK1 = "kick1.mp3";
 
 #else
+
+const char* Resources::SFX_CAT1 = "assets/Sound/cat1.ogg";
+const char* Resources::SFX_KICK1 = "assets/Sound/kick1.ogg";
 
 #endif
 

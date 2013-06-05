@@ -38,14 +38,11 @@ class Menu : public Screen
         Entity* mBackground1;
         Entity* mBackground2;
     
-        Spotlight* mSpotlight1;
-        Spotlight* mSpotlight2;
-    
+        BatchEntityManager* mSpotlights;
         BatchEntityManager* mStars;
         BatchEntityManager* mPeople;
     
         Entity* mNamePanel;
-        Entity* mShadowDecoration;
         Entity* mName;
     
         Entity* mPlay;

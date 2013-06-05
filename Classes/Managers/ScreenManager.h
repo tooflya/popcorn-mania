@@ -5,6 +5,7 @@
 
 #include "Screen.h"
 #include "Menu.h"
+#include "Loading.h"
 #include "Level.h"
 
 using namespace cocos2d;

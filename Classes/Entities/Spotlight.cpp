@@ -19,8 +19,8 @@
 // Constructors
 // ===========================================================
 
-Spotlight::Spotlight(CCNode* pParent)
-    :Entity(Resources::R_MENU_SPOTLIGHT, pParent)
+Spotlight::Spotlight()
+    :Entity(Resources::R_MENU_SPOTLIGHT)
     {
         this->mAnimationRotateSpeed = Utils::randomf(0.01f, 0.03f);
         
@@ -66,7 +66,7 @@ void Spotlight::update(float pDelta)
 
 Spotlight* Spotlight::deepCopy()
 {
-    return new Spotlight(this->getParent());
+    return new Spotlight();
 }
 
 #endif

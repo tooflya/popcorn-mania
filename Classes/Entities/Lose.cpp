@@ -29,16 +29,16 @@ Entity(Resources::R_LEVEL_LOSE)
 // Methods
 // ===========================================================
 
-Entity* Lose::create()
+void Lose::onCreate()
 {
-    Entity* entity = Entity::create();
-    
     this->setScale(0.1f);
     this->runAction(CCScaleTo::create(0.1f, 1.0f));
     
     this->mTimeElapsed = 0;
-    
-    return entity;
+}
+
+void Lose::onDestroy()
+{
 }
 
 void Lose::update(float pDeltaTime)

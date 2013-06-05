@@ -144,10 +144,13 @@ int g_iPlayVideoState=0;
     
     [player setFullscreen:YES animated:YES];
     [player setControlStyle:MPMovieControlStyleNone];
+    [player setScalingMode:MPMovieScalingModeAspectFill];
     [window addSubview:player.view];
     [window bringSubviewToFront:player.view];
     [player setFullscreen:YES animated:YES];
-    [player setControlStyle:MPMovieControlStyleDefault];
+    [player setControlStyle:MPMovieControlStyleNone];
+    
+    player.view.userInteractionEnabled = NO;
     
     [player play];
     
@@ -205,7 +208,7 @@ int g_iPlayVideoState=0;
     
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
     
-    [__glView setMultipleTouchEnabled:NO];
+    [__glView setMultipleTouchEnabled:YES];
     
     cocos2d::CCApplication::sharedApplication()->run();
 }

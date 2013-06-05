@@ -32,24 +32,24 @@ Coin::Coin() :
 // Methods
 // ===========================================================
 
-Entity* Coin::create()
+void Coin::onCreate()
 {
-    Coin* entity = (Coin*) Entity::create();
+    this->setScaleX(1);
+    this->mWeight = 20.0f;
+    this->mImpulsePower = 1200.0f;
     
-    entity->setScaleX(1);
-    entity->mWeight = 20.0f;
-    entity->mImpulsePower = 1200.0f;
+    this->setCenterPosition(Utils::randomf(0.0f, Options::CAMERA_WIDTH), 0);
     
-    entity->setCenterPosition(Utils::randomf(0.0f, Options::CAMERA_WIDTH), 0);
+    this->mSideImpulse   = Utils::randomf(100.0f, 300.0f);
+    this->mRotateImpulse = Utils::randomf(-360.0f, 360.0f);
     
-    entity->mSideImpulse   = Utils::randomf(100.0f, 300.0f);
-    entity->mRotateImpulse = Utils::randomf(-360.0f, 360.0f);
+    this->mSideImpulse = this->getCenterX() < Options::CAMERA_CENTER_X ? -this->mSideImpulse : this->mSideImpulse;
     
-    entity->mSideImpulse = entity->getCenterX() < Options::CAMERA_CENTER_X ? -entity->mSideImpulse : entity->mSideImpulse;
-    
-    entity->setCurrentFrameIndex(Utils::random(0, 2));
-    
-    return entity;
+    this->setCurrentFrameIndex(Utils::random(0, 2));
+}
+
+void Coin::onDestroy()
+{
 }
 
 void Coin::onTouch(CCTouch* touch, CCEvent* event)

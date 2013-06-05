@@ -85,13 +85,14 @@ class Lose : public Entity
 		// Methods
 		// ===========================================================
     
-        Entity* create();
-    
         void update(float pDeltaTime);
 		
 		// ===========================================================
 		// Virtual Methods
-		// ===========================================================
+        // ===========================================================
+    
+        virtual void onCreate();
+        virtual void onDestroy();
     
         Lose* deepCopy();
 };

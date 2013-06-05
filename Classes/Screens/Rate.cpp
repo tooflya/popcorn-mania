@@ -20,13 +20,13 @@ public:
         this->mParent = pParent;
         this->mMenu = pMenu;
         
-        this->create()->setCenterPosition(Options::CAMERA_CENTER_X - Utils::coord(200), Options::CAMERA_CENTER_Y);
+        this->create()->setCenterPosition(Options::CAMERA_CENTER_X - Utils::coord(220), Options::CAMERA_CENTER_Y - Utils::coord(30));
         
         this->setRegisterAsTouchable(true);
         this->animate(0.1f);
         
         Entity* capture = new Entity(Resources::R_RATE_BUTTON_YES, this);
-        capture->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(3));
+        capture->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(5));
     }
     
     bool ccTouchBegan(CCTouch* touch, CCEvent* event)
@@ -61,13 +61,13 @@ public:
         this->mParent = pParent;
         this->mMenu = pMenu;
         
-        this->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y);
+        this->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y - Utils::coord(30));
         
         this->setRegisterAsTouchable(true);
         this->animate(0.1f);
         
         Entity* capture = new Entity(Resources::R_RATE_BUTTON_NO, this);
-        capture->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(3));
+        capture->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(5));
     }
     
     bool ccTouchBegan(CCTouch* touch, CCEvent* event)
@@ -102,13 +102,13 @@ public:
         this->mParent = pParent;
         this->mMenu = pMenu;
         
-        this->create()->setCenterPosition(Options::CAMERA_CENTER_X + Utils::coord(200), Options::CAMERA_CENTER_Y);
+        this->create()->setCenterPosition(Options::CAMERA_CENTER_X + Utils::coord(220), Options::CAMERA_CENTER_Y - Utils::coord(30));
         
         this->setRegisterAsTouchable(true);
         this->animate(0.1f);
         
         Entity* capture = new Entity(Resources::R_RATE_BUTTON_LATER, this);
-        capture->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(3));
+        capture->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(5));
     }
     
     bool ccTouchBegan(CCTouch* touch, CCEvent* event)
@@ -164,12 +164,12 @@ Rate::Rate(Menu* pMenu) :
         new NoButton(this, pMenu);
         new LaterButton(this, pMenu);
         
-        for(int i = 0; i < this->getChildren()->count(); i++)
-        {
-            ((Entity*) this->getChildren()->objectAtIndex(i))->setOpacity(0);
-        }
+        this->hide();
         
         this->mShowed = false;
+        this->mNeedToHide = false;
+        
+        this->mHideTimeElapsed = 0;
     }
 
 // ===========================================================
@@ -184,6 +184,8 @@ void Rate::hide()
     {
         ((CCNode*) this->getChildren()->objectAtIndex(i))->runAction(CCFadeOut::create(0.3f));
     }
+    
+    this->mNeedToHide = true;
 }
 
 void Rate::show()

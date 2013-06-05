@@ -39,19 +39,19 @@ Entity(Resources::R_LEVEL_DUST)
 // Methods
 // ===========================================================
 
-Entity* Dust::create()
+void Dust::onCreate()
 {
-    Entity* entity = Entity::create();
+    this->setCenterPosition(Utils::random(0, Options::CAMERA_WIDTH), 0);
     
-    entity->setCenterPosition(Utils::random(0, Options::CAMERA_WIDTH), 0);
-    
-    entity->setOpacity(Utils::random(100, 255));
-    entity->setScale(Utils::randomf(0.1f, 1.0f));
+    this->setOpacity(Utils::random(100, 255));
+    this->setScale(Utils::randomf(0.1f, 1.0f));
     
     this->mSpeedX = Utils::randomf(0.1f, 100.0f);
     this->mSpeedY = Utils::randomf(0.1f, 100.0f);
-    
-    return entity;
+}
+
+void Dust::onDestroy()
+{
 }
 
 void Dust::update(float pDeltaTime)

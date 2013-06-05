@@ -9,8 +9,10 @@
 #include "Options.h"
 
 #include "Resources.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 class EntityManager;
 class BatchEntityManager;
@@ -194,6 +196,9 @@ class Entity : public CCSprite, public Touchable
     
         virtual bool destroy();
         virtual bool destroy(bool pManage);
+    
+        virtual void onCreate();
+        virtual void onDestroy();
     
         void setEntityManager(EntityManager* pEntityManager);
         void setEntityManager(BatchEntityManager* pBatchEntityManager);

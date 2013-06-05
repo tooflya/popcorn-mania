@@ -83,7 +83,7 @@ class Spotlight : public Entity
 		// Constructors
         // ===========================================================
     
-        Spotlight(CCNode* pParent);
+        Spotlight();
 
 		// ===========================================================
 		// Methods

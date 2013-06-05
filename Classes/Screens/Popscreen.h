@@ -23,6 +23,10 @@ class Popscreen : public CCLayer
 		// ===========================================================
 		// Fields
 		// ===========================================================
+    
+        float mHideTimeElapsed;
+    
+        bool mNeedToHide;
 
 		// ===========================================================
 		// Constructors
@@ -98,6 +102,8 @@ class Popscreen : public CCLayer
 
 		virtual void onEnter();
 		virtual void onExit();
+    
+        void update(float pDeltaTime);
 };
 
 #endif

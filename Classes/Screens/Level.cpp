@@ -24,18 +24,11 @@ class LevelPauseButton : public Entity
     
         void onTouch(CCTouch* touch, CCEvent* event)
         {
-            AppDelegate::mSpeedDecreaseFactor = 0.2f;
-            
-            this->mParent->mScaleAnimation = true;
-            
-            return;
-            
             if(this->mParent->mPaused)
             {
                 this->mParent->mPauseScreen->hide();
                 
                 this->mParent->mBuckets->resumeSchedulerAndActions();
-                this->mParent->mColas->resumeSchedulerAndActions();
                 this->mParent->mCoins->resumeSchedulerAndActions();
                 this->mParent->mPopcorns->resumeSchedulerAndActions();
                 
@@ -44,9 +37,9 @@ class LevelPauseButton : public Entity
             else
             {
                 this->mParent->mPauseScreen->show();
+                this->mParent->addChild(this->mParent->mPauseScreen, 500);
             
                 this->mParent->mBuckets->pauseSchedulerAndActions();
-                this->mParent->mColas->pauseSchedulerAndActions();
                 this->mParent->mCoins->pauseSchedulerAndActions();
                 this->mParent->mPopcorns->pauseSchedulerAndActions();
                 
@@ -103,14 +96,13 @@ Level::Level()
         this->mBucketTimeElapsed = 0;
         
         this->mCoins = new EntityManager(10, new Coin(), this, 5);
-        this->mColas = new EntityManager(10, new Cola(), this, 5);
         this->mBuckets = new EntityManager(10, new Bucket(), this, 5);
         this->mPopcornsShadows = new BatchEntityManager(200, new Entity(Resources::R_GAME_CORN_SHADOW, 1, 3), this, 4);
         this->mPopcorns = new BatchEntityManager(200, new Popcorn(), this, 5);
         
         this->mPauseButton = new LevelPauseButton(this);
         this->mPauseButton->create()->setCenterPosition(Utils::coord(60), Utils::coord(48));
-        this-> mPauseButton->setZOrder(501);
+        this->mPauseButton->setZOrder(501);
         
         this->mBucketsCountIcon = new Entity(Resources::R_LEVEL_BUCKETICON, this);
         this->mBucketsCountIcon->create()->setCenterPosition(Utils::coord(48), Options::CAMERA_HEIGHT - Utils::coord(48));
@@ -141,9 +133,6 @@ Level::Level()
         
         this->mPaused = false;
         
-        this->addChild(this->mPauseScreen, 500);
-        this->addChild(this->mGameOverScreen, 600);
-        
         this->mStartLevelBackground = new Entity(Resources::R_LEVEL_START_BACKGROUND, 2, 1, this);
         this->mStartLevelNumbers = new Entity(Resources::R_LEVEL_START_NUMBERS, 3, 1, this);
         
@@ -165,7 +154,6 @@ Level::Level()
         
         this->mLightsTime = Utils::randomf(0.5f, 3.0f);
         this->mLightsTimeElapsed = 0;
-        
     }
 
 // ===========================================================
@@ -207,7 +195,6 @@ void Level::continueLevel()
     this->mIsLevelRunning = true;
     
     this->mBuckets->resumeSchedulerAndActions();
-    this->mColas->resumeSchedulerAndActions();
     this->mCoins->resumeSchedulerAndActions();
     this->mPopcorns->resumeSchedulerAndActions();
     this->mPopcorns->resumeSchedulerAndActions();
@@ -226,10 +213,8 @@ void Level::startLevel()
     this->mPopcorns->clear();
     this->mPopcornsShadows->clear();
     this->mLoseMarks->clear();
-    this->mColas->clear();
     
     this->mBuckets->resumeSchedulerAndActions();
-    this->mColas->resumeSchedulerAndActions();
     this->mCoins->resumeSchedulerAndActions();
     this->mPopcorns->resumeSchedulerAndActions();
     this->mPopcorns->resumeSchedulerAndActions();
@@ -261,12 +246,12 @@ void Level::finishLevel()
 {
     this->mIsLevelRunning = false;
     
+    this->addChild(this->mGameOverScreen, 600);
     this->mGameOverScreen->show();
     
     this->mPaused = true;
     
     this->mBuckets->pauseSchedulerAndActions();
-    this->mColas->pauseSchedulerAndActions();
     this->mCoins->pauseSchedulerAndActions();
     this->mPopcorns->pauseSchedulerAndActions();
     this->mPopcorns->pauseSchedulerAndActions();
@@ -394,7 +379,6 @@ void Level::update(float pDelta)
             this->mBucketTimeElapsed -= this->mBucketTime;
         
             Bucket* bucket = (Bucket*) this->mBuckets->create();
-            Cola* cola = (Cola*) this->mColas->create();
             Coin* coin = (Coin*) this->mCoins->create();
         
             for(int i = 0; i < 20; i++)
@@ -446,41 +430,6 @@ void Level::update(float pDelta)
         }
         
         //
-        
-        for(int i = 0; i < this->mColas->getCount(); i++)
-        {
-            Cola* cola = (Cola*) this->mColas->objectAtIndex(i);
-            
-            if(cola->isCollideWithPoint(this->mTouchCoordinateX, this->mTouchCoordinateY) && !cola->mIsGone)
-            {
-                cola->fall(this->mTouchCoordinateX, this->mTouchCoordinateY, this->mTouchCoordinateX < cola->getCenterX());
-                
-                this->mBucketsCount++;
-                
-                this->mBucketsCountIcon->setScale(1.25f);
-                this->mBucketsCountIcon->runAction(CCScaleTo::create(0.3f, 1.0f));
-                
-                this->updateFonts();
-            }
-            else if(cola->getCenterY() < -cola->getHeight() / 2 && !cola->mIsGone && cola->mImpulsePower <= 0)
-            {
-                this->mLoseMarks->create()->setCenterPosition(cola->getCenterX(), Utils::coord(Utils::randomf(30.0f, 60.0f)));
-                
-                cola->destroy();
-                
-                this->mLifes--;
-                this->mBucketsCount++;
-                
-                ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->setCurrentFrameIndex(1);
-                ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->setScale(1.25f);
-                ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->runAction(CCScaleTo::create(0.75f, 1.0f));
-                
-                if(this->mLifes <= 0)
-                {
-                    this->finishLevel();
-                }
-            }
-        }
         
         this->mLightsTimeElapsed += pDelta;
         
