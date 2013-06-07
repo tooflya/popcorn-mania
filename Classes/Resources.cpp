@@ -58,7 +58,7 @@ const char* Resources::R_SCREENS_POPCORN = "preload-bar-sprite@2x.png";
 
 const char* Resources::R_LEVEL_BACKGROUND = "level-bg@2x.png";
 const char* Resources::R_LEVEL_BUCKET = "stuff-sprite@2x.png";
-const char* Resources::R_LEVEL_BUCKET_SHADOW = "bucket-shdw@2x.png";
+const char* Resources::R_LEVEL_BUCKET_SHADOW = "stuff-sprite-shadow@2x.png";
 const char* Resources::R_LEVEL_DUST = "process-dust@2x.png";
 const char* Resources::R_LEVEL_PAUSE = "process-pause@2x.png";
 const char* Resources::R_LEVEL_BUCKETICON = "process-bucket-icon@2x.png";
@@ -79,7 +79,7 @@ const char* Resources::R_LEVEL_LABEL_BEST = "best-score-text@2x.png";
 const char* Resources::R_SHOP_BUTTON_BACK = "shop-btn-back@2x.png";
 const char* Resources::R_SHOP_BUTTON_GET_PANEL = "shop-btn-get-coins-bg@2x.png";
 const char* Resources::R_SHOP_BUTTON_GET_NAME = "shop-btn-get-coins-text@2x.png";
-const char* Resources::R_SHOP_STROKE = "shop-stroke@2x.png";
+const char* Resources::R_SHOP_STROKE = "shop-stroke-sprite@2x.png";
 
 const char* Resources::R_PAUSE_NAME = "pause-text-sprite@2x.png";
 const char* Resources::R_PAUSE_NAME_PANEL = "pause-bg@2x.png";

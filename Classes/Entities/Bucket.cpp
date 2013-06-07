@@ -24,7 +24,7 @@
 // ===========================================================
 
 Bucket::Bucket() :
-    ImpulseEntity(Resources::R_LEVEL_BUCKET, 4, 8)
+    ImpulseEntity(Resources::R_LEVEL_BUCKET, 3, 8)
     {
         this->mWeapon = new Weapon(this);
         
@@ -79,7 +79,7 @@ void Bucket::update(float pDeltaTime)
             
             this->mWeight = Utils::coord(0.1f);
             
-            this->setCurrentFrameIndex(this->getCurrentFrameIndex() + (Utils::random(0, 1) == 1 ? 9 : 9));
+            this->setCurrentFrameIndex(this->getCurrentFrameIndex() + (this->mType == TYPE_BUCKET ? 2 : 1));
             
             this->mIsDown = true;
             
@@ -94,17 +94,20 @@ void Bucket::update(float pDeltaTime)
             
             // Explosion
             
-            for(int i = 0; i < 50; i++)
+            if(this->mType == TYPE_BUCKET)
             {
-                Level* a = (Level*) this->getParent();
-                Popcorn* popcorn = (Popcorn*) a->mPopcorns->create();
-                popcorn->setCenterPosition(this->getCenterX() - Utils::randomf(-60.0f, 60.0f), this->getCenterY() + Utils::coord(80) - Utils::randomf(-20.0f, 20.0f));
+                for(int i = 0; i < 50; i++)
+                {
+                    Level* a = (Level*) this->getParent();
+                    Popcorn* popcorn = (Popcorn*) a->mPopcorns->create();
+                    popcorn->setCenterPosition(this->getCenterX() - Utils::randomf(-60.0f, 60.0f), this->getCenterY() + Utils::coord(80) - Utils::randomf(-20.0f, 20.0f));
                 
-                popcorn->mWeight = Utils::randomf(10.0f, 20.0f);
-                popcorn->mImpulsePower = Utils::randomf(100.0f, 500.0f);
+                    popcorn->mWeight = Utils::randomf(10.0f, 20.0f);
+                    popcorn->mImpulsePower = Utils::randomf(100.0f, 500.0f);
                 
-                popcorn->mSideImpulse   = Utils::randomf(-150.0f, 150.0f);
-                popcorn->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
+                    popcorn->mSideImpulse   = Utils::randomf(-150.0f, 150.0f);
+                    popcorn->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
+                }
             }
             
             this->mWeapon->destroy();
@@ -147,7 +150,7 @@ void Bucket::update(float pDeltaTime)
 
 void Bucket::onCreate()
 {
-    this->mType = 0;//Utils::random(0, 2);
+    this->mType = Utils::random(0, 3);
     
     this->mIsDown = false;
     this->mTimeUntilDownElapsed = 0;
@@ -166,13 +169,38 @@ void Bucket::onCreate()
     
     switch(this->mType)
     {
-        case 0:
-            this->setCurrentFrameIndex(Utils::random(0, 2) * 4);
+        case Bucket::TYPE_BUCKET:
+            this->setCurrentFrameIndex(Utils::random(0, 2) * 3);
             break;
             
-        case 1:
-            this->setCurrentFrameIndex(Utils::random(0, 2));
+        case Bucket::TYPE_COLA:
+            this->setCurrentFrameIndex(Utils::random(3, 5) * 3);
             break;
+            
+        case Bucket::TYPE_SUPER:
+            this->setCurrentFrameIndex(18);
+            break;
+            
+        case Bucket::TYPE_DANGER:
+            this->setCurrentFrameIndex(21);
+            break;
+    }
+    
+    if(this->mType == TYPE_BUCKET)
+    {
+        for(int i = 0; i < 20; i++)
+        {
+            Level* a = (Level*) this->getParent();
+            Popcorn* popcorn = (Popcorn*) a->mPopcorns->create();
+
+            popcorn->setCenterPosition(this->getCenterX() - Utils::randomf(-60.0f, 60.0f), this->getCenterY() + Utils::coord(80) - Utils::randomf(-20.0f, 20.0f));
+        
+            popcorn->mWeight = this->mWeight;
+            popcorn->mImpulsePower = this->mImpulsePower;
+        
+            popcorn->mSideImpulse   = Utils::randomf(100.0f, 300.0f);
+            popcorn->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
+        }
     }
 }
 

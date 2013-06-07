@@ -24,8 +24,6 @@ class Bucket : public ImpulseEntity
 		// Fields
 		// ===========================================================
     
-        int mType;
-    
         Weapon* mWeapon;
 
 		// ===========================================================
@@ -73,10 +71,17 @@ class Bucket : public ImpulseEntity
 		// ===========================================================
 		// Constants
 		// ===========================================================
+    
+        static int const TYPE_BUCKET = 0;
+        static int const TYPE_COLA = 1;
+        static int const TYPE_SUPER = 2;
+        static int const TYPE_DANGER = 3;
 
 		// ===========================================================
 		// Fields
         // ===========================================================
+    
+        int mType;
     
         bool mIsGone;
     

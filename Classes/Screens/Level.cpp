@@ -380,18 +380,6 @@ void Level::update(float pDelta)
         
             Bucket* bucket = (Bucket*) this->mBuckets->create();
             Coin* coin = (Coin*) this->mCoins->create();
-        
-            for(int i = 0; i < 20; i++)
-            {
-                Popcorn* popcorn = (Popcorn*) this->mPopcorns->create();
-                popcorn->setCenterPosition(bucket->getCenterX() - Utils::randomf(-60.0f, 60.0f), bucket->getCenterY() + Utils::coord(80) - Utils::randomf(-20.0f, 20.0f));
-            
-                popcorn->mWeight = bucket->mWeight;
-                popcorn->mImpulsePower = bucket->mImpulsePower;
-            
-                popcorn->mSideImpulse   = Utils::randomf(100.0f, 300.0f);
-                popcorn->mRotateImpulse = Utils::randomf(-60.0f, 60.0f);
-            }
         }
     
         for(int i = 0; i < this->mBuckets->getCount(); i++)
@@ -411,21 +399,24 @@ void Level::update(float pDelta)
             }
             else if(bucket->getCenterY() < -bucket->getHeight() / 2 && !bucket->mIsGone && bucket->mImpulsePower <= 0)
             {
-                this->mLoseMarks->create()->setCenterPosition(bucket->getCenterX(), Utils::coord(Utils::randomf(30.0f, 60.0f)));
-            
-                bucket->destroy();
-            
-                this->mLifes--;
-                this->mBucketsCount++;
-                
-                ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->setCurrentFrameIndex(1);
-                ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->setScale(1.25f);
-                ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->runAction(CCScaleTo::create(0.75f, 1.0f));
-            
-                if(this->mLifes <= 0)
+                if(bucket->mType != Bucket::TYPE_DANGER)
                 {
-                    this->finishLevel();
+                    this->mLoseMarks->create()->setCenterPosition(bucket->getCenterX(), Utils::coord(Utils::randomf(30.0f, 60.0f)));
+            
+                    this->mLifes--;
+                    this->mBucketsCount++;
+                
+                    ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->setCurrentFrameIndex(1);
+                    ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->setScale(1.25f);
+                    ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->runAction(CCScaleTo::create(0.75f, 1.0f));
+            
+                    if(this->mLifes <= 0)
+                    {
+                        this->finishLevel();
+                    }
                 }
+                
+                bucket->destroy();
             }
         }
         
