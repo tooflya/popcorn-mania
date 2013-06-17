@@ -36,7 +36,7 @@ void Weapon::onAnimationEnd()
 
 void Weapon::animation()
 {
-    int startFrame = 15;//Utils::random(0, 3) * 5;
+    int startFrame = 5;//Utils::random(0, 3) * 5;
     
     this->setStartFrame(startFrame);
     this->setFinishFrame(startFrame + 5);
