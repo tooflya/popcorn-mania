@@ -45,6 +45,11 @@ class Level : public Screen
         float mLightsTime;
         float mLightsTimeElapsed;
     
+        float mCoinsTime;
+        float mCoinsTimeElapsed;
+    
+        float mBucketsTimeMax;
+    
         LevelPauseButton* mPauseButton;
 
 		// ===========================================================

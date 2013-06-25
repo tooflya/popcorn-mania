@@ -22,8 +22,11 @@
 Coin::Coin() :
     ImpulseEntity(Resources::R_LEVEL_COIN, 3, 2)
     {
+        this->mHand = new Hand();
+        
+        this->mIsGone = false;
+        
         this->setShadowed(Resources::R_LEVEL_COIN_SHADOW);
-        //this->setRegisterAsTouchable(true);
         
         this->animate(0.1f);
     }
@@ -32,9 +35,24 @@ Coin::Coin() :
 // Methods
 // ===========================================================
 
+void Coin::fall()
+{
+    this->mIsGone = true;
+    
+    this->mHandPadding = 80.0;
+    
+    this->mHand->create();
+    this->mHand->animation();
+    
+    this->runAction(CCScaleTo::create(0.3, 0.0));
+}
+
 void Coin::onCreate()
 {
+    this->mIsGone = false;
+    
     this->setScaleX(1);
+    
     this->mWeight = 20.0f;
     this->mImpulsePower = 1200.0f;
     
@@ -46,6 +64,11 @@ void Coin::onCreate()
     this->mSideImpulse = this->getCenterX() < Options::CAMERA_CENTER_X ? -this->mSideImpulse : this->mSideImpulse;
     
     this->setCurrentFrameIndex(Utils::random(0, 2));
+    
+    if(this->mHand->getParent() == false)
+    {
+        this->getParent()->addChild(this->mHand, 4);
+    }
 }
 
 void Coin::onDestroy()
@@ -62,6 +85,18 @@ void Coin::update(float pDeltaTime)
     if(!this->isVisible()) return;
     
     ImpulseEntity::update(pDeltaTime);
+    
+    if(this->mIsGone)
+    {
+        this->mHand->setCenterPosition(this->getCenterX(), this->getCenterY() - this->mHandPadding);
+        
+        this->mHandPadding -= 5.0;
+        
+        if(this->getScaleX() <= 0.0)
+        {
+            this->destroy();
+        }
+    }
 }
 
 // ===========================================================

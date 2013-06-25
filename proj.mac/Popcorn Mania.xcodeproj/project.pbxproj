@@ -131,6 +131,10 @@
 		786059991750B63D00ACE2D3 /* ImpulseEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786059971750B63C00ACE2D3 /* ImpulseEntity.cpp */; };
 		7860599C1750B74700ACE2D3 /* Bucket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7860599A1750B74600ACE2D3 /* Bucket.cpp */; };
 		786059D61751157500ACE2D3 /* Popcorn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786059D41751157300ACE2D3 /* Popcorn.cpp */; };
+		78BE6DAB1779A5EF00E9EAE0 /* Hand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BE6DA91779A5EF00E9EAE0 /* Hand.cpp */; };
+		78BE6DAD1779A73300E9EAE0 /* hand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BE6DAC1779A73300E9EAE0 /* hand@2x.png */; };
+		78BE6DAF1779AFF400E9EAE0 /* hand-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BE6DAE1779AFF400E9EAE0 /* hand-shadow@2x.png */; };
+		78BE6DB21779BE8900E9EAE0 /* GetCoins.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BE6DB01779BE8900E9EAE0 /* GetCoins.cpp */; };
 		78DA14A71733EA360005B6D2 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA14441733EA350005B6D2 /* CDAudioManager.m */; };
 		78DA14A81733EA360005B6D2 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA14471733EA350005B6D2 /* CDOpenALSupport.m */; };
 		78DA14A91733EA360005B6D2 /* CDXMacOSXSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78DA14491733EA350005B6D2 /* CDXMacOSXSupport.mm */; };
@@ -317,6 +321,12 @@
 		7860599B1750B74700ACE2D3 /* Bucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bucket.h; sourceTree = "<group>"; };
 		786059D41751157300ACE2D3 /* Popcorn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Popcorn.cpp; sourceTree = "<group>"; };
 		786059D51751157400ACE2D3 /* Popcorn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popcorn.h; sourceTree = "<group>"; };
+		78BE6DA91779A5EF00E9EAE0 /* Hand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hand.cpp; sourceTree = "<group>"; };
+		78BE6DAA1779A5EF00E9EAE0 /* Hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hand.h; sourceTree = "<group>"; };
+		78BE6DAC1779A73300E9EAE0 /* hand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hand@2x.png"; sourceTree = "<group>"; };
+		78BE6DAE1779AFF400E9EAE0 /* hand-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hand-shadow@2x.png"; sourceTree = "<group>"; };
+		78BE6DB01779BE8900E9EAE0 /* GetCoins.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetCoins.cpp; sourceTree = "<group>"; };
+		78BE6DB11779BE8900E9EAE0 /* GetCoins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCoins.h; sourceTree = "<group>"; };
 		78DA142F1733EA350005B6D2 /* Export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Export.h; sourceTree = "<group>"; };
 		78DA14301733EA350005B6D2 /* SimpleAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioEngine.h; sourceTree = "<group>"; };
 		78DA14431733EA350005B6D2 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
@@ -508,6 +518,8 @@
 		78247A57175F74DE00D52738 /* process-gui */ = {
 			isa = PBXGroup;
 			children = (
+				78BE6DAE1779AFF400E9EAE0 /* hand-shadow@2x.png */,
+				78BE6DAC1779A73300E9EAE0 /* hand@2x.png */,
 				78247A58175F74DE00D52738 /* best-score-text@2x.png */,
 				78247A5B175F74DE00D52738 /* frames-count-num-sprite@2x.png */,
 				78247A5C175F74DE00D52738 /* frames-count@2x.png */,
@@ -616,6 +628,8 @@
 		78605316174FB2A000ACE2D3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				78BE6DA91779A5EF00E9EAE0 /* Hand.cpp */,
+				78BE6DAA1779A5EF00E9EAE0 /* Hand.h */,
 				7821A35417547C980068F6D6 /* Lights.cpp */,
 				7821A35517547C990068F6D6 /* Lights.h */,
 				782198371753AE050068F6D6 /* Coin.cpp */,
@@ -647,6 +661,8 @@
 		7860531A174FB2F600ACE2D3 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				78BE6DB01779BE8900E9EAE0 /* GetCoins.cpp */,
+				78BE6DB11779BE8900E9EAE0 /* GetCoins.h */,
 				781C17C0175CF0EE00EBFAAF /* Loading.cpp */,
 				781C17C1175CF0EF00EBFAAF /* Loading.h */,
 				781C16501758E58300EBFAAF /* Shop.cpp */,
@@ -918,6 +934,8 @@
 				78247AC4175F74DE00D52738 /* shop-get-coin-menu-btn2@2x.png in Resources */,
 				78247AC5175F74DE00D52738 /* shop-get-coin-menu-btn3@2x.png in Resources */,
 				78247AC6175F74DE00D52738 /* shop-get-coin-menu-btn4@2x.png in Resources */,
+				78BE6DAD1779A73300E9EAE0 /* hand@2x.png in Resources */,
+				78BE6DAF1779AFF400E9EAE0 /* hand-shadow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -967,6 +985,8 @@
 				781C164F1758D75200EBFAAF /* Popscreen.cpp in Sources */,
 				781C16521758E58400EBFAAF /* Shop.cpp in Sources */,
 				781C17C2175CF0F000EBFAAF /* Loading.cpp in Sources */,
+				78BE6DAB1779A5EF00E9EAE0 /* Hand.cpp in Sources */,
+				78BE6DB21779BE8900E9EAE0 /* GetCoins.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

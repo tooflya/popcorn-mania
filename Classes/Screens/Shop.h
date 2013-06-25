@@ -8,6 +8,7 @@
 #include "BatchEntityManager.h"
 
 class Menu;
+class GetCoins;
 
 using namespace cocos2d;
 
@@ -27,9 +28,6 @@ class Shop : public Popscreen
         // ===========================================================
     
         Entity* mBackgroundDecoration;
-    
-        Entity* mGetButtonPanel;
-        Entity* mGetButtonLabel;
 
 		// ===========================================================
 		// Constructors
@@ -80,6 +78,8 @@ class Shop : public Popscreen
 		// ===========================================================
 		// Fields
         // ===========================================================
+    
+        GetCoins* mGetCoinsScreen;
     
 		// ===========================================================
 		// Constructors

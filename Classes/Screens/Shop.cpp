@@ -3,6 +3,7 @@
 
 #include "Shop.h"
 #include "Menu.h"
+#include "GetCoins.h"
 
 // ===========================================================
 // Inner Classes
@@ -39,6 +40,42 @@ public:
     }
 };
 
+class ShopCoinsButton : public Entity
+{
+public:
+    Shop* mParent;
+    
+    ShopCoinsButton(Shop* pParent) :
+    Entity(Resources::R_SHOP_BUTTON_GET_PANEL, 2, 2, pParent)
+    {
+        this->mParent = pParent;
+        
+        this->create()->animate(0.2f);
+        this->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(120), Utils::coord(52));
+        
+        
+        this->setRegisterAsTouchable(true);
+        
+        Entity* label = new Entity(Resources::R_SHOP_BUTTON_GET_NAME, 1, 2, this);
+        label->create()->animate(0.2f);
+        label->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(8));
+    }
+    
+    void onTouch(CCTouch* touch, CCEvent* event)
+    {
+        if(this->mParent->mGetCoinsScreen->mShowed)
+        {
+            this->mParent->mGetCoinsScreen->hide();
+        }
+        else
+        {
+            this->mParent->addChild(this->mParent->mGetCoinsScreen, 500);
+            this->mParent->mGetCoinsScreen->show();
+        }
+    }
+    
+};
+
 // ===========================================================
 // Constants
 // ===========================================================
@@ -58,18 +95,11 @@ Shop::Shop(Menu* pMenu)
         
         new BackButton(this, pMenu);
         
-        this->mGetButtonPanel = new Entity(Resources::R_SHOP_BUTTON_GET_PANEL, 2, 2, this);
-        this->mGetButtonLabel = new Entity(Resources::R_SHOP_BUTTON_GET_NAME, 1, 2, this);
-        
-        this->mGetButtonPanel->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(120), Utils::coord(52));
-        this->mGetButtonLabel->create()->setCenterPosition(Options::CAMERA_WIDTH - Utils::coord(120), Utils::coord(60));
-        
-        this->mGetButtonPanel->animate(0.2f);
-        this->mGetButtonLabel->animate(0.2f);
+        new ShopCoinsButton(this);
         
         for(int i = 0 ; i < 3; i++)
         {
-            (new Entity(Resources::R_SHOP_STROKE, this))->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_HEIGHT - Utils::coord(160) * i - Utils::coord(100));
+            (new Entity(Resources::R_SHOP_STROKE, 1, 4, this))->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_HEIGHT - Utils::coord(160) * i - Utils::coord(100));
         }
         
         this->hide();
@@ -78,6 +108,8 @@ Shop::Shop(Menu* pMenu)
         this->mNeedToHide = false;
         
         this->mHideTimeElapsed = 0;
+        
+        this->mGetCoinsScreen = new GetCoins();
     }
 
 // ===========================================================

@@ -95,6 +95,9 @@ Level::Level()
         this->mBucketTime = 1.2f;
         this->mBucketTimeElapsed = 0;
         
+        this->mCoinsTime = 1.6f;
+        this->mCoinsTimeElapsed = 0;
+        
         this->mCoins = new EntityManager(10, new Coin(), this, 5);
         this->mBuckets = new EntityManager(10, new Bucket(), this, 5);
         this->mPopcornsShadows = new BatchEntityManager(200, new Entity(Resources::R_GAME_CORN_SHADOW, 1, 3), this, 4);
@@ -222,6 +225,8 @@ void Level::startLevel()
     
     this->mLifes = 3;
     this->mBucketsCount = 0;
+    
+    this->mBucketsTimeMax = 5.0;
     
     this->updateFonts();
     
@@ -377,9 +382,21 @@ void Level::update(float pDelta)
         if(this->mBucketTimeElapsed >= this->mBucketTime && this->mIsLevelRunning)
         {
             this->mBucketTimeElapsed -= this->mBucketTime;
+            
+            this->mBucketTime = Utils::randomf(0.1, this->mBucketsTimeMax);
+            
+            this->mBucketsTimeMax -= 0.0001;
         
-            Bucket* bucket = (Bucket*) this->mBuckets->create();
-            Coin* coin = (Coin*) this->mCoins->create();
+            this->mBuckets->create();
+        }
+        
+        this->mCoinsTimeElapsed += pDelta;
+        
+        if(this->mCoinsTimeElapsed >= this->mCoinsTime && this->mIsLevelRunning)
+        {
+            this->mCoinsTimeElapsed -= this->mCoinsTime;
+            
+            this->mCoins->create();
         }
     
         for(int i = 0; i < this->mBuckets->getCount(); i++)
@@ -417,6 +434,18 @@ void Level::update(float pDelta)
                 }
                 
                 bucket->destroy();
+            }
+        }
+        
+        //
+        
+        for(int i = 0; i < this->mCoins->getCount(); i++)
+        {
+            Coin* coin = (Coin*) this->mCoins->objectAtIndex(i);
+            
+            if(coin->isCollideWithPoint(this->mTouchCoordinateX, this->mTouchCoordinateY) && !coin->mIsGone)
+            {
+                coin->fall();
             }
         }
         

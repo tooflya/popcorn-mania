@@ -18,7 +18,7 @@ public class Intro extends Activity {
 
 		VideoView videoView = (VideoView) findViewById(R.id.ViewVideo);
 		videoView.setVideoURI(Uri.parse("android.resource://"
-				+ getPackageName() + "/" + R.raw.intro));
+				+ getPackageName() + "/" + R.raw.intro_hight_quality));
 		videoView.setMediaController(new MediaController(this));
 
 		DisplayMetrics metrics = new DisplayMetrics();

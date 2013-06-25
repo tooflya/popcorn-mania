@@ -1,5 +1,6 @@
 int drawable icon 0x7f020000
 int id ViewVideo 0x7f060000
 int layout main 0x7f030000
-int raw intro 0x7f040000
+int raw intro_hight_quality 0x7f040000
+int raw intro_low_quality 0x7f040001
 int string app_name 0x7f050000

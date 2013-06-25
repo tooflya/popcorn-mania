@@ -118,6 +118,14 @@ class Resources
         static const char* R_LEVEL_LIFES;
         static const char* R_LEVEL_PHOTO_LIGHTS;
         static const char* R_LEVEL_LABEL_BEST;
+        static const char* R_LEVEL_HAND;
+        static const char* R_LEVEL_HAND_SHADOW;
+    
+        static const char* R_GETCOINS_BUTTONS_BG;
+        static const char* R_GETCOINS_BUTTON1;
+        static const char* R_GETCOINS_BUTTON2;
+        static const char* R_GETCOINS_BUTTON3;
+        static const char* R_GETCOINS_BUTTON4;
     
         static const char* R_LOADING_BACKGROUND;
     

@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 
 #include "ImpulseEntity.h"
+#include "Hand.h"
 
 using namespace cocos2d;
 
@@ -21,6 +22,10 @@ class Coin : public ImpulseEntity
 		// ===========================================================
 		// Fields
 		// ===========================================================
+    
+        float mHandPadding;
+    
+        Hand* mHand;
 
 		// ===========================================================
 		// Constructors
@@ -72,6 +77,8 @@ class Coin : public ImpulseEntity
 		// Fields
         // ===========================================================
     
+        bool mIsGone;
+    
 		// ===========================================================
 		// Constructors
 		// ===========================================================
@@ -85,6 +92,8 @@ class Coin : public ImpulseEntity
         void update(float pDelta);
     
         void onTouch(CCTouch* touch, CCEvent* event);
+    
+        void fall();
 		
 		// ===========================================================
 		// Virtual Methods
