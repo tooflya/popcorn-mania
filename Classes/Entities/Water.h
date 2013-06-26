@@ -1,19 +1,13 @@
-#ifndef CONST_SHOP_H
-#define CONST_SHOP_H
+#ifndef CONST_WATER_H
+#define CONST_WATER_H
 
 #include "cocos2d.h"
 
-#include "Popscreen.h"
-
-#include "BatchEntityManager.h"
-
-class Menu;
-class GetCoins;
-class Layer;
+#include "Entity.h"
 
 using namespace cocos2d;
 
-class Shop : public Popscreen
+class Water : public Entity
 {
 	protected:
 		// ===========================================================
@@ -26,9 +20,7 @@ class Shop : public Popscreen
 
 		// ===========================================================
 		// Fields
-        // ===========================================================
-    
-        Entity* mBackgroundDecoration;
+		// ===========================================================
 
 		// ===========================================================
 		// Constructors
@@ -78,30 +70,27 @@ class Shop : public Popscreen
 
 		// ===========================================================
 		// Fields
-        // ===========================================================
-    
-        GetCoins* mGetCoinsScreen;
-    
-        Layer* mListLayer;
-    
+		// ===========================================================
+
 		// ===========================================================
 		// Constructors
-        // ===========================================================
+		// ===========================================================
     
-        Shop(Menu* pMenu);
+        Water();
 
 		// ===========================================================
 		// Methods
-        // ===========================================================
+		// ===========================================================
     
-        void show();
-        void hide();
+        void onAnimationEnd();
     
-        void update(float pDeltaTime);
+        void animation();
 		
 		// ===========================================================
 		// Virtual Methods
-        // ===========================================================
+		// ===========================================================
+    
+        Water* deepCopy();
 };
 
 #endif

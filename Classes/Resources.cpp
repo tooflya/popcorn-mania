@@ -82,6 +82,7 @@ const char* Resources::R_SHOP_BUTTON_BACK = "shop-btn-back@2x.png";
 const char* Resources::R_SHOP_BUTTON_GET_PANEL = "shop-btn-get-coins-bg@2x.png";
 const char* Resources::R_SHOP_BUTTON_GET_NAME = "shop-btn-get-coins-text@2x.png";
 const char* Resources::R_SHOP_STROKE = "shop-stroke-sprite@2x.png";
+const char* Resources::R_SHOP_BUY_BUTTON = "shop-buy-btn-sprite@2x.png";
 
 const char* Resources::R_GETCOINS_BUTTONS_BG = "shop-get-coin-menu-bg@2x.png";
 const char* Resources::R_GETCOINS_BUTTON1 = "shop-get-coin-menu-btn1@2x.png";

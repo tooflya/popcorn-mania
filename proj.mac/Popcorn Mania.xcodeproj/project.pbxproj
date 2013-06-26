@@ -131,6 +131,8 @@
 		786059991750B63D00ACE2D3 /* ImpulseEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786059971750B63C00ACE2D3 /* ImpulseEntity.cpp */; };
 		7860599C1750B74700ACE2D3 /* Bucket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7860599A1750B74600ACE2D3 /* Bucket.cpp */; };
 		786059D61751157500ACE2D3 /* Popcorn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786059D41751157300ACE2D3 /* Popcorn.cpp */; };
+		78B36D55177AFEBD00773C6A /* water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B36D54177AFEBD00773C6A /* water@2x.png */; };
+		78B36D58177AFF7200773C6A /* Water.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B36D56177AFF7200773C6A /* Water.cpp */; };
 		78BE6DAB1779A5EF00E9EAE0 /* Hand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BE6DA91779A5EF00E9EAE0 /* Hand.cpp */; };
 		78BE6DAD1779A73300E9EAE0 /* hand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BE6DAC1779A73300E9EAE0 /* hand@2x.png */; };
 		78BE6DAF1779AFF400E9EAE0 /* hand-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BE6DAE1779AFF400E9EAE0 /* hand-shadow@2x.png */; };
@@ -321,6 +323,9 @@
 		7860599B1750B74700ACE2D3 /* Bucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bucket.h; sourceTree = "<group>"; };
 		786059D41751157300ACE2D3 /* Popcorn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Popcorn.cpp; sourceTree = "<group>"; };
 		786059D51751157400ACE2D3 /* Popcorn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popcorn.h; sourceTree = "<group>"; };
+		78B36D54177AFEBD00773C6A /* water@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "water@2x.png"; sourceTree = "<group>"; };
+		78B36D56177AFF7200773C6A /* Water.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Water.cpp; sourceTree = "<group>"; };
+		78B36D57177AFF7200773C6A /* Water.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Water.h; sourceTree = "<group>"; };
 		78BE6DA91779A5EF00E9EAE0 /* Hand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hand.cpp; sourceTree = "<group>"; };
 		78BE6DAA1779A5EF00E9EAE0 /* Hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hand.h; sourceTree = "<group>"; };
 		78BE6DAC1779A73300E9EAE0 /* hand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hand@2x.png"; sourceTree = "<group>"; };
@@ -518,6 +523,7 @@
 		78247A57175F74DE00D52738 /* process-gui */ = {
 			isa = PBXGroup;
 			children = (
+				78B36D54177AFEBD00773C6A /* water@2x.png */,
 				78BE6DAE1779AFF400E9EAE0 /* hand-shadow@2x.png */,
 				78BE6DAC1779A73300E9EAE0 /* hand@2x.png */,
 				78247A58175F74DE00D52738 /* best-score-text@2x.png */,
@@ -628,6 +634,8 @@
 		78605316174FB2A000ACE2D3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				78B36D56177AFF7200773C6A /* Water.cpp */,
+				78B36D57177AFF7200773C6A /* Water.h */,
 				78BE6DA91779A5EF00E9EAE0 /* Hand.cpp */,
 				78BE6DAA1779A5EF00E9EAE0 /* Hand.h */,
 				7821A35417547C980068F6D6 /* Lights.cpp */,
@@ -936,6 +944,7 @@
 				78247AC6175F74DE00D52738 /* shop-get-coin-menu-btn4@2x.png in Resources */,
 				78BE6DAD1779A73300E9EAE0 /* hand@2x.png in Resources */,
 				78BE6DAF1779AFF400E9EAE0 /* hand-shadow@2x.png in Resources */,
+				78B36D55177AFEBD00773C6A /* water@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,6 +996,7 @@
 				781C17C2175CF0F000EBFAAF /* Loading.cpp in Sources */,
 				78BE6DAB1779A5EF00E9EAE0 /* Hand.cpp in Sources */,
 				78BE6DB21779BE8900E9EAE0 /* GetCoins.cpp in Sources */,
+				78B36D58177AFF7200773C6A /* Water.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

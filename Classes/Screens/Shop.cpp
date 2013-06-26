@@ -9,6 +9,30 @@
 // Inner Classes
 // ===========================================================
 
+class Layer : public CCLayerRGBA
+{
+public:
+    Layer()
+    {
+        
+    }
+    
+    void setOpacity(GLubyte pOpacity)
+    {
+        CCLayerRGBA::setOpacity(pOpacity);
+        
+        for(int i=0; i<this->getChildrenCount(); i++)
+        {
+            ((Entity*) this->getChildren()->objectAtIndex(i))->setOpacity(pOpacity);
+            
+            for(int j=0; j<((Entity*) this->getChildren()->objectAtIndex(i))->getChildrenCount(); j++)
+            {
+                ((Entity*) ((Entity*) this->getChildren()->objectAtIndex(i))->getChildren()->objectAtIndex(j))->setOpacity(pOpacity);
+            }
+        }
+    }
+};
+
 class BackButton : public Entity
 {
 public:
@@ -36,7 +60,16 @@ public:
     
     void onTouch(CCTouch* touch, CCEvent* event)
     {
-        this->mMenu->hideShop();
+        if(this->mParent->mGetCoinsScreen->mShowed)
+        {
+            this->mParent->mGetCoinsScreen->hide();
+            
+            this->mParent->mListLayer->runAction(CCFadeIn::create(0.3f));
+        }
+        else
+        {
+            this->mMenu->hideShop();
+        }
     }
 };
 
@@ -66,12 +99,24 @@ public:
         if(this->mParent->mGetCoinsScreen->mShowed)
         {
             this->mParent->mGetCoinsScreen->hide();
+            
+            this->mParent->mListLayer->runAction(CCFadeIn::create(0.3f));
         }
         else
         {
             this->mParent->addChild(this->mParent->mGetCoinsScreen, 500);
             this->mParent->mGetCoinsScreen->show();
+            
+            this->mParent->mListLayer->runAction(CCFadeOut::create(0.3f));
         }
+    }
+    
+    void setOpacity(GLubyte pOpacity)
+    {
+        Entity::setOpacity(pOpacity);
+        
+        for(int i=0; i<this->getChildrenCount(); i++)
+            ((Entity*) this->getChildren()->objectAtIndex(i))->setOpacity(pOpacity);
     }
     
 };
@@ -93,13 +138,23 @@ Shop::Shop(Menu* pMenu)
         this->mBackgroundDecoration = new Entity(Resources::R_RATE_BACKGROUND_DECORATION, this);
         this->mBackgroundDecoration->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_HEIGHT - Utils::coord(150));
         
+        this->mListLayer = new Layer();
+        
+        this->addChild(this->mListLayer);
+        
         new BackButton(this, pMenu);
         
         new ShopCoinsButton(this);
         
-        for(int i = 0 ; i < 3; i++)
+        for(int i = 0 ; i < 4; i++)
         {
-            (new Entity(Resources::R_SHOP_STROKE, 1, 4, this))->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_HEIGHT - Utils::coord(160) * i - Utils::coord(100));
+            Entity* entity = new Entity(Resources::R_SHOP_STROKE, 1, 4, this->mListLayer);
+            entity->create()->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_HEIGHT - Utils::coord(160) * i - Utils::coord(100));
+            entity->setCurrentFrameIndex(i);
+            
+            Entity* b = new Entity(Resources::R_SHOP_BUY_BUTTON, 3, 1, entity);
+            b->create()->setCenterPosition(entity->getWidth() - b->getWidth() / 2 - Utils::coord(20), entity->getHeight() / 2);
+            b->setCurrentFrameIndex(i);
         }
         
         this->hide();

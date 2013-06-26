@@ -144,6 +144,7 @@ class Resources
         static const char* R_SHOP_BUTTON_GET_PANEL;
         static const char* R_SHOP_BUTTON_GET_NAME;
         static const char* R_SHOP_STROKE;
+        static const char* R_SHOP_BUY_BUTTON;
     
         static const char* S_SCREENS_TIP1;
         static const char* S_SCREENS_TIP2;

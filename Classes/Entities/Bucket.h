@@ -6,6 +6,7 @@
 #include "ImpulseEntity.h"
 #include "Popcorn.h"
 #include "Weapon.h"
+#include "Water.h"
 
 using namespace cocos2d;
 
@@ -25,6 +26,7 @@ class Bucket : public ImpulseEntity
 		// ===========================================================
     
         Weapon* mWeapon;
+        Water* mWater;
 
 		// ===========================================================
 		// Constructors

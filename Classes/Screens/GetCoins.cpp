@@ -29,7 +29,7 @@ public:
         this->setRegisterAsTouchable(true);
         
         Entity* label = new Entity(Resources::R_GETCOINS_BUTTON1, 1, 1, this);
-        label->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(8));
+        label->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(12));
     }
     
     void onTouch(CCTouch* touch, CCEvent* event)
@@ -62,7 +62,7 @@ public:
         this->setRegisterAsTouchable(true);
         
         Entity* label = new Entity(Resources::R_GETCOINS_BUTTON2, 1, 1, this);
-        label->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(8));
+        label->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(12));
     }
     
     void onTouch(CCTouch* touch, CCEvent* event)
@@ -95,7 +95,7 @@ public:
         this->setRegisterAsTouchable(true);
         
         Entity* label = new Entity(Resources::R_GETCOINS_BUTTON3, 1, 1, this);
-        label->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(8));
+        label->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(12));
     }
     
     void onTouch(CCTouch* touch, CCEvent* event)
@@ -128,7 +128,7 @@ public:
         this->setRegisterAsTouchable(true);
         
         Entity* label = new Entity(Resources::R_GETCOINS_BUTTON4, 1, 1, this);
-        label->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(8));
+        label->create()->setCenterPosition(this->getWidth() / 2, this->getHeight() / 2 + Utils::coord(12));
     }
     
     void onTouch(CCTouch* touch, CCEvent* event)

@@ -95,8 +95,8 @@ Level::Level()
         this->mBucketTime = 1.2f;
         this->mBucketTimeElapsed = 0;
         
-        this->mCoinsTime = 1.6f;
-        this->mCoinsTimeElapsed = 0;
+        this->mCoinsTime = 10.0f;
+        this->mCoinsTimeElapsed = 10.0f;
         
         this->mCoins = new EntityManager(10, new Coin(), this, 5);
         this->mBuckets = new EntityManager(10, new Bucket(), this, 5);
@@ -395,6 +395,8 @@ void Level::update(float pDelta)
         if(this->mCoinsTimeElapsed >= this->mCoinsTime && this->mIsLevelRunning)
         {
             this->mCoinsTimeElapsed -= this->mCoinsTime;
+            
+            this->mCoinsTime = Utils::randomf(0.0, 7.0);
             
             this->mCoins->create();
         }
