@@ -117,6 +117,7 @@ class Level : public Screen
     
         BatchEntityManager* mPopcorns;
         BatchEntityManager* mPopcornsShadows;
+        BatchEntityManager* mWater;
     
         float mTouchPreviousCoordinateX;
         float mTouchPreviousCoordinateY;
@@ -126,6 +127,7 @@ class Level : public Screen
     
         int mLifes;
         int mBucketsCount;
+        int mBestBucketsCount;
     
         bool mIsLevelRunning;
     

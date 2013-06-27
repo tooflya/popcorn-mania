@@ -253,6 +253,8 @@ void GameOver::hide()
     
     //this->mRestartButton->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y - Utils::coord(250) - Utils::coord(500));
     //this->mMenuButton->setCenterPosition(Options::CAMERA_CENTER_X, Options::CAMERA_CENTER_Y - Utils::coord(50) - Utils::coord(500));
+    
+    this->mBucketsCount = 0;
 }
 
 void GameOver::show()
@@ -271,6 +273,13 @@ void GameOver::show()
     
     this->mAnimationsCountElapsed = 0;
     this->mAnimationButtonTimeElapsed = 0;
+    
+    Level* level = (Level*) this->getParent();
+    
+    this->mBucketsCount = level->mBucketsCount;
+    this->mBestBucketsCount = level->mBestBucketsCount;
+    
+    this->mCoinsCount = CCUserDefault::sharedUserDefault()->getIntegerForKey("coins");
 }
 
 // ===========================================================
@@ -302,10 +311,6 @@ void GameOver::update(float pDeltaTime)
             this->mAnimationsCountElapsed++;
         }
     }
-    
-    //
-    
-    this->mBucketsCount = 123;
     
     if(this->mBucketsCount < 10)
     {
@@ -344,9 +349,9 @@ void GameOver::update(float pDeltaTime)
         ((Entity*) this->mBucketsCountText->objectAtIndex(5))->setVisible(false);
     }
     
-    if(this->mBucketsCount < 10)
+    if(this->mCoinsCount < 10)
     {
-        ((Entity*) this->mCoinsCountText->objectAtIndex(0))->setCurrentFrameIndex(this->mBucketsCount);
+        ((Entity*) this->mCoinsCountText->objectAtIndex(0))->setCurrentFrameIndex(this->mCoinsCount);
         
         ((Entity*) this->mCoinsCountText->objectAtIndex(0))->setVisible(true);
         ((Entity*) this->mCoinsCountText->objectAtIndex(1))->setVisible(false);
@@ -355,10 +360,10 @@ void GameOver::update(float pDeltaTime)
         ((Entity*) this->mCoinsCountText->objectAtIndex(4))->setVisible(false);
         ((Entity*) this->mCoinsCountText->objectAtIndex(5))->setVisible(false);
     }
-    else if(this->mBucketsCount < 100)
+    else if(this->mCoinsCount < 100)
     {
-        ((Entity*) this->mCoinsCountText->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBucketsCount / 10));
-        ((Entity*) this->mCoinsCountText->objectAtIndex(1))->setCurrentFrameIndex(this->mBucketsCount - floor(this->mBucketsCount / 10) * 10);
+        ((Entity*) this->mCoinsCountText->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mCoinsCount / 10));
+        ((Entity*) this->mCoinsCountText->objectAtIndex(1))->setCurrentFrameIndex(this->mCoinsCount - floor(this->mCoinsCount / 10) * 10);
         
         ((Entity*) this->mCoinsCountText->objectAtIndex(0))->setVisible(true);
         ((Entity*) this->mCoinsCountText->objectAtIndex(1))->setVisible(true);
@@ -367,11 +372,11 @@ void GameOver::update(float pDeltaTime)
         ((Entity*) this->mCoinsCountText->objectAtIndex(4))->setVisible(false);
         ((Entity*) this->mCoinsCountText->objectAtIndex(5))->setVisible(false);
     }
-    else if(this->mBucketsCount < 1000)
+    else if(this->mCoinsCount < 1000)
     {
-        ((Entity*) this->mCoinsCountText->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBucketsCount / 100));
-        ((Entity*) this->mCoinsCountText->objectAtIndex(1))->setCurrentFrameIndex((int) floor((this->mBucketsCount - floor(this->mBucketsCount / 100) * 100) / 10));
-        ((Entity*) this->mCoinsCountText->objectAtIndex(2))->setCurrentFrameIndex((int) floor(this->mBucketsCount % 10));
+        ((Entity*) this->mCoinsCountText->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mCoinsCount / 100));
+        ((Entity*) this->mCoinsCountText->objectAtIndex(1))->setCurrentFrameIndex((int) floor((this->mCoinsCount - floor(this->mCoinsCount / 100) * 100) / 10));
+        ((Entity*) this->mCoinsCountText->objectAtIndex(2))->setCurrentFrameIndex((int) floor(this->mCoinsCount % 10));
         
         ((Entity*) this->mCoinsCountText->objectAtIndex(0))->setVisible(true);
         ((Entity*) this->mCoinsCountText->objectAtIndex(1))->setVisible(true);
@@ -381,9 +386,9 @@ void GameOver::update(float pDeltaTime)
         ((Entity*) this->mCoinsCountText->objectAtIndex(5))->setVisible(false);
     }
     
-    if(this->mBucketsCount < 10)
+    if(this->mBestBucketsCount < 10)
     {
-        ((Entity*) this->mBucketsBestCountText->objectAtIndex(0))->setCurrentFrameIndex(this->mBucketsCount);
+        ((Entity*) this->mBucketsBestCountText->objectAtIndex(0))->setCurrentFrameIndex(this->mBestBucketsCount);
         
         ((Entity*) this->mBucketsBestCountText->objectAtIndex(0))->setVisible(true);
         ((Entity*) this->mBucketsBestCountText->objectAtIndex(1))->setVisible(false);
@@ -392,10 +397,10 @@ void GameOver::update(float pDeltaTime)
         ((Entity*) this->mBucketsBestCountText->objectAtIndex(4))->setVisible(false);
         ((Entity*) this->mBucketsBestCountText->objectAtIndex(5))->setVisible(false);
     }
-    else if(this->mBucketsCount < 100)
+    else if(this->mBestBucketsCount < 100)
     {
-        ((Entity*) this->mBucketsBestCountText->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBucketsCount / 10));
-        ((Entity*) this->mBucketsBestCountText->objectAtIndex(1))->setCurrentFrameIndex(this->mBucketsCount - floor(this->mBucketsCount / 10) * 10);
+        ((Entity*) this->mBucketsBestCountText->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBestBucketsCount / 10));
+        ((Entity*) this->mBucketsBestCountText->objectAtIndex(1))->setCurrentFrameIndex(this->mBestBucketsCount - floor(this->mBestBucketsCount / 10) * 10);
         
         ((Entity*) this->mBucketsBestCountText->objectAtIndex(0))->setVisible(true);
         ((Entity*) this->mBucketsBestCountText->objectAtIndex(1))->setVisible(true);
@@ -404,11 +409,11 @@ void GameOver::update(float pDeltaTime)
         ((Entity*) this->mBucketsBestCountText->objectAtIndex(4))->setVisible(false);
         ((Entity*) this->mBucketsBestCountText->objectAtIndex(5))->setVisible(false);
     }
-    else if(this->mBucketsCount < 1000)
+    else if(this->mBestBucketsCount < 1000)
     {
-        ((Entity*) this->mBucketsBestCountText->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBucketsCount / 100));
-        ((Entity*) this->mBucketsBestCountText->objectAtIndex(1))->setCurrentFrameIndex((int) floor((this->mBucketsCount - floor(this->mBucketsCount / 100) * 100) / 10));
-        ((Entity*) this->mBucketsBestCountText->objectAtIndex(2))->setCurrentFrameIndex((int) floor(this->mBucketsCount % 10));
+        ((Entity*) this->mBucketsBestCountText->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBestBucketsCount / 100));
+        ((Entity*) this->mBucketsBestCountText->objectAtIndex(1))->setCurrentFrameIndex((int) floor((this->mBestBucketsCount - floor(this->mBestBucketsCount / 100) * 100) / 10));
+        ((Entity*) this->mBucketsBestCountText->objectAtIndex(2))->setCurrentFrameIndex((int) floor(this->mBestBucketsCount % 10));
         
         ((Entity*) this->mBucketsBestCountText->objectAtIndex(0))->setVisible(true);
         ((Entity*) this->mBucketsBestCountText->objectAtIndex(1))->setVisible(true);

@@ -110,6 +110,14 @@ void Bucket::update(float pDeltaTime)
                 }
             }
             
+            /*Level* level = (Level*) this->getParent();
+            Water* water = (Water*) level->mWater->create();
+            water->setCenterPosition(this->getCenterX() - water->getWidth() / 2 + Utils::coord(30), this->getCenterY() + water->getHeight() / 2 + Utils::coord(30));
+            water->create();
+            water->animation();
+            water->setAnchorPoint(ccp(0.5, 0.5));
+            water->setRotation(this->getRotation());*/
+            
             this->mWeapon->destroy();
         }
         

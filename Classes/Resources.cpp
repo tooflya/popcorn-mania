@@ -77,6 +77,7 @@ const char* Resources::R_LEVEL_PHOTO_LIGHTS = "photo-lights@2x.png";
 const char* Resources::R_LEVEL_LABEL_BEST = "best-score-text@2x.png";
 const char* Resources::R_LEVEL_HAND = "hand@2x.png";
 const char* Resources::R_LEVEL_HAND_SHADOW = "hand-shadow@2x.png";
+const char* Resources::R_LEVEL_WATER = "water@2x.png";
 
 const char* Resources::R_SHOP_BUTTON_BACK = "shop-btn-back@2x.png";
 const char* Resources::R_SHOP_BUTTON_GET_PANEL = "shop-btn-get-coins-bg@2x.png";

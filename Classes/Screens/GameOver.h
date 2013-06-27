@@ -26,6 +26,8 @@ class GameOver : public Popscreen
     
         int mAnimationsCountElapsed;
         int mBucketsCount;
+        int mBestBucketsCount;
+        int mCoinsCount;
     
         float mAnimationButtonTimeElapsed;
     

@@ -120,6 +120,7 @@ class Resources
         static const char* R_LEVEL_LABEL_BEST;
         static const char* R_LEVEL_HAND;
         static const char* R_LEVEL_HAND_SHADOW;
+        static const char* R_LEVEL_WATER;
     
         static const char* R_GETCOINS_BUTTONS_BG;
         static const char* R_GETCOINS_BUTTON1;

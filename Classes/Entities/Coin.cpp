@@ -45,6 +45,8 @@ void Coin::fall()
     this->mHand->animation();
     
     this->runAction(CCScaleTo::create(0.3, 0.0));
+    
+    CCUserDefault::sharedUserDefault()->setIntegerForKey("coins", CCUserDefault::sharedUserDefault()->getIntegerForKey("coins") + 1);
 }
 
 void Coin::onCreate()

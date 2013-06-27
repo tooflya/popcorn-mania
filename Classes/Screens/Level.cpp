@@ -102,6 +102,7 @@ Level::Level()
         this->mBuckets = new EntityManager(10, new Bucket(), this, 5);
         this->mPopcornsShadows = new BatchEntityManager(200, new Entity(Resources::R_GAME_CORN_SHADOW, 1, 3), this, 4);
         this->mPopcorns = new BatchEntityManager(200, new Popcorn(), this, 5);
+        this->mWater = new BatchEntityManager(5, new Water(), this, 15);
         
         this->mPauseButton = new LevelPauseButton(this);
         this->mPauseButton->create()->setCenterPosition(Utils::coord(60), Utils::coord(48));
@@ -206,6 +207,8 @@ void Level::continueLevel()
 
 void Level::startLevel()
 {
+    this->mBestBucketsCount = CCUserDefault::sharedUserDefault()->getIntegerForKey("best");
+    
     this->mPaused = false;
     this->mIsLevelRunning = false;
     
@@ -306,9 +309,9 @@ void Level::updateFonts()
         ((Entity*) this->mLargeFont->objectAtIndex(5))->setVisible(false);
     }
     
-    if(this->mBucketsCount < 10)
+    if(this->mBestBucketsCount < 10)
     {
-        ((Entity*) this->mSmallFont->objectAtIndex(0))->setCurrentFrameIndex(this->mBucketsCount);
+        ((Entity*) this->mSmallFont->objectAtIndex(0))->setCurrentFrameIndex(this->mBestBucketsCount);
         
         ((Entity*) this->mSmallFont->objectAtIndex(0))->setVisible(true);
         ((Entity*) this->mSmallFont->objectAtIndex(1))->setVisible(false);
@@ -317,10 +320,10 @@ void Level::updateFonts()
         ((Entity*) this->mSmallFont->objectAtIndex(4))->setVisible(false);
         ((Entity*) this->mSmallFont->objectAtIndex(5))->setVisible(false);
     }
-    else if(this->mBucketsCount < 100)
+    else if(this->mBestBucketsCount < 100)
     {
-        ((Entity*) this->mSmallFont->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBucketsCount / 10));
-        ((Entity*) this->mSmallFont->objectAtIndex(1))->setCurrentFrameIndex(this->mBucketsCount - floor(this->mBucketsCount / 10) * 10);
+        ((Entity*) this->mSmallFont->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBestBucketsCount / 10));
+        ((Entity*) this->mSmallFont->objectAtIndex(1))->setCurrentFrameIndex(this->mBestBucketsCount - floor(this->mBestBucketsCount / 10) * 10);
         
         ((Entity*) this->mSmallFont->objectAtIndex(0))->setVisible(true);
         ((Entity*) this->mSmallFont->objectAtIndex(1))->setVisible(true);
@@ -329,11 +332,11 @@ void Level::updateFonts()
         ((Entity*) this->mSmallFont->objectAtIndex(4))->setVisible(false);
         ((Entity*) this->mSmallFont->objectAtIndex(5))->setVisible(false);
     }
-    else if(this->mBucketsCount < 1000)
+    else if(this->mBestBucketsCount < 1000)
     {
-        ((Entity*) this->mSmallFont->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBucketsCount / 100));
-        ((Entity*) this->mSmallFont->objectAtIndex(1))->setCurrentFrameIndex((int) floor((this->mBucketsCount - floor(this->mBucketsCount / 100) * 100) / 10));
-        ((Entity*) this->mSmallFont->objectAtIndex(2))->setCurrentFrameIndex((int) floor(this->mBucketsCount % 10));
+        ((Entity*) this->mSmallFont->objectAtIndex(0))->setCurrentFrameIndex(floor(this->mBestBucketsCount / 100));
+        ((Entity*) this->mSmallFont->objectAtIndex(1))->setCurrentFrameIndex((int) floor((this->mBestBucketsCount - floor(this->mBestBucketsCount / 100) * 100) / 10));
+        ((Entity*) this->mSmallFont->objectAtIndex(2))->setCurrentFrameIndex((int) floor(this->mBestBucketsCount % 10));
         
         ((Entity*) this->mSmallFont->objectAtIndex(0))->setVisible(true);
         ((Entity*) this->mSmallFont->objectAtIndex(1))->setVisible(true);
@@ -341,6 +344,13 @@ void Level::updateFonts()
         ((Entity*) this->mSmallFont->objectAtIndex(3))->setVisible(false);
         ((Entity*) this->mSmallFont->objectAtIndex(4))->setVisible(false);
         ((Entity*) this->mSmallFont->objectAtIndex(5))->setVisible(false);
+    }
+    
+    if(this->mBestBucketsCount <= this->mBucketsCount)
+    {
+        this->mBestBucketsCount = this->mBucketsCount + 1;
+        
+        CCUserDefault::sharedUserDefault()->setIntegerForKey("best", this->mBestBucketsCount);
     }
 }
 
@@ -352,10 +362,11 @@ void Level::update(float pDelta)
     
     if(this->mPaused) return;
     
-    if(this->mScaleAnimation)
+    //if(this->mScaleAnimation)
     {
-        //this->setScale(this->getScale() + 0.001);
-        //this->runAction(CCFollow::create(((Entity*) this->mBuckets->objectAtIndex(0))));
+        this->setScale(this->getScale() + 0.001);
+        this->runAction(CCFollow::create(((Entity*) this->mBuckets->objectAtIndex(0))));
+        
     }
     
     this->mBackgroundDecoration->setRotation(this->mBackgroundDecoration->getRotation() + (this->mIsDecorationReverse ? -0.05f : 0.05f));
@@ -423,7 +434,6 @@ void Level::update(float pDelta)
                     this->mLoseMarks->create()->setCenterPosition(bucket->getCenterX(), Utils::coord(Utils::randomf(30.0f, 60.0f)));
             
                     this->mLifes--;
-                    this->mBucketsCount++;
                 
                     ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->setCurrentFrameIndex(1);
                     ((Entity*) this->mLifesIcons->objectAtIndex(this->mLifes))->setScale(1.25f);
